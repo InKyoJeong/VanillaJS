@@ -11,39 +11,43 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
 
-function makeSecretNum() {
-  secretNumber = Math.floor(Math.random() * 20 + 1);
-}
+const displayMessage = (msg) => {
+  message.innerText = msg;
+};
 
-function checkHandler() {
+const makeSecretNum = () => {
+  secretNumber = Math.floor(Math.random() * 20 + 1);
+};
+
+const checkHandler = () => {
   const guessInputValue = Number(guessInput.value);
   if (!guessInputValue) {
     return;
   }
   if (secretNumber === guessInputValue) {
-    message.innerText = "👍 Correct!";
+    displayMessage("👍 Correct!");
     body.style.backgroundColor = "blue";
     correctNumber.innerText = secretNumber;
   } else {
     if (secretNumber < guessInputValue) {
-      message.innerText = "TOO HIGH!";
+      displayMessage("TOO HIGH!");
     } else if (secretNumber > guessInputValue) {
-      message.innerText = "TOO LOW!";
+      displayMessage("TOO LOW!");
     }
   }
-}
-function againHandler() {
+};
+const againHandler = () => {
+  displayMessage("Start guessing...");
   guessInput.value = "";
   body.style.backgroundColor = "black";
-  message.innerText = "Start guessing...";
   correctNumber.innerText = "?";
   makeSecretNum();
-}
+};
 
-function init() {
+const init = () => {
   makeSecretNum();
   check.addEventListener("click", checkHandler);
   again.addEventListener("click", againHandler);
-}
+};
 
 init();
