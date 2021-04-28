@@ -25,3 +25,12 @@
 - **Array.prototype.find()**
   - 판별 함수를 만족하는 **첫 번째 요소의 값**을 반환. 없으면 **_undefined_**
 - **HTMLElement.blur()** : lose focus
+- **Array.prototype.some()**
+  - every랑 차이점은, 함수의 반환값이 _true_ 일 때까지만 원소를 계속 확인
+- **Array.prototype.flat()**
+  - 하위 배열 요소를 지정한 깊이까지 재귀적으로 이어붙인 새로운 배열을 생성
+  - _arr.flat([depth])_ 기본값은 1
+- **Array.prototype.sort()**
+  - arr.sort([compareFunction])
+    - return < 0 이면, A,B
+    - return > 0 이면, B,A
