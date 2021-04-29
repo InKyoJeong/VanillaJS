@@ -1,3 +1,13 @@
+// 기능
+// 유저 로그인 네임/핀 생성
+// 로그인 후 app 표시
+// 유저 welcome
+// in out interest, 총금액 계산
+// deposit, withdrawal 표시
+// 각 transfer, loan, close 기능적용
+// sort 적용
+// 시간 적용 (X)
+
 "use strict";
 
 // Data

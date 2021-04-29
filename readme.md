@@ -4,6 +4,7 @@
 - To Do List
 - Candy Crush Game
 - Bankisk
+- Event Propagation
 
 <br>
 
@@ -34,3 +35,20 @@
   - arr.sort([compareFunction])
     - return < 0 이면, A,B
     - return > 0 이면, B,A
+- **String.prototype.padStart()**
+  - _str.padStart(targetLength [, padString])_
+    - _targetLength_ :목표 문자열 길이. 현재 문자열의 길이보다 작다면 채워넣지 않고 그대로 반환
+    - _padString_ : 현재 문자열에 채워넣을 다른 문자열
+
+#### Event Propagation
+
+- **이벤트 버블링(Event Bubbling)** : 특정 화면 요소에서 이벤트가 발생했을 때 해당 이벤트가 더 상위의 화면 요소들로 전달되어 가는 특성
+  - 상위의 화면 요소란? HTML 요소는 기본적으로 트리 구조
+  - 트리 구조상으로 한 단계 위에 있는 요소 = 상위 요소, body 태그 = 최상위 요소
+- **이벤트 캡쳐링(Event Capturing)** : 이벤트 버블링과 반대 방향으로 진행되는 이벤트 전파 방식
+- 이벤트핸들러에서 _currentTarget_ 은 _this_ 와 같다
+- **e.stopPropagation()** 으로 이벤트 전파를 막을수 있다.
+- **addEventListener** 의 **세번째 파라미터**
+  - 디폴트는 _false_
+  - _true_ 로 설정하면 이벤트 버블링과 반대 방향으로 탐색
+- **이벤트 위임(Event Delegation)** : 하위 요소에 각각 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트들을 제어하는 방식
