@@ -52,3 +52,7 @@
   - 디폴트는 _false_
   - _true_ 로 설정하면 이벤트 버블링과 반대 방향으로 탐색
 - **이벤트 위임(Event Delegation)** : 하위 요소에 각각 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트들을 제어하는 방식
+
+#### Mapty
+
+- navigator.geolocation
