@@ -55,4 +55,8 @@
 
 #### Mapty
 
+> Map Library : [https://leafletjs.com/](https://leafletjs.com/)
+
 - navigator.geolocation
+- **Element.closest()**
+  - 가깝게 조건에 만족한 부모 요소가 반환. (querySelector의 반대와 비슷)
