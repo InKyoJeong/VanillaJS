@@ -3,7 +3,7 @@
 class Workout {
   date = new Date();
   id = (Date.now() + "").slice(-10);
-  clicks = 0;
+  // clicks = 0;
 
   constructor(coords, distance, duration) {
     this.coords = coords; // [lat, lng]
@@ -19,9 +19,9 @@ class Workout {
     } ${this.date.getDate()}`;
   }
 
-  click() {
-    this.clicks++;
-  }
+  // click() {
+  //   this.clicks++;
+  // }
 }
 
 class Running extends Workout {
@@ -285,7 +285,7 @@ class App {
     });
 
     // using the public interface
-    workout.click();
+    // workout.click();
   }
 
   _setLocalStorage() {
@@ -300,6 +300,12 @@ class App {
     this.#workouts.forEach((work) => {
       this._renderWorkout(work);
     });
+  }
+
+  // app.reset();
+  reset() {
+    localStorage.removeItem("workouts");
+    location.reload();
   }
 }
 
