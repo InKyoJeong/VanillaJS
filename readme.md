@@ -60,3 +60,4 @@
 - navigator.geolocation
 - **Element.closest()**
   - 가깝게 조건에 만족한 부모 요소가 반환. (querySelector의 반대와 비슷)
+- **isFinite()** : 값이 유한수인지 판별
