@@ -5,6 +5,7 @@
 - Candy Crush Game
 - Bankisk
 - Event Propagation
+- Mapty
 
 <br>
 
