@@ -3,6 +3,7 @@
 class Workout {
   date = new Date();
   id = (Date.now() + "").slice(-10);
+  clicks = 0;
 
   constructor(coords, distance, duration) {
     this.coords = coords; // [lat, lng]
@@ -16,6 +17,10 @@ class Workout {
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
+  }
+
+  click() {
+    this.clicks++;
   }
 }
 
@@ -71,12 +76,14 @@ const inputElevation = document.querySelector(".form__input--elevation");
 class App {
   #map;
   #mapEvent;
+  #mapZoomLevel = 13;
   #workouts = [];
 
   constructor() {
     this._getPosition();
-    form.addEventListener("submit", this._newWorkout.bind(this)); // this가 app obj이아니라 form을 가리키므로 binds
+    form.addEventListener("submit", this._newWorkout.bind(this)); // this가 app obj이아니라 form을 가리키므로 bind
     inputType.addEventListener("change", this._toggleElevationField);
+    containerWorkouts.addEventListener("click", this._moveToPopup.bind(this)); // 여기도 this가 containerWorkouts를 가리키므로 _moveToPopup 내부의 this가 app을 가리키도록 변경
   }
 
   _getPosition() {
@@ -97,7 +104,7 @@ class App {
 
     const coords = [latitude, longitude];
 
-    this.#map = L.map("map").setView(coords, 14);
+    this.#map = L.map("map").setView(coords, this.#mapZoomLevel);
 
     L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
       attribution:
@@ -246,6 +253,28 @@ class App {
     }
 
     form.insertAdjacentHTML("afterend", html);
+  }
+
+  // 이 메서드는 addEventlister 메서드에 의해 호출됐으므로 this가 containerWorkouts (ul전체)를 가리키므로 this가 app을 가리키도록 bind
+  _moveToPopup(e) {
+    const workoutEl = e.target.closest(".workout");
+
+    if (!workoutEl) return;
+
+    const workout = this.#workouts.find(
+      (work) => work.id === workoutEl.dataset.id
+    );
+    console.log(workout);
+
+    this.#map.setView(workout.coords, this.#mapZoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
+
+    // using the public interface
+    workout.click();
   }
 }
 
