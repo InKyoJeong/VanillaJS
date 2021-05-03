@@ -81,6 +81,8 @@ class App {
 
   constructor() {
     this._getPosition();
+    this._getLocalStorage();
+
     form.addEventListener("submit", this._newWorkout.bind(this)); // this가 app obj이아니라 form을 가리키므로 bind
     inputType.addEventListener("change", this._toggleElevationField);
     containerWorkouts.addEventListener("click", this._moveToPopup.bind(this)); // 여기도 this가 containerWorkouts를 가리키므로 _moveToPopup 내부의 this가 app을 가리키도록 변경
@@ -112,6 +114,11 @@ class App {
     }).addTo(this.#map);
 
     this.#map.on("click", this._showForm.bind(this)); // this가 이벤트핸들러가 attached된것이므로 this.#mapEvent의 this는 map을 가리킴. 따라서 app obj를 가리키는 this를 바인드
+
+    // 지도 로드되고 marker 찍어야하므로
+    this.#workouts.forEach((work) => {
+      this._renderWorkoutMarker(work);
+    });
   }
 
   _showForm(mapE) {
@@ -181,7 +188,11 @@ class App {
     this._renderWorkoutMarker(workout);
     this._renderWorkout(workout);
 
+    // hide form + clear input
     this._hideForm();
+
+    // set local storage
+    this._setLocalStorage();
   }
 
   _renderWorkoutMarker(workout) {
@@ -276,6 +287,24 @@ class App {
     // using the public interface
     workout.click();
   }
+
+  _setLocalStorage() {
+    localStorage.setItem("workouts", JSON.stringify(this.#workouts));
+  }
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("workouts"));
+    if (!data) return;
+
+    this.#workouts = data;
+
+    this.#workouts.forEach((work) => {
+      this._renderWorkout(work);
+    });
+  }
 }
 
 const app = new App();
+
+// JSON.stringify -> JSON.parse 하고나면 프로토타입체인이 없어져서 메서드를 상속받지않음
+// 따라서 로컬스토리지에서 불러온 목록 클릭하면 에러
+// script.js:288 Uncaught TypeError: workout.click is not a function at App._moveToPopup
