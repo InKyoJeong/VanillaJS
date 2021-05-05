@@ -58,4 +58,11 @@ form.addEventListener("submit", function (e) {
     )
     .setPopupContent("운동")
     .openPopup();
+
+  form.classList.add("hidden");
+});
+
+inputType.addEventListener("change", function () {
+  inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
+  inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
 });
