@@ -91,7 +91,7 @@ class App {
   _getPosition() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        this._loadMap.bind(this), // _loadMap메서드는 getCurrentPosition에 의해 실행됐음 (method call이 아니라 regular funtion call)
+        this._loadMap.bind(this), // _loadMap메서드는 getCurrentPosition에 의해 실행됐음 (method call이 아니라 regular funtion call 이므로 _loadMap안의 this가 undefined임. 따라서 bind로 바꿔줘야한다.)
         function () {
           alert("위치를 찾을 수 없습니다.");
         }
@@ -314,3 +314,8 @@ const app = new App();
 // JSON.stringify -> JSON.parse 하고나면 프로토타입체인이 없어져서 메서드를 상속받지않음
 // 따라서 로컬스토리지에서 불러온 목록 클릭하면 에러
 // script.js:288 Uncaught TypeError: workout.click is not a function at App._moveToPopup
+
+////////////
+// challenge
+// edit, delete workout
+// sort workout
