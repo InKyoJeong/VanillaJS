@@ -54,7 +54,7 @@
   - _true_ 로 설정하면 이벤트 버블링과 반대 방향으로 탐색
 - **이벤트 위임(Event Delegation)** : 하위 요소에 각각 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트들을 제어하는 방식
 
-#### Mapty
+#### Mapty App: OOP, Geolocation
 
 > Map Library : [https://leafletjs.com/](https://leafletjs.com/)
 
@@ -62,3 +62,7 @@
 - **Element.closest()**
   - 가깝게 조건에 만족한 부모 요소가 반환. (querySelector의 반대와 비슷)
 - **isFinite()** : 값이 유한수인지 판별
+
+#### Ajax
+
+> Country API : [https://restcountries.eu](https://restcountries.eu)
