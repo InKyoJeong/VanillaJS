@@ -2,6 +2,7 @@
 
 - Guess Number
 - To Do List
+- To Do List2 (pending)
 - Candy Crush Game
 - Bankisk
 - Event Propagation

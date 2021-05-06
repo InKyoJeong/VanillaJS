@@ -1,35 +1,57 @@
-// 문제점: Finish에서 제거가안됨
-
 const form = document.querySelector(".form");
 const input = document.querySelector(".input");
 const ul1 = document.querySelector(".ul1");
 const ul2 = document.querySelector(".ul2");
 
-let toDos = [];
+let pendingToDos = [];
+let finishToDos = [];
 
 function moveToPending(e) {
-  const parentNode = e.target.parentNode;
-  ul1.appendChild(parentNode);
+  const li = e.target.parentNode;
+  ul1.appendChild(li);
+  // ul1.removeChild(li);
+
   const backBtn = e.target;
-  parentNode.removeChild(backBtn);
+  li.removeChild(backBtn);
 
   const checkBtn = document.createElement("button");
   checkBtn.innerText = "✅";
-  parentNode.appendChild(checkBtn);
+  li.appendChild(checkBtn);
   checkBtn.addEventListener("click", moveToFinish);
 }
 
 function moveToFinish(e) {
   const li = e.target.parentNode;
   ul2.appendChild(li);
+  ul2.removeChild(li);
 
-  const checkBtn = e.target;
-  li.removeChild(checkBtn);
+  const newLi = document.createElement("li");
+  ul2.appendChild(newLi);
+  let userText = li.firstChild;
+  newLi.appendChild(userText);
+
+  const newId = (Date.now() + "").slice(-10);
+
+  newLi.id = newId;
+  finishToDos.push({
+    id: newId,
+    text: userText,
+  });
+
+  const delFromFinish = document.createElement("button");
+  delFromFinish.innerText = "❌";
+  newLi.appendChild(delFromFinish);
+  delFromFinish.addEventListener("click", deleteFinishToDo);
 
   const backBtn = document.createElement("button");
   backBtn.innerText = "🔙";
-  li.appendChild(backBtn);
+  newLi.appendChild(backBtn);
   backBtn.addEventListener("click", moveToPending);
+}
+
+function deleteFinishToDo(e) {
+  const { parentNode } = e.target;
+  ul2.removeChild(parentNode);
 }
 
 function deleteToDo(e) {
@@ -50,9 +72,9 @@ function printToDo(text) {
   li.appendChild(delBtn);
   li.appendChild(checkBtn);
   li.appendChild(userText);
-  let newId = toDos.length + 1;
+  let newId = pendingToDos.length + 1;
   li.id = newId;
-  toDos.push({
+  pendingToDos.push({
     id: newId,
     text: userText,
   });
