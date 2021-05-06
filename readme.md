@@ -10,6 +10,12 @@
 
 <br>
 
+#### To Do List
+
+- **append vs appendChild**
+  - _append_ : 노드 객체나 문자열(DOMString) 사용가능, 여러 자식 요소 설정 가능
+  - _appendChild_ : 오직 Node 객체만 받을 수 있음, 한번에 하나의 노드만 추가 가능
+
 #### Candy Crush Game
 
 - **Element.setAttribute(name, value)**

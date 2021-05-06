@@ -9,7 +9,6 @@ let finishToDos = [];
 function moveToPending(e) {
   const li = e.target.parentNode;
   ul1.appendChild(li);
-  // ul1.removeChild(li);
 
   const backBtn = e.target;
   li.removeChild(backBtn);
@@ -31,7 +30,6 @@ function moveToFinish(e) {
   newLi.appendChild(userText);
 
   const newId = (Date.now() + "").slice(-10);
-
   newLi.id = newId;
   finishToDos.push({
     id: newId,
@@ -54,9 +52,8 @@ function deleteFinishToDo(e) {
   ul2.removeChild(parentNode);
 }
 
-function deleteToDo(e) {
-  const { target } = e;
-  const { parentNode } = target;
+function deletePendingToDo(e) {
+  const { parentNode } = e.target;
   ul1.removeChild(parentNode);
 }
 
@@ -72,6 +69,7 @@ function printToDo(text) {
   li.appendChild(delBtn);
   li.appendChild(checkBtn);
   li.appendChild(userText);
+
   let newId = pendingToDos.length + 1;
   li.id = newId;
   pendingToDos.push({
@@ -79,13 +77,14 @@ function printToDo(text) {
     text: userText,
   });
 
-  delBtn.addEventListener("click", deleteToDo);
+  delBtn.addEventListener("click", deletePendingToDo);
   checkBtn.addEventListener("click", moveToFinish);
 }
 
 function handleSubmit(e) {
   e.preventDefault();
   const currentValue = input.value;
+  if (currentValue === "") return;
   printToDo(currentValue);
   input.value = "";
 }
