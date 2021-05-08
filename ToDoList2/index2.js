@@ -64,24 +64,6 @@ function handleCheckBtn(e) {
   addToFinished(toDoObj);
 }
 
-function addToFinished(toDoObj) {
-  const li = document.createElement("li");
-  const span = document.createElement("span");
-  const delBtn = document.createElement("button");
-  const backBtn = document.createElement("button");
-  span.innerText = toDoObj.text;
-  delBtn.innerText = "❌";
-  backBtn.innerText = "🔙";
-  li.id = toDoObj.id;
-  li.append(span, delBtn, backBtn);
-  toDoFinishedUl.appendChild(li);
-
-  addArrayFinished(toDoObj);
-
-  backBtn.addEventListener("click", handlebackBtn);
-  delBtn.addEventListener("click", deleteTodo);
-}
-
 function deleteTodo(e) {
   const li = e.target.parentNode;
   li.parentNode.removeChild(li);
@@ -89,22 +71,38 @@ function deleteTodo(e) {
   removeArrayFinished(li.id);
 }
 
-function addToPending(toDoObj) {
+function makeSameBlock(toDoObj) {
   const li = document.createElement("li");
   const span = document.createElement("span");
   const delBtn = document.createElement("button");
-  const checkBtn = document.createElement("button");
   span.innerText = toDoObj.text;
   delBtn.innerText = "❌";
-  checkBtn.innerText = "✅";
+  delBtn.addEventListener("click", deleteTodo);
   li.id = toDoObj.id;
-  li.append(span, delBtn, checkBtn);
-  toDoPendingUl.appendChild(li);
+  li.append(span, delBtn);
+  return li;
+}
+
+function addToFinished(toDoObj) {
+  const sameLi = makeSameBlock(toDoObj);
+  const backBtn = document.createElement("button");
+  backBtn.innerText = "🔙";
+  sameLi.append(backBtn);
+  toDoFinishedUl.appendChild(sameLi);
+
+  addArrayFinished(toDoObj);
+  backBtn.addEventListener("click", handlebackBtn);
+}
+
+function addToPending(toDoObj) {
+  const sameLi = makeSameBlock(toDoObj);
+  const checkBtn = document.createElement("button");
+  checkBtn.innerText = "✅";
+  sameLi.append(checkBtn);
+  toDoPendingUl.appendChild(sameLi);
 
   addArrayPending(toDoObj);
-
   checkBtn.addEventListener("click", handleCheckBtn);
-  delBtn.addEventListener("click", deleteTodo);
 }
 
 function handleSubmit(e) {
