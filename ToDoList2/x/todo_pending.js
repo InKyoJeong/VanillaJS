@@ -1,3 +1,4 @@
+// 로컬스토리지 X
 const form = document.querySelector(".form");
 const input = document.querySelector(".input");
 const ul1 = document.querySelector(".ul1");
