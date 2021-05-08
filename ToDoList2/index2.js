@@ -9,6 +9,22 @@ let finishedArray = [];
 // console.log(pendingArray);
 // console.log(finishedArray);
 
+const PENDING = "PENDING";
+const FINISHED = "FINISHED";
+
+function saveLS() {
+  localStorage.setItem(PENDING, JSON.stringify(pendingArray));
+  localStorage.setItem(FINISHED, JSON.stringify(finishedArray));
+}
+
+function getLS() {
+  const getPending = JSON.parse(localStorage.getItem(PENDING));
+  const getFinished = JSON.parse(localStorage.getItem(FINISHED));
+
+  getPending.forEach((e) => addToPending(e));
+  getFinished.forEach((e) => addToFinished(e));
+}
+
 function findArrayFinished(findId) {
   return finishedArray.find((e) => {
     return e.id === findId;
@@ -54,6 +70,7 @@ function handlebackBtn(e) {
   const toDoObj = findArrayFinished(li.id);
   removeArrayFinished(li.id);
   addToPending(toDoObj);
+  saveLS();
 }
 
 function handleCheckBtn(e) {
@@ -62,6 +79,7 @@ function handleCheckBtn(e) {
   const toDoObj = findArrayPending(li.id);
   removeArrayPending(li.id);
   addToFinished(toDoObj);
+  saveLS();
 }
 
 function deleteTodo(e) {
@@ -69,6 +87,7 @@ function deleteTodo(e) {
   li.parentNode.removeChild(li);
   removeArrayPending(li.id);
   removeArrayFinished(li.id);
+  saveLS();
 }
 
 function makeSameBlock(toDoObj) {
@@ -92,6 +111,7 @@ function addToFinished(toDoObj) {
 
   addArrayFinished(toDoObj);
   backBtn.addEventListener("click", handlebackBtn);
+  saveLS();
 }
 
 function addToPending(toDoObj) {
@@ -103,6 +123,7 @@ function addToPending(toDoObj) {
 
   addArrayPending(toDoObj);
   checkBtn.addEventListener("click", handleCheckBtn);
+  saveLS();
 }
 
 function handleSubmit(e) {
@@ -114,10 +135,13 @@ function handleSubmit(e) {
   toDoInput.value = "";
   const toDoObj = makeToDoItem(currentValue);
   addToPending(toDoObj);
+
+  saveLS();
 }
 
 function init() {
   toDoForm.addEventListener("submit", handleSubmit);
+  getLS();
 }
 
 init();
