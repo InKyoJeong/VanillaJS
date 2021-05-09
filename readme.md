@@ -69,3 +69,10 @@
 - **Element.closest()**
   - 가깝게 조건에 만족한 부모 요소가 반환. (querySelector의 반대와 비슷)
 - **isFinite()** : 값이 유한수인지 판별
+
+#### Forkify
+
+- **polyfill** 이란?
+  - 특정 기능이 지원되지 않는 브라우저를 위해, 사용할 수 있는 코드 조각이나 플러그인
+  - 과거에는 _@babel/polyfill_ 패키지를 직접 전역 스코프에 가져오는(import) 방식으로 바벨 폴리필을 추가했지만 _deprecated_ 됨
+  - 현재는 **_core-js/stable_** 과 **_regenerator-runtime/runtime_** 패키지를 직접 전역 스코프에 삽입하는 방식
