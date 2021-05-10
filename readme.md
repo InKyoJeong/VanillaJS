@@ -16,6 +16,8 @@
   - _append_ : 노드 객체나 문자열(DOMString) 사용가능, 여러 자식 요소 설정 가능
   - _appendChild_ : 오직 Node 객체만 받을 수 있음, 한번에 하나의 노드만 추가 가능
 
+<br>
+
 #### Candy Crush Game
 
 - **Element.setAttribute(name, value)**
@@ -23,6 +25,8 @@
 - **Array.prototype.every()**
   - 배열 안의 모든 요소가 주어진 판별 함수를 통과하는지 테스트
   - 반환값 _true, false_
+
+<br>
 
 #### Bankisk
 
@@ -48,6 +52,8 @@
     - _targetLength_ :목표 문자열 길이. 현재 문자열의 길이보다 작다면 채워넣지 않고 그대로 반환
     - _padString_ : 현재 문자열에 채워넣을 다른 문자열
 
+<br>
+
 #### Event Propagation
 
 - **이벤트 버블링(Event Bubbling)** : 특정 화면 요소에서 이벤트가 발생했을 때 해당 이벤트가 더 상위의 화면 요소들로 전달되어 가는 특성
@@ -61,6 +67,8 @@
   - _true_ 로 설정하면 이벤트 버블링과 반대 방향으로 탐색
 - **이벤트 위임(Event Delegation)** : 하위 요소에 각각 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트들을 제어하는 방식
 
+<br>
+
 #### Mapty App: OOP, Geolocation
 
 > Map Library : [https://leafletjs.com/](https://leafletjs.com/)
@@ -70,9 +78,14 @@
   - 가깝게 조건에 만족한 부모 요소가 반환. (querySelector의 반대와 비슷)
 - **isFinite()** : 값이 유한수인지 판별
 
+<br>
+
 #### Forkify
 
 - **polyfill** 이란?
   - 특정 기능이 지원되지 않는 브라우저를 위해, 사용할 수 있는 코드 조각이나 플러그인
   - 과거에는 _@babel/polyfill_ 패키지를 직접 전역 스코프에 가져오는(import) 방식으로 바벨 폴리필을 추가했지만 _deprecated_ 됨
   - 현재는 **_core-js/stable_** 과 **_regenerator-runtime/runtime_** 패키지를 직접 전역 스코프에 삽입하는 방식
+- **window.location.hash**
+- **addEventListener('hashchange', ...)**
+- **addEventListener('load', ...)**
