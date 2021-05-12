@@ -19,6 +19,6 @@ export const getJSON = async function (url) {
     }
     return data;
   } catch (err) {
-    throw err;
+    throw err; // 여기서 re-throw 해준다. // 위의 throw new Error일때 model의 error로 전파하지 않으므로
   }
 };
