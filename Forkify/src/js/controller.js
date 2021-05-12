@@ -4,14 +4,6 @@ import recipeView from './views/recipeView.js';
 import 'core-js/stable'; // is for polyfilling everything else
 import 'regenerator-runtime/runtime'; // is for polyfilling async/await
 
-const timeout = function (s) {
-  return new Promise(function (_, reject) {
-    setTimeout(function () {
-      reject(new Error(`Request took too long! Timeout after ${s} second`));
-    }, s * 1000);
-  });
-};
-
 const controllRecipe = async function () {
   try {
     const id = window.location.hash.slice(1);
