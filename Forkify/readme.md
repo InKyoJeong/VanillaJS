@@ -32,7 +32,7 @@ $ npm install fractional
 
 - 에러: `Uncaught SyntaxError: Identifier '#undefined' has already been declared.`
   - 클래스문법의 **# (private method)** 을 사용하면, 바벨이 `#undefined` 로 변환함
-  - 해결
+- 해결
 
 ```bash
 npm i @babel/plugin-proposal-class-properties @babel/plugin-proposal-private-methods

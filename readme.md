@@ -7,6 +7,7 @@
 - Bankisk
 - Event Propagation
 - Mapty
+- Forkify
 
 <br>
 
