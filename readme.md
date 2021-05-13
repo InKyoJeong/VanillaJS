@@ -76,7 +76,7 @@
 
 - navigator.geolocation
 - **Element.closest()**
-  - 가깝게 조건에 만족한 부모 요소가 반환. (querySelector의 반대와 비슷)
+  - 가깝게 조건에 만족한 부모 요소가 반환. (_querySelector_ 의 반대와 비슷)
 - **isFinite()** : 값이 유한수인지 판별
 
 <br>
@@ -93,3 +93,6 @@
 - **Promise.race()**
   - Promise 객체를 반환
   - iterable 안에 있는 프로미스 중에 **가장 먼저 완료된 것**의 결과값으로 그대로 **이행하거나 거부**
+- **document.createRange().createContextualFragment(tagString)**
+- **Element.attributes** : 요소의 속성 모음 반환
+- **Element.setAttribute(name, value);** : 요소의 속성 값 설정
