@@ -96,3 +96,10 @@
 - **document.createRange().createContextualFragment(tagString)**
 - **Element.attributes** : 요소의 속성 모음 반환
 - **Element.setAttribute(name, value);** : 요소의 속성 값 설정
+
+<br>
+
+#### Quote Generator
+
+- **_window.open(url, windowName, [windowFeatures])_**
+- **_HTMLElement.hidden = true | false;_**
