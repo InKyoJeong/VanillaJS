@@ -20,7 +20,7 @@ function complete() {
 }
 
 // Show New Quote
-function newQuote(arr) {
+function newQuote() {
   loading();
   const quote = apiQuotes[Math.floor(apiQuotes.length * Math.random())];
   if (!quote.author) {
