@@ -1,15 +1,18 @@
+- vanilla js를 연습하는 레포지토리
+
 ## Vanilla JS
 
 - Guess Number
 - To Do List
-- To Do List2 (pending)
+- To Do List2 (+pending)
 - Candy Crush Game
-- Bankisk
+- Bankist
 - Event Propagation
 - Mapty
 - Forkify
 - Quote Generator
 - Infinity Scroll
+- BankistWeb
 
 <br>
 
@@ -116,3 +119,58 @@
 - **window.scrollY** : 페이지 top 에서부터, 유저가 스크롤한 거리
 - _HTMLElement.offsetHeight_
   - **document.body.offsetHeight** : body의 모든 높이 (보고있지않은 부분까지 포함)
+
+<br>
+
+#### Bankist Web
+
+- **Data attributes**
+  - `dataset`은 읽을때 camelCase로
+
+```html
+<img src="./logo.png" id="logo" data-version-number="1.0" />
+```
+
+```js
+console.log(logo.dataset.versionNumber); // 1.0
+```
+
+- classList
+  - logo.**classList.add**('c','d');
+  - logo.**classList.remove**('c','d');
+  - logo.**classList.toggle**('c');
+  - logo.**classList.contains**('c'); : 지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인
+- **append, prepend, after, before**
+  - _prepend_ : 선택 요소 내부의 시작 부분에 삽입 (_append_ 는 끝에)
+  - _after()_ : 선택한 요소 뒤에 삽입
+  - _before()_ : 선택한 요소 앞에 삽입
+
+```html
+<!-- prepend -->
+<div>
+  <div>insert</div>
+  <div>child</div>
+</div>
+
+<!-- before -->
+<div>insert</div>
+<div>
+  <div>child</div>
+</div>
+```
+
+- Delete Element
+  - 기존에는 부모요소 선택후 _removeChild_ 했지만 (_Element.parentElement.removeChild(element)_)
+  - **_Element.remove()_** 이렇게 가능
+    - 차이점: remove() 는 노드를 메모리에서 삭제하고 종료하지만 removeChild는 관계끊은 노드의 참조를 반환함. 따라서 반환된 노드 참조를 변수에 담아 다른 DOM에 붙이기 가능
+- **_getBoundingClientRect()_** : 요소의 위치 값을 얻기
+  - top , y : 화면 **상단 부터 대상의 처음** 위치 값
+  - bottom : 화면 **상단 부터 대상의 끝** 위치 값
+  - left , x : 화면 **좌측 부터 대상의 처음** 위치 값
+  - right : 화면 **좌측 부터 대상의 끝** 위치 값
+  - width : 대상의 길이
+  - height : 대상의 높이
+- **window.pageYOffset** : 수직 방향으로 스크롤된 거리
+- **window.scrollTo(x,y)** : 지정된 위치로 스크롤
+- **element.scrollIntoView** : 호출된 요소가 사용자에게 표시되도록 스크롤. 계산없이 이동 가능
+  - _element.scrollIntoView({ behavior: "smooth" })_
