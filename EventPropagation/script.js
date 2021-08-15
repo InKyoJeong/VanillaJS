@@ -152,13 +152,13 @@ document.querySelectorAll(".nav__link").forEach(function (el) {
     });
   });
 });
-
-// 여기서는 세개지만,리스트 아이템이 많아질수록 이벤트 리스너를 다는 작업 자체가 매우 번거로움
-// 이 번거로운 작업을 해결할 수 있는 방법이 바로 이벤트 위임(Event Delegation)
+// 하지만 문제는 여기서는 element가 세개지만, 리스트 아이템이 많아질수록 이벤트 리스너를 달게 되어 비효율적이다.
+// 이 번거로운 작업을 해결할 수 있는 방법이 바로 이벤트 위임(Event Delegation)이다.
 
 // 상위 요소에 이벤트 리스너를 추가하고 하위에서 발생한 이벤트를 감지하기
-// 1. add event listener to common parent element
-// 2. Determine what element originated the event (Determine where the click event came from)
+// 이벤트 위임은 두가지 단계가 필요하다.
+// 1. 먼저 공통의 부모요소에 이벤트리스너를 추가 add event listener to common parent element
+// 2. 그리고 이벤트리스너 안에서, 어떤 요소가 이벤트를 발생시켰는지 확인 Determine what element originated the event (Determine where the click event came from)
 document.querySelector(".nav__links").addEventListener("click", function (e) {
   e.preventDefault();
   // console.log(e.target) 이렇게하고 li 사이를 눌르면 ul도 선택되므로

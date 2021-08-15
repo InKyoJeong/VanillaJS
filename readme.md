@@ -1,4 +1,4 @@
-- vanilla js를 연습하는 레포지토리
+> vanilla js를 연습하는 레포지토리
 
 ## Vanilla JS
 
@@ -163,6 +163,9 @@ console.log(logo.dataset.versionNumber); // 1.0
   - 기존에는 부모요소 선택후 _removeChild_ 했지만 (_Element.parentElement.removeChild(element)_)
   - **_Element.remove()_** 이렇게 가능
     - 차이점: remove() 는 노드를 메모리에서 삭제하고 종료하지만 removeChild는 관계끊은 노드의 참조를 반환함. 따라서 반환된 노드 참조를 변수에 담아 다른 DOM에 붙이기 가능
+
+<br/>
+
 - **_getBoundingClientRect()_** : 요소의 위치 값을 얻기
   - top , y : 화면 **상단 부터 대상의 처음** 위치 값
   - bottom : 화면 **상단 부터 대상의 끝** 위치 값
@@ -174,3 +177,39 @@ console.log(logo.dataset.versionNumber); // 1.0
 - **window.scrollTo(x,y)** : 지정된 위치로 스크롤
 - **element.scrollIntoView** : 호출된 요소가 사용자에게 표시되도록 스크롤. 계산없이 이동 가능
   - _element.scrollIntoView({ behavior: "smooth" })_
+
+<br>
+
+- Handling Event
+- 1. **_addEventListener_**
+
+```js
+const h1 = document.querySelector("h1");
+h1.addEventListener("mouseenter", function (e) {
+  alert("addEvent H1");
+});
+```
+
+- 2. 이런 방법도 있다. (old)
+
+```js
+h1.onmouseenter = alert("onmouseenter H1");
+```
+
+##### addEventListener가 더 나은 이유
+
+1.  같은 이벤트에 여러 이벤트리스너를 등록할수 있다. 두번째방법은 다시 등록한다면 첫번째를 덮어쓴다.
+2.  addEventListener는 더이상 사용하지 않을때 지울 수 있다.
+
+```js
+const alertH1 = function (e) {
+  alert("addEvent H1");
+
+  h1.removeEventListener("mouseenter", alertH1); // alert가 한번만 발생하고 끝난다.
+};
+
+h1.addEventListener("mouseenter", alertH1);
+
+// 또는 setTimeout
+setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
+```
