@@ -213,3 +213,7 @@ h1.addEventListener("mouseenter", alertH1);
 // 또는 setTimeout
 setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
 ```
+
+<Br>
+
+- **new IntersectionObserver(obsCallback, obsOptions);**
