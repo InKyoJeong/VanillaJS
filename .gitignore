@@ -3,3 +3,8 @@ node_modules/
 .parcel-cache
 dist
 flowchart
+
+# private
+w_practice
+practice.js
+carrot
