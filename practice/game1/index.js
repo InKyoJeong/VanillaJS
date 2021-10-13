@@ -84,20 +84,26 @@ export default class BaseballGame {
       }
     }
 
-    if (strike === 0 && ball === 0) {
-      resultText = "낫싱";
-    }
-    if (ball > 0) {
-      resultText += `${ball}볼 `;
-    }
-    if (strike > 0) {
-      resultText += `${strike}스트라이크`;
-    }
-    if (strike === NUM_LENGTH) {
-      resultText = "정답";
-    }
+    resultText = this.printOutput(strike, ball);
     this.clearInput();
     return resultText;
+  }
+
+  printOutput(strike, ball) {
+    let text = "";
+    if (strike === 0 && ball === 0) {
+      text = "낫싱";
+    }
+    if (ball > 0) {
+      text += `${ball}볼 `;
+    }
+    if (strike > 0) {
+      text += `${strike}스트라이크`;
+    }
+    if (strike === NUM_LENGTH) {
+      text = "정답";
+    }
+    return text;
   }
 
   displayRestartButton() {
