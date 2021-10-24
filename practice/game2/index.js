@@ -22,6 +22,7 @@ export default class RacingCarGame {
       this.clearNameInput();
       return this.carInput.focus();
     }
+
     this.countInput.focus();
     this.makeCar(carNames);
   }
@@ -39,9 +40,7 @@ export default class RacingCarGame {
   }
 
   makeCar(carNames) {
-    carNames.forEach((car) => {
-      this.carsArr.push(new Car(car));
-    });
+    carNames.forEach((car) => this.carsArr.push(new Car(car)));
   }
 
   advanceCar(count) {
@@ -51,6 +50,7 @@ export default class RacingCarGame {
       });
       this.paintResult();
     }
+
     this.paintWinner();
   }
 
@@ -80,11 +80,7 @@ export default class RacingCarGame {
 
   getWinner() {
     const maxDistance = this.getMaxDistance();
-    const winnerArr = this.carsArr.filter((car) => {
-      return car.distance.length === maxDistance;
-    });
-
-    return winnerArr;
+    return this.carsArr.filter((car) => car.distance.length === maxDistance);
   }
 
   getMaxDistance() {
@@ -92,6 +88,7 @@ export default class RacingCarGame {
     this.carsArr.forEach((car) => {
       max = Math.max(car.distance.length, max);
     });
+
     return max;
   }
 
