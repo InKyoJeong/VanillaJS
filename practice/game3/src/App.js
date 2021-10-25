@@ -48,11 +48,11 @@ class App {
     if (id === ID.STATION_MANAGER_BUTTON) {
       new StationManager(this.$result);
     }
-    if (id === ID.SECTION_MANAGER_BUTTON) {
-      new SectionManager(this.$result);
-    }
     if (id === ID.LINE_MANAGER_BUTTON) {
       new LineManager(this.$result);
+    }
+    if (id === ID.SECTION_MANAGER_BUTTON) {
+      new SectionManager(this.$result);
     }
     if (id === ID.MAP_PRINT_MANAGER_BUTTON) {
       new MapManager(this.$result);
@@ -68,10 +68,10 @@ export default App;
 // - [] 각 버튼에 따라 container를 생성하기
 //  - [x] 역은 역추가인풋, 목록테이블이 필요
 //  - [] 노선은 노선입력인풋, 상행/하행 선택, 목록테이블이 필요
-//  - [] 구간은 구간수정 버튼창, 구간등록 인풋, 목록테이블이 필요
+//  - [] 구간은 구간 수정 버튼창, 구간등록 인풋, 목록테이블이 필요
 //  - [] 노선도는 모든 노선 한번에 출력
 
-// - [] **역 관리**
+// - [x] **역 관리**
 //  - [x] 중복된 역 불가, 지하철 역은 2글자 이상
 //    - [x] 불가능하면 인풋초기화 - 경고메세지를 띄우면 인풋도 초기화되게
 //  - [x] 체크하는 utils, alert 추가
@@ -79,6 +79,22 @@ export default App;
 //  - [x] 로컬스토리지에 저장되면 뷰를 업데이트
 //    - [x] 이벤트를 감지하는 옵저버 추가해서 다시그려주게 하기
 //  - [x] 역을 삭제 - target.classList.contains로 이벤트위임
-//    - [] 노선에 등록된 역은 삭제 불가
+//    - [x] 노선에 등록된 역은 삭제 불가 - lineList가 빈값이아니면 삭제불가
 
 // - [] **노선 관리**
+// - [x] 노선입력 인풋, 목록테이블 컨텐츠 생성
+// - [x] 노선 하행 상행에 저장된 역을 표시
+// - [x] 노선 클래스 생성
+// - 상행/하행 선택하고 노선을 입력하면 추가 - 로컬스토리지와 화면에추가
+//   - [x] 역을 저장하면 Line의 Station정보에 추가
+//   - [x] Station의 Line정보에도 추가
+//   - [x] 중복된 노선 불가
+//   - [x] 상행,하행 같게 불가
+//   - [x] 로컬스토리지 저장
+//   - [x] 뷰 업데이트
+// - 노선을 삭제
+//   - [x] 노선 로컬스토리지 제거
+//   - [x] 뷰에서도 제거
+//   - [x] 역의 노선 정보도 없애기
+
+// - [] **구간 관리**

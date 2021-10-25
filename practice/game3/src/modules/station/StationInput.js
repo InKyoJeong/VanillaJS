@@ -3,22 +3,21 @@ import { ID, LOCAL_DB } from "../../constants/index.js";
 import { isValidStationInput } from "../../utils/valid.js";
 import { addLocalStorage } from "../../utils/localStorage.js";
 import { clearInput } from "../../utils/clearInput.js";
-// import StationState from "../../observer/stationState.js";
 
 class StationInput {
-  constructor($target, stationState) {
+  constructor($target, state) {
     this.$target = $target;
-    this.stationState = stationState;
+    this.state = state;
     this.render();
   }
 
   render() {
-    this.addTemplate();
+    this.addContents();
     this.dom();
     this.addEvent();
   }
 
-  addTemplate() {
+  addContents() {
     this.$target.innerHTML = `
       <h3>역 이름</h3>
       <input id=${ID.STATION_NAME_INPUT} placeholder="역 이름을 입력해주세요." />
@@ -43,11 +42,10 @@ class StationInput {
 
     const newStation = new Station(value);
     addLocalStorage(LOCAL_DB.STATION, newStation);
-
     clearInput(this.$nameInput);
 
     // 변경된 상태업데이트
-    this.stationState.addStationState();
+    this.state.updateState();
   }
 }
 

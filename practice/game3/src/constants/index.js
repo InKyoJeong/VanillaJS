@@ -4,18 +4,26 @@ export const ID = {
   LINE_MANAGER_BUTTON: "line-manager-button",
   SECTION_MANAGER_BUTTON: "section-manager-button",
   MAP_PRINT_MANAGER_BUTTON: "map-print-manager-button",
-  // Container
+  // App
   MANAGER_BUTTON_CONTAINER: "manager-button-container",
   RESULT_CONTAINER: "result-container",
+  // Station
   STATION_INPUT_CONTAINER: "station-input-container",
   STAIION_TABLE_CONTAINER: "station-table-contianer",
-  // Station
   STATION_NAME_INPUT: "station-name-input",
   STATION_ADD_BUTTON: "station-add-button",
+  // Line
+  LINE_INPUT_CONTAINER: "line-input-container",
+  LINE_TABLE_CONTAINER: "line-table-container",
+  LINE_NAME_INPUT: "line-name-input",
+  LINE_START_STATION_SELECTOR: "line-start-station-selector",
+  LINE_END_STATION_SELECTOR: "line-end-station-selector",
+  LINE_ADD_BUTTON: "line-add-button",
 };
 
 export const CLASS = {
   STATION_DELETE_BUTTON: "station-delete-button",
+  LINE_DELETE_BUTTON: "line-delete-button",
 };
 
 export const NUM = {
@@ -24,9 +32,14 @@ export const NUM = {
 
 export const LOCAL_DB = {
   STATION: "STATION",
+  LINE: "LINE",
 };
 
 export const ERROR = {
   STATION_LENGTH_IS_SHORT: "지하철 역은 2글자 이상이어야 합니다.",
   STATION_ALREADY_ENROLLED: "이미 등록된 지하철 역 입니다.",
+  LINE_ALREADY_ENROLLED: "이미 등록된 노선 입니다.",
+  SELECTED_SAME_SELECTOR: "상행 종점역과 하행 종점역을 다르게 입력해주세요.",
+  CANNOT_DELETE_STATION: "노선에 등록된 역을 제거할 수 없습니다.",
+  LINE_LENGTH_IS_SHORT: "노선을 1글자 이상 입력해주세요.",
 };

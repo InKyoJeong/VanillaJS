@@ -7,21 +7,22 @@ import {
   stationTableHeader,
   stationTableContents,
 } from "../../utils/template.js";
+import { isValidStationDelete } from "../../utils/valid.js";
 
 class StationTable {
-  constructor($target, stationState) {
+  constructor($target, state) {
     this.$target = $target;
-    this.stationState = stationState;
-    this.stationState.event.subscribe(this.render.bind(this));
+    this.state = state;
+    this.state.event.subscribe(this.render.bind(this));
     this.render();
     this.$target.addEventListener("click", this.onClickRemove.bind(this));
   }
 
   render() {
-    this.addTemplate();
+    this.addContents();
   }
 
-  addTemplate() {
+  addContents() {
     this.$target.innerHTML = `
       <h3>🚉 지하철 역 목록</h3>
       <table border="1">
@@ -32,15 +33,19 @@ class StationTable {
   }
 
   onClickRemove(e) {
-    // todo: 삭제되면 안되는경우 추가 // 노선에 등록된 역은 삭제할 수 없다
-
-    // 뷰와 로컬스토리지 모두 삭제
-    if (e.target.classList.contains(CLASS.STATION_DELETE_BUTTON)) {
-      const tr = e.target.closest("tr");
-      const { stationName } = tr.firstElementChild.dataset;
-      removeLocalStorage(LOCAL_DB.STATION, stationName);
-      tr.remove();
+    if (!e.target.classList.contains(CLASS.STATION_DELETE_BUTTON)) {
+      return;
     }
+    const tr = e.target.closest("tr");
+    const { stationName } = tr.firstElementChild.dataset;
+
+    // 노선에 등록된 역은 삭제불가
+    if (!isValidStationDelete(stationName)) {
+      return;
+    }
+    // 뷰와 로컬스토리지 모두 삭제
+    removeLocalStorage(LOCAL_DB.STATION, stationName);
+    tr.remove();
   }
 }
 

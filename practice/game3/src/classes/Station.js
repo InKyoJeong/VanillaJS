@@ -1,5 +1,5 @@
 class Station {
-  constructor(name, lineList) {
+  constructor(name) {
     this.name = name;
     this.lineList = [];
   }

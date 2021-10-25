@@ -14,7 +14,6 @@ class Event {
   }
 
   fire() {
-    console.log("fire!!");
     this.handlers.forEach((v) => v());
   }
 }

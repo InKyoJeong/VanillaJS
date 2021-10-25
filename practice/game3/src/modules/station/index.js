@@ -1,12 +1,12 @@
 import { ID } from "../../constants/index.js";
 import StationInput from "./StationInput.js";
 import StationTable from "./StationTable.js";
-import StationState from "../../observer/stationState.js";
+import State from "../../observer/State.js";
 
 class StationManager {
   constructor($target) {
     this.$target = $target;
-    this.stationState = new StationState();
+    this.state = new State();
     this.render();
   }
 
@@ -33,8 +33,8 @@ class StationManager {
   }
 
   addContents() {
-    new StationInput(this.$inputContainer, this.stationState);
-    new StationTable(this.$tableContainer, this.stationState);
+    new StationInput(this.$inputContainer, this.state);
+    new StationTable(this.$tableContainer, this.state);
   }
 }
 
