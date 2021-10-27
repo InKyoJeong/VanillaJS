@@ -106,3 +106,19 @@ export const sectionTableContents = (list, lineName) => {
 
   return html;
 };
+
+export const mapPrinter = (list) => {
+  let html = ``;
+  list.map((v) => {
+    html += `
+    <div>
+      <h3>${v.name}</h3>
+        <ul>
+        ${v.stationList.map((station) => `<li>${station}</li>`).join("")}
+        </ul>
+    </div>
+    `;
+  });
+
+  return html;
+};

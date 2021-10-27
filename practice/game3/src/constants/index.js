@@ -34,6 +34,7 @@ export const CLASS = {
   SECTION_LINE_MENU_BUTTON: "section-line-menu-button",
   LINE_DELETE_BUTTON: "line-delete-button",
   SECTON_DELETE_BUTTON: "section-delete-button",
+  MAP: "map",
 };
 
 export const NUM = {
