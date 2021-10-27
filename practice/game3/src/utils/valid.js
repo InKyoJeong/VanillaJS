@@ -60,3 +60,30 @@ export const isValidStationDelete = (name) => {
 
   return isValid;
 };
+
+const findLastStationIndex = (lineName) => {
+  let lineDB = getLocalStorage(LOCAL_DB.LINE);
+  return lineDB.find((v) => v.name === lineName).stationList.length - 1;
+};
+
+const findEnrolledStation = (lineName, stationName) => {
+  let lineDB = getLocalStorage(LOCAL_DB.LINE);
+  return lineDB
+    .find((v) => v.name === lineName)
+    .stationList.includes(stationName);
+};
+
+export const isValidSectionInput = (index, stationName, lineName, $input) => {
+  let isValid = true;
+
+  if (index <= 0 || findLastStationIndex(lineName) < index) {
+    displayAlert(ERROR.ONLY_AVAILABLE_BETWEEN_STATION, $input);
+    isValid = false;
+  }
+  if (findEnrolledStation(lineName, stationName)) {
+    displayAlert(ERROR.STATION_ALREADY_ENROLLED, $input);
+    isValid = false;
+  }
+
+  return isValid;
+};

@@ -1,3 +1,5 @@
+import { LOCAL_DB } from "../constants/index.js";
+
 // Common
 const saveLocalStorage = (key, list) => {
   try {
@@ -36,30 +38,30 @@ export const removeLocalStorage = (key, name) => {
 
 // Station
 // 노선이름만 들어올때는 remove, line 객체일땐 add
-export const updateStationStorage = (key, newLine) => {
+export const updateStationStorage = (key, value) => {
   let list = getLocalStorage(key);
 
-  if (typeof newLine === "string") {
-    list = removeLineList(list, newLine);
+  if (typeof value === "string") {
+    list = removeLineList(list, value);
   }
-  if (typeof newLine === "object") {
-    list = addLineList(list, newLine);
+  if (typeof value === "object") {
+    list = addLineList(list, value);
   }
 
   saveLocalStorage(key, list);
 };
 
-const removeLineList = (list, newLine) => {
+const removeLineList = (list, value) => {
   list.forEach((v) => {
-    v.lineList = v.lineList.filter((line) => line !== newLine);
+    v.lineList = v.lineList.filter((line) => line !== value);
   });
 
   return list;
 };
 
-const addLineList = (list, newLine) => {
-  const lineName = newLine.name;
-  const [start, end] = newLine.stationList;
+const addLineList = (list, value) => {
+  const lineName = value.name;
+  const [start, end] = value.stationList;
 
   list.forEach((v) => {
     if (v.name === start || v.name === end) {
@@ -68,4 +70,25 @@ const addLineList = (list, newLine) => {
   });
 
   return list;
+};
+
+export const updateSection = (lineName, stationName, index) => {
+  updateSectionStation(lineName, stationName);
+  updateSectionLine(lineName, stationName, index);
+};
+
+const updateSectionStation = (lineName, stationName) => {
+  let station = getLocalStorage(LOCAL_DB.STATION);
+  station.find((v) => v.name === stationName).lineList.push(lineName);
+
+  saveLocalStorage(LOCAL_DB.STATION, station);
+};
+
+const updateSectionLine = (lineName, stationName, index) => {
+  let line = getLocalStorage(LOCAL_DB.LINE);
+  line
+    .find((v) => v.name === lineName)
+    .stationList.splice(index, 0, stationName);
+
+  saveLocalStorage(LOCAL_DB.LINE, line);
 };

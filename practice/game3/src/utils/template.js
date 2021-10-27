@@ -76,13 +76,11 @@ export const sectionButtonList = (list) => {
   return html;
 };
 
-export const sectionStationSelector = (list, lineName) => {
+export const sectionStationSelector = (list) => {
   return `
-      <select id=${ID.SECTION_STATION_SELECTOR}>
-      ${list
-        .filter((v) => v.name === lineName)[0]
-        .stationList.map((station) => `<option>${station}</option>`)} 
-      </select>
+    <select id=${ID.SECTION_STATION_SELECTOR}>
+      ${list.map((v) => `<option>${v.name}</option>`).join("")}
+    </select>
   `;
 };
 

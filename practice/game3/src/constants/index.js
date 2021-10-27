@@ -52,4 +52,6 @@ export const ERROR = {
   SELECTED_SAME_SELECTOR: "상행 종점역과 하행 종점역을 다르게 입력해주세요.",
   CANNOT_DELETE_STATION: "노선에 등록된 역을 제거할 수 없습니다.",
   LINE_LENGTH_IS_SHORT: "노선을 1글자 이상 입력해주세요.",
+  ONLY_AVAILABLE_BETWEEN_STATION:
+    "역과 역 사이에만 새로운 역을 추가할 수 있어요.",
 };

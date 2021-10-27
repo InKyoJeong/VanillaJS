@@ -1,4 +1,5 @@
 import { ID } from "../../constants/index.js";
+import State from "../../observer/State.js";
 import SectionInput from "./SectionInput.js";
 import SectionTable from "./SectionTable.js";
 
@@ -6,6 +7,7 @@ class SectionContents {
   constructor($target, selected) {
     this.$target = $target;
     this.selected = selected;
+    this.state = new State();
     this.render();
   }
 
@@ -32,8 +34,8 @@ class SectionContents {
   }
 
   addContents() {
-    new SectionInput(this.$inputContainer, this.selected);
-    new SectionTable(this.$tableContainer, this.selected);
+    new SectionInput(this.$inputContainer, this.selected, this.state);
+    new SectionTable(this.$tableContainer, this.selected, this.state);
   }
 }
 
