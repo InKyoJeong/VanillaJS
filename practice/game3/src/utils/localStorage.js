@@ -39,12 +39,11 @@ export const removeLocalStorage = (key, name) => {
 export const updateStationStorage = (key, newLine) => {
   let list = getLocalStorage(key);
 
-  if (typeof newLine === "object") {
-    list = addLineList(list, newLine);
-  }
-
   if (typeof newLine === "string") {
     list = removeLineList(list, newLine);
+  }
+  if (typeof newLine === "object") {
+    list = addLineList(list, newLine);
   }
 
   saveLocalStorage(key, list);

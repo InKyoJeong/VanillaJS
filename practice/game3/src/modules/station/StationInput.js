@@ -42,10 +42,8 @@ class StationInput {
 
     const newStation = new Station(value);
     addLocalStorage(LOCAL_DB.STATION, newStation);
-    clearInput(this.$nameInput);
-
-    // 변경된 상태업데이트
     this.state.updateState();
+    clearInput(this.$nameInput);
   }
 }
 

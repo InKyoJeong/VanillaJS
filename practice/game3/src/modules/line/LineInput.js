@@ -63,9 +63,8 @@ class LineInput {
     const newLine = new Line(nameValue, startValue, endValue);
     addLocalStorage(LOCAL_DB.LINE, newLine);
     updateStationStorage(LOCAL_DB.STATION, newLine);
-    clearInput(this.$nameInput);
-
     this.state.updateState();
+    clearInput(this.$nameInput);
   }
 }
 

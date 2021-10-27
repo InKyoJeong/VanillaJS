@@ -9,7 +9,7 @@ export const ID = {
   RESULT_CONTAINER: "result-container",
   // Station
   STATION_INPUT_CONTAINER: "station-input-container",
-  STAIION_TABLE_CONTAINER: "station-table-contianer",
+  STATION_TABLE_CONTAINER: "station-table-contianer",
   STATION_NAME_INPUT: "station-name-input",
   STATION_ADD_BUTTON: "station-add-button",
   // Line
@@ -19,11 +19,21 @@ export const ID = {
   LINE_START_STATION_SELECTOR: "line-start-station-selector",
   LINE_END_STATION_SELECTOR: "line-end-station-selector",
   LINE_ADD_BUTTON: "line-add-button",
+  // Section
+  SECTION_BUTTON_CONTAINER: "section-button-container",
+  SECTION_CONTENTS_CONTAINER: "section-contents-container",
+  SECTION_INPUT_CONTAINER: "section-input-container",
+  SECTION_TABLE_CONTAINER: "section-table-container",
+  SECTION_STATION_SELECTOR: "section-station-selector",
+  SECTION_ORDER_INPUT: "section-order-input",
+  SECTON_ADD_BUTTON: "section-add-button",
 };
 
 export const CLASS = {
   STATION_DELETE_BUTTON: "station-delete-button",
+  SECTION_LINE_MENU_BUTTON: "section-line-menu-button",
   LINE_DELETE_BUTTON: "line-delete-button",
+  SECTON_DELETE_BUTTON: "section-delete-button",
 };
 
 export const NUM = {

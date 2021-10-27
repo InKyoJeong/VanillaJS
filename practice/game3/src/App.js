@@ -43,8 +43,8 @@ class App {
     this.$container.addEventListener("click", this.changeManager.bind(this));
   }
 
-  changeManager(event) {
-    const { id } = event.target;
+  changeManager(e) {
+    const { id } = e.target;
     if (id === ID.STATION_MANAGER_BUTTON) {
       new StationManager(this.$result);
     }
@@ -81,7 +81,7 @@ export default App;
 //  - [x] 역을 삭제 - target.classList.contains로 이벤트위임
 //    - [x] 노선에 등록된 역은 삭제 불가 - lineList가 빈값이아니면 삭제불가
 
-// - [] **노선 관리**
+// - [x] **노선 관리**
 // - [x] 노선입력 인풋, 목록테이블 컨텐츠 생성
 // - [x] 노선 하행 상행에 저장된 역을 표시
 // - [x] 노선 클래스 생성
@@ -98,3 +98,19 @@ export default App;
 //   - [x] 역의 노선 정보도 없애기
 
 // - [] **구간 관리**
+// - [x] 구간 기능 ID,CLASS 상수 추가
+// - [x] 구간 수정 버튼창, 구간등록 인풋, 목록테이블 클래스생성
+// - [x] 버튼을 누르면 등록인풋과 테이블이 생성
+// - 구간 추가
+// - [] 노선을 선택하고 인덱스번호에 맞게 구간을 추가
+//   - [] 같은 번호나, 상행/하행에는 추가가 불가능
+//   - [] 사이가 아닌 번호에는 추가 불가능. ex) 상행보다 작거나 하행보다 크거나.
+//   - [] 구간을 추가하면 노선스토리지의 역정보 업데이트
+//   - [] 구간을 추가하면 역스토리지의 노선 업데이트
+// - 구간 삭제
+// - [] 종점을 제거시 다음역이 종점
+// - [] 노선의 역이 두개이하면 역 제거 불가
+
+// **노선도 출력 관리**
+// - [] 지하철 노선도 출력 버튼을 누르면 <div class="map"></div> 태그를 만들고
+// 해당 태그 내부에 노선도를 출력한다.

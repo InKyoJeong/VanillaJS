@@ -31,18 +31,12 @@ class LineTable {
 
   onClickRemove(e) {
     if (!e.target.classList.contains(CLASS.LINE_DELETE_BUTTON)) {
-      console.log("not contains");
       return;
     }
-
     const tr = e.target.closest("tr");
     const { lineName } = tr.firstElementChild.dataset;
-
-    // 뷰와 로컬스토리지 모두 삭제
-    removeLocalStorage(LOCAL_DB.LINE, lineName);
     tr.remove();
-
-    // todo: station의 노선정보도,,
+    removeLocalStorage(LOCAL_DB.LINE, lineName);
     updateStationStorage(LOCAL_DB.STATION, lineName);
   }
 }

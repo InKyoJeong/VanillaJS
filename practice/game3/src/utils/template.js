@@ -64,3 +64,47 @@ export const lineTableContents = (list) => {
 
   return html;
 };
+
+export const sectionButtonList = (list) => {
+  let html = ``;
+  list.map((v) => {
+    html += `
+    <button data-line-name=${v.name} class=${CLASS.SECTION_LINE_MENU_BUTTON}>${v.name}</button>
+    `;
+  });
+
+  return html;
+};
+
+export const sectionStationSelector = (list, lineName) => {
+  return `
+      <select id=${ID.SECTION_STATION_SELECTOR}>
+      ${list
+        .filter((v) => v.name === lineName)[0]
+        .stationList.map((station) => `<option>${station}</option>`)} 
+      </select>
+  `;
+};
+
+export const sectionTableHeader = `
+    <th>순서</th>
+    <th>이름</th> 
+    <th>설정</th>
+`;
+
+export const sectionTableContents = (list, lineName) => {
+  let html = ``;
+  list
+    .filter((v) => v.name === lineName)[0]
+    .stationList.map((station, i) => {
+      html += `
+      <tr>
+        <td data-index=${i}>${i}</td>
+        <td data-station-name=${station}>${station}</td>
+        <td><button class=${CLASS.SECTON_DELETE_BUTTON}>노선에서 제거</button></td>
+      </tr>
+      `;
+    });
+
+  return html;
+};

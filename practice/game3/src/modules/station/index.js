@@ -19,7 +19,7 @@ class StationManager {
   addContainer() {
     this.$target.innerHTML = `
       <div id=${ID.STATION_INPUT_CONTAINER}></div>
-      <div id=${ID.STAIION_TABLE_CONTAINER}></div>
+      <div id=${ID.STATION_TABLE_CONTAINER}></div>
     `;
   }
 
@@ -28,7 +28,7 @@ class StationManager {
       `#${ID.STATION_INPUT_CONTAINER}`
     );
     this.$tableContainer = document.querySelector(
-      `#${ID.STAIION_TABLE_CONTAINER}`
+      `#${ID.STATION_TABLE_CONTAINER}`
     );
   }
 
