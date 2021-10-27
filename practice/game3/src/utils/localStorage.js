@@ -92,3 +92,25 @@ const updateSectionLine = (lineName, stationName, index) => {
 
   saveLocalStorage(LOCAL_DB.LINE, line);
 };
+
+export const deleteSection = (lineName, stationName, index) => {
+  deleteSectionStation(lineName, stationName);
+  deleteSectionLine(lineName, index);
+};
+
+const deleteSectionStation = (lineName, stationName) => {
+  let station = getLocalStorage(LOCAL_DB.STATION);
+  let index = station
+    .find((v) => v.name === stationName)
+    .lineList.indexOf(lineName);
+  station.find((v) => v.name === stationName).lineList.splice(index, 1);
+
+  saveLocalStorage(LOCAL_DB.STATION, station);
+};
+
+const deleteSectionLine = (lineName, index) => {
+  let line = getLocalStorage(LOCAL_DB.LINE);
+  line.find((v) => v.name === lineName).stationList.splice(index, 1);
+
+  saveLocalStorage(LOCAL_DB.LINE, line);
+};

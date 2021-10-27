@@ -17,7 +17,7 @@ const isDuplicatedLine = (value) => {
 export const isValidStationInput = (value, $input) => {
   let isValid = true;
 
-  if (value.length < NUM.STATION_MIN_LENGTH) {
+  if (value.length < NUM.STATION_INPUT_MIN_LENGTH) {
     displayAlert(ERROR.STATION_LENGTH_IS_SHORT, $input);
     isValid = false;
   }
@@ -86,4 +86,20 @@ export const isValidSectionInput = (index, stationName, lineName, $input) => {
   }
 
   return isValid;
+};
+
+export const isValidSectionRemove = (lineName) => {
+  let isValid = true;
+
+  if (checkStationLength(lineName) <= NUM.STATION_LIST_MIN_LENGTH) {
+    displayAlert(ERROR.CANNOT_DELETE_STATION);
+    isValid = false;
+  }
+
+  return isValid;
+};
+
+const checkStationLength = (lineName) => {
+  let lineDB = getLocalStorage(LOCAL_DB.LINE);
+  return lineDB.find((v) => v.name === lineName).stationList.length;
 };

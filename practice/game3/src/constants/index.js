@@ -37,7 +37,8 @@ export const CLASS = {
 };
 
 export const NUM = {
-  STATION_MIN_LENGTH: 2,
+  STATION_INPUT_MIN_LENGTH: 2,
+  STATION_LIST_MIN_LENGTH: 2,
 };
 
 export const LOCAL_DB = {
