@@ -1,5 +1,3 @@
-import { tableHeader } from "../../utils/template.js";
-
 class SubwayTable {
   constructor($target, { result, distance, time, type }) {
     this.$target = $target;
@@ -20,7 +18,8 @@ class SubwayTable {
         <h2>결과</h2>
         <h3>${this.type}</h3>
         <table border="1" >
-            ${tableHeader}
+            <th>총 거리</th>
+            <th>총 소요 시간</th>
             <tr align="center">
               <td>${this.distance}km</td>
               <td>${this.time}분</td>

@@ -59,20 +59,14 @@ class SubwayInput {
   }
 
   onClickSearch() {
-    const start = this.$startInput.value;
-    const end = this.$endInput.value;
-    const searchType = this.$radioContainer.querySelector(
-      `input[name=${NAME.SEARCH_TYPE}]:checked`
-    ).value;
-
+    const [start, end, searchType] = this.getInput();
     if (
       !isValidInput(start, end, searchType, this.$startInput, this.$endInput)
     ) {
       return;
     }
     const result = this.getResult(start, end, searchType);
-    const totalDistance = this.getTotalDistance(result);
-    const totalTime = this.getTotalTime(result);
+    const [totalDistance, totalTime] = this.getTotal(result);
 
     new SubwayTable(this.$tableContainer, {
       result: result.join("▶︎"),
@@ -80,6 +74,16 @@ class SubwayInput {
       time: totalTime,
       type: searchType,
     });
+  }
+
+  getInput() {
+    const start = this.$startInput.value;
+    const end = this.$endInput.value;
+    const searchType = this.$radioContainer.querySelector(
+      `input[name=${NAME.SEARCH_TYPE}]:checked`
+    ).value;
+
+    return [start, end, searchType];
   }
 
   getResult(start, end, searchType) {
@@ -91,28 +95,19 @@ class SubwayInput {
     }
   }
 
-  getTotalDistance(arr) {
-    let total = 0;
-    for (let i = 0; i < arr.length - 1; i++) {
-      sections.find((v) => {
-        if (v.section.includes(arr[i]) && v.section.includes(arr[i + 1])) {
-          total += v.distance;
-        }
-      });
-    }
-    return total;
-  }
+  getTotal(arr) {
+    let distance = 0;
+    let time = 0;
 
-  getTotalTime(arr) {
-    let total = 0;
     for (let i = 0; i < arr.length - 1; i++) {
-      sections.find((v) => {
-        if (v.section.includes(arr[i]) && v.section.includes(arr[i + 1])) {
-          total += v.time;
-        }
+      const section = sections.find((v) => {
+        return v.section.includes(arr[i]) && v.section.includes(arr[i + 1]);
       });
+      distance += section.distance;
+      time += section.time;
     }
-    return total;
+
+    return [distance, time];
   }
 }
 
