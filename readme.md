@@ -1,62 +1,13 @@
 > vanilla js를 연습하는 레포지토리
 
-## Vanilla JS
-
-- Guess Number
-- To Do List
-- To Do List2 (+pending)
-- Candy Crush Game
-- Bankist
-- Event Propagation
-- Mapty
-- Forkify
-- Quote Generator
-- Infinity Scroll
-- BankistWeb
-
-<br>
-
-#### To Do List
-
 - **append vs appendChild**
   - _append_ : 노드 객체나 문자열(DOMString) 사용가능, 여러 자식 요소 설정 가능
   - _appendChild_ : 오직 Node 객체만 받을 수 있음, 한번에 하나의 노드만 추가 가능
-
-<br>
-
-#### Candy Crush Game
-
-- **Element.setAttribute(name, value)**
-  - 선택한 요소의 속성 이름, 값을 넣음
-- **Array.prototype.every()**
-  - 배열 안의 모든 요소가 주어진 판별 함수를 통과하는지 테스트
-  - 반환값 _true, false_
-
-<br>
-
-#### Bankisk
-
 - **Element.insertAdjacentHTML(position, text);**
   - _position : beforebegin, afterbegin, beforeend, afterend_
-- **Math.abs()** : 주어진 숫자의 절대값
-- **Array.prototype.reduce()**
-  - 리듀서 함수실행하고 **하나의 결과값을 반환**
-- **Array.prototype.find()**
-  - 판별 함수를 만족하는 **첫 번째 요소의 값**을 반환. 없으면 **_undefined_**
-- **HTMLElement.blur()** : lose focus
-- **Array.prototype.some()**
-  - every랑 차이점은, 함수의 반환값이 _true_ 일 때까지만 원소를 계속 확인
-- **Array.prototype.flat()**
-  - 하위 배열 요소를 지정한 깊이까지 재귀적으로 이어붙인 새로운 배열을 생성
-  - _arr.flat([depth])_ 기본값은 1
-- **Array.prototype.sort()**
-  - arr.sort([compareFunction])
-    - return < 0 이면, A,B
-    - return > 0 이면, B,A
-- **String.prototype.padStart()**
-  - _str.padStart(targetLength [, padString])_
-    - _targetLength_ :목표 문자열 길이. 현재 문자열의 길이보다 작다면 채워넣지 않고 그대로 반환
-    - _padString_ : 현재 문자열에 채워넣을 다른 문자열
+- **Element.closest()**
+  - 가깝게 조건에 만족한 부모 요소가 반환. (_querySelector_ 의 반대와 비슷)
+- **isFinite()** : 값이 유한수인지 판별
 
 <br>
 
@@ -72,17 +23,6 @@
   - 디폴트는 _false_
   - _true_ 로 설정하면 이벤트 버블링과 반대 방향으로 탐색
 - **이벤트 위임(Event Delegation)** : 하위 요소에 각각 이벤트를 붙이지 않고 상위 요소에서 하위 요소의 이벤트들을 제어하는 방식
-
-<br>
-
-#### Mapty App: OOP, Geolocation
-
-> Map Library : [https://leafletjs.com/](https://leafletjs.com/)
-
-- navigator.geolocation
-- **Element.closest()**
-  - 가깝게 조건에 만족한 부모 요소가 반환. (_querySelector_ 의 반대와 비슷)
-- **isFinite()** : 값이 유한수인지 판별
 
 <br>
 
@@ -104,13 +44,6 @@
 
 <br>
 
-#### Quote Generator
-
-- **_window.open(url, windowName, [windowFeatures])_**
-- **_HTMLElement.hidden = true | false;_**
-
-<br>
-
 #### Infinity Scroll
 
 - _EventTarget.addEventListener('scroll', func)_
@@ -122,24 +55,6 @@
 
 <br>
 
-#### Bankist Web
-
-- **Data attributes**
-  - `dataset`은 읽을때 camelCase로
-
-```html
-<img src="./logo.png" id="logo" data-version-number="1.0" />
-```
-
-```js
-console.log(logo.dataset.versionNumber); // 1.0
-```
-
-- classList
-  - logo.**classList.add**('c','d');
-  - logo.**classList.remove**('c','d');
-  - logo.**classList.toggle**('c');
-  - logo.**classList.contains**('c'); : 지정한 클래스 값이 엘리먼트의 class 속성에 존재하는지 확인
 - **append, prepend, after, before**
   - _prepend_ : 선택 요소 내부의 시작 부분에 삽입 (_append_ 는 끝에)
   - _after()_ : 선택한 요소 뒤에 삽입
@@ -180,7 +95,8 @@ console.log(logo.dataset.versionNumber); // 1.0
 
 <br>
 
-- Handling Event
+#### Handling Event
+
 - 1. **_addEventListener_**
 
 ```js
@@ -216,4 +132,4 @@ setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
 
 <Br>
 
-- **new IntersectionObserver(obsCallback, obsOptions);**
+<!-- - **new IntersectionObserver(obsCallback, obsOptions);** -->
