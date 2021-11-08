@@ -1,5 +1,6 @@
 import Product from '../../classes/Product.js';
 import { ID, LOCAL_DB } from '../../constants/index.js';
+import { clearInput } from '../../utils/clearInput.js';
 import { addLocalStorage } from '../../utils/localStorage.js';
 import { isValidProductInput } from '../../utils/valid.js';
 
@@ -47,7 +48,7 @@ class ProductInput {
     }
 
     addLocalStorage(LOCAL_DB.PRODUCT, product);
-    //clearInput
+    clearInput(this.$nameInput, this.$priceInput, this.$quantityInput);
   }
 }
 
