@@ -1,4 +1,6 @@
 import { ID } from '../../constants/index.js';
+import ProductInput from './ProductInput.js';
+import ProductList from './ProductList.js';
 
 class ProductManager {
   constructor($target) {
@@ -9,6 +11,7 @@ class ProductManager {
   render() {
     this.addContainer();
     this.dom();
+    this.addContents();
   }
 
   addContainer() {
@@ -21,7 +24,12 @@ class ProductManager {
 
   dom() {
     this.$inputContainer = document.querySelector(`#${ID.PRODUCT_INPUT_CONTAINER}`);
-    console.log('d');
+    this.$listContainer = document.querySelector(`#${ID.PRODUCT_LIST_CONTAINER}`);
+  }
+
+  addContents() {
+    new ProductInput(this.$inputContainer);
+    new ProductList(this.$listContainer);
   }
 }
 
