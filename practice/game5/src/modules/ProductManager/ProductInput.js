@@ -9,6 +9,7 @@ class ProductInput {
   render() {
     this.addContents();
     this.dom();
+    this.addEvent();
   }
 
   addContents() {
@@ -33,7 +34,10 @@ class ProductInput {
   }
 
   clickButton() {
-    //
+    const nameValue = this.$nameInput.value;
+    const priceValue = this.$priceInput.value;
+    const quantityValue = this.$quantityInput.value;
+    console.log(nameValue, priceValue, quantityValue);
   }
 }
 
