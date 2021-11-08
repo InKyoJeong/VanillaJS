@@ -1,10 +1,12 @@
 import { ID } from '../../constants/index.js';
+import State from '../../observer/State.js';
 import ProductInput from './ProductInput.js';
 import ProductList from './ProductList.js';
 
 class ProductManager {
   constructor($target) {
     this.$target = $target;
+    this.state = new State();
     this.render();
   }
 
@@ -28,8 +30,8 @@ class ProductManager {
   }
 
   addContents() {
-    new ProductInput(this.$inputContainer);
-    new ProductList(this.$listContainer);
+    new ProductInput(this.$inputContainer, this.state);
+    new ProductList(this.$listContainer, this.state);
   }
 }
 

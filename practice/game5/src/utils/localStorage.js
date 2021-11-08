@@ -13,10 +13,11 @@ export const getLocalStorage = key => {
 
   try {
     list = JSON.parse(localStorage.getItem(key)) || [];
-  } catch (error) {
+  } catch (err) {
     list = [];
-    console.error(error);
+    console.error(err);
   }
+
   return list;
 };
 
