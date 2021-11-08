@@ -1,4 +1,6 @@
+import Product from '../../classes/Product.js';
 import { ID } from '../../constants/index.js';
+import { isValidProductInput } from '../../utils/valid.js';
 
 class ProductInput {
   constructor($target) {
@@ -34,10 +36,14 @@ class ProductInput {
   }
 
   clickButton() {
-    const nameValue = this.$nameInput.value;
-    const priceValue = this.$priceInput.value;
-    const quantityValue = this.$quantityInput.value;
-    console.log(nameValue, priceValue, quantityValue);
+    const name = this.$nameInput.value;
+    const price = this.$priceInput.value;
+    const quantity = this.$quantityInput.value;
+    const product = new Product(name, price, quantity);
+    console.log(name, price, quantity);
+    if (!isValidProductInput(name, price, quantity)) {
+      return;
+    }
   }
 }
 
