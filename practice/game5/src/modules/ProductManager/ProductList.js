@@ -16,3 +16,6 @@ class ProductList {
 }
 
 export default ProductList;
+
+//형식: 콜라 / 1000원 / 2개
+//     사이다 / 1000원 / 2개
