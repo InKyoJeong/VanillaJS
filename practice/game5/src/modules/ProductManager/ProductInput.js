@@ -1,5 +1,6 @@
 import Product from '../../classes/Product.js';
-import { ID } from '../../constants/index.js';
+import { ID, LOCAL_DB } from '../../constants/index.js';
+import { addLocalStorage } from '../../utils/localStorage.js';
 import { isValidProductInput } from '../../utils/valid.js';
 
 class ProductInput {
@@ -40,10 +41,13 @@ class ProductInput {
     const price = this.$priceInput.value;
     const quantity = this.$quantityInput.value;
     const product = new Product(name, price, quantity);
-    console.log(name, price, quantity);
+
     if (!isValidProductInput(name, price, quantity)) {
       return;
     }
+
+    addLocalStorage(LOCAL_DB.PRODUCT, product);
+    //clearInput
   }
 }
 
