@@ -31,6 +31,7 @@ class App {
 
   addButtons() {
     this.$container.innerHTML = `
+      <h3>메뉴</h3>
       <button id=${ID.PRODUCT_ADD_MENU}>상품 추가</button>
       <button id=${ID.VENDING_MACHINE_MANANGE_MENU}>잔돈 충전</button>
       <button id=${ID.PRODUCT_PURCHASE_MENU}>상품 구매</button>
@@ -43,13 +44,14 @@ class App {
 
   changeManager(e) {
     const { id } = e.target;
-    if (id === PRODUCT_ADD_MENU) {
+
+    if (id === ID.PRODUCT_ADD_MENU) {
       new ProductManager(this.$result);
     }
-    if (id === VENDING_MACHINE_MANANGE_MENU) {
+    if (id === ID.VENDING_MACHINE_MANANGE_MENU) {
       new ChargeManager(this.$result);
     }
-    if (id === PRODUCT_PURCHASE_MENU) {
+    if (id === ID.PRODUCT_PURCHASE_MENU) {
       new PurchaseManager(this.$result);
     }
   }
