@@ -1,5 +1,5 @@
 import { ID, LOCAL_DB } from '../../constants/index.js';
-import { decresePurchaseStorage, getPurchaseStorage } from '../../utils/localStorage.js';
+import { decreaseCoinStorage, decresePurchaseStorage, getPurchaseStorage } from '../../utils/localStorage.js';
 
 class ChangeReturn {
   constructor($target, state) {
@@ -36,14 +36,11 @@ class ChangeReturn {
 
   clickButton() {
     let returnAmount = getPurchaseStorage(LOCAL_DB.PURCHASE);
-
     // purchase금액 스토리지 만큼 최소개수 동전생성
     let returnCoins = this.generateReturnCoin(returnAmount);
-    console.log(returnCoins);
-
-    // todo: 최소 개수 동전 만큼 코인 스토리지에서 차감
-
-    // purchase금액 0원으로 초기화,
+    // 최소 개수 동전 만큼 코인 스토리지에서 차감
+    decreaseCoinStorage(LOCAL_DB.COIN, returnCoins);
+    // 투입 금액 0원으로 초기화
     decresePurchaseStorage(LOCAL_DB.PURCHASE, returnAmount);
     this.state.updateState();
   }
