@@ -25,9 +25,9 @@ class PurchaseList {
     if (!e.target.classList.contains(CLASS.PURCHASE_BUTTON)) {
       return;
     }
-
-    const { productName } = e.target.closest('div').children[0].dataset;
-    const { productPrice } = e.target.closest('div').children[1].dataset;
+    const div = e.target.closest('div');
+    const { productName } = div.children[0].dataset;
+    const { productPrice } = div.children[1].dataset;
     decreaseProductStorage(LOCAL_DB.PRODUCT, productName);
     decresePurchaseStorage(LOCAL_DB.PURCHASE, productPrice);
 

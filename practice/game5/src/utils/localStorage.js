@@ -86,7 +86,11 @@ export const addCoinStorage = (key, arr) => {
 export const decreaseProductStorage = (key, name) => {
   let list = getLocalStorage(key);
   const index = list.findIndex(v => v.name === name);
+
   list[index].quantity--;
+  if (list[index].quantity === 0) {
+    list.splice(index, 1);
+  }
 
   saveLocalStorage(key, list);
 };
