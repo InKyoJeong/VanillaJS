@@ -9,10 +9,10 @@ class PurchaseInput {
     this.state = state;
     this.state.event.subscribe(this.render.bind(this));
     this.render();
-    this.amount = getPurchaseStorage(LOCAL_DB.PURCHASE);
   }
 
   render() {
+    this.amount = getPurchaseStorage(LOCAL_DB.PURCHASE);
     this.addContents();
     this.dom();
     this.addEvents();
@@ -40,6 +40,7 @@ class PurchaseInput {
 
   clickButton() {
     const charge = this.$chargeInput.value;
+
     if (!isValidPurchaseInput(charge)) {
       return;
     }

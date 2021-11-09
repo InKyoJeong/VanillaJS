@@ -20,19 +20,6 @@ export const getLocalStorage = key => {
   return list;
 };
 
-export const getPurchaseStorage = key => {
-  let amount;
-
-  try {
-    amount = JSON.parse(localStorage.getItem(key)) || 0;
-  } catch (err) {
-    amount = 0;
-    console.error(err);
-  }
-
-  return amount;
-};
-
 export const coinStorage = key => {
   let list = getLocalStorage(key);
 
@@ -45,6 +32,19 @@ export const coinStorage = key => {
   }
 
   return getLocalStorage(key);
+};
+
+export const getPurchaseStorage = key => {
+  let amount;
+
+  try {
+    amount = JSON.parse(localStorage.getItem(key)) || 0;
+  } catch (err) {
+    amount = 0;
+    console.error(err);
+  }
+
+  return amount;
 };
 
 export const addPurchaseStorage = (key, value) => {
