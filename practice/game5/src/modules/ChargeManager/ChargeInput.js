@@ -41,9 +41,15 @@ class ChargeInput {
     }
     clearInput(this.$chargeInput);
 
-    let coinArray = new Random().countCharge([500, 100, 50, 10], Number(charge));
-    addCoinStorage(LOCAL_DB.COIN, coinArray);
+    this.addCoin(charge);
     this.state.updateState();
+  }
+
+  addCoin(charge) {
+    let random = new Random();
+    let coinArray = random.countCharge([500, 100, 50, 10], Number(charge));
+    addCoinStorage(LOCAL_DB.COIN, coinArray);
+    console.log(coinArray);
   }
 }
 
