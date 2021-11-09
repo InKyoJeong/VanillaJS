@@ -12,6 +12,16 @@ export const ID = {
   PRODUCT_PRICE_INPUT: 'product-price-input',
   PRODUCT_QUANTITY_INPUT: 'product-quantity-input',
   PRODUCT_ADD_BUTTON: 'product-add-button',
+  // 잔돈 충전
+  CHARGE_LIST_CONTAINER: 'charge-list-container',
+  CHARGE_INPUT_CONTAINER: 'charge-input-container',
+  VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
+  VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
+  VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-button',
+  VENDING_MACHINE_COINT_500_QUANTITY: 'vending-machine-coin-500-quantity',
+  VENDING_MACHINE_COINT_100_QUANTITY: 'vending-machine-coin-100-quantity',
+  VENDING_MACHINE_COINT_50_QUANTITY: 'vending-machine-coin-50-quantity',
+  VENDING_MACHINE_COINT_10_QUANTITY: 'vending-machine-coin-10-quantity',
 };
 
 export const CLASS = {
