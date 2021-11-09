@@ -48,3 +48,10 @@ export const addLocalStorage = (key, value) => {
   list.push(value);
   saveLocalStorage(key, list);
 };
+
+export const addCoinStorage = (key, arr) => {
+  let list = getLocalStorage(key);
+  list.forEach((v, i) => (v.count += arr[i]));
+
+  saveLocalStorage(key, list);
+};

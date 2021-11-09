@@ -1,5 +1,7 @@
-import { ID } from '../../constants/index.js';
+import { ID, LOCAL_DB } from '../../constants/index.js';
 import { isValidChargeInput } from '../../utils/valid.js';
+import Random from '../../classes/Random.js';
+import { addCoinStorage } from '../../utils/localStorage.js';
 
 class ChargeInput {
   constructor($target) {
@@ -31,13 +33,14 @@ class ChargeInput {
     this.$chargeButton.addEventListener('click', this.clickButton.bind(this));
   }
 
-  clickButton(e) {
+  clickButton() {
     const charge = this.$chargeInput.value;
-    console.log(e.target, charge, typeof charge);
-
     if (!isValidChargeInput(charge)) {
       return;
     }
+
+    let coinArray = new Random().countCharge([500, 100, 50, 10], Number(charge));
+    addCoinStorage(LOCAL_DB.COIN, coinArray);
   }
 }
 
