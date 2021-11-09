@@ -30,3 +30,14 @@ export const isValidChargeInput = charge => {
 
   return isValid;
 };
+
+export const isValidPurchaseInput = amount => {
+  let isValid = true;
+
+  if (amount < NUM.MIN_PRICE || amount % NUM.MIN_PRICE_UNIT !== 0) {
+    displayAlert(MESSAGE.PRICE_OR_UNIT_IS_LOW);
+    isValid = false;
+  }
+
+  return isValid;
+};
