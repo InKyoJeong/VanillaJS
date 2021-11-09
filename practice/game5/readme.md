@@ -2,8 +2,10 @@
 
 - 상품이름/가격/개수 저장
 - 자판기보유 동전이름/개수 저장 : 초기에 0개로 초기화
-- product : {name: '사이다', price: 1000 count: 1}, {name: '콜라',...}
-- coin : {name: 500, count: 0}, ...
+- 총 충전 금액 저장
+  - product : {name: '사이다', price: 1000 count: 1}, {name: '콜라',...}
+  - coin : {name: 500, count: 0}, ...
+  - purchase : 1000
 
 <br>
 
