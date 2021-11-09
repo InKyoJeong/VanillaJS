@@ -1,8 +1,9 @@
 import { ID } from '../../constants/index.js';
 
 class ChangeReturn {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
     this.render();
   }
 

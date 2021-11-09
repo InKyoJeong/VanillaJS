@@ -3,8 +3,9 @@ import { decreaseProductStorage, decresePurchaseStorage, getLocalStorage } from 
 import { purchaseContents } from '../../utils/template.js';
 
 class PurchaseList {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
     this.render();
     this.$target.addEventListener('click', this.clickButton.bind(this));
   }
@@ -27,14 +28,12 @@ class PurchaseList {
 
     const { productName } = e.target.closest('div').children[0].dataset;
     const { productPrice } = e.target.closest('div').children[1].dataset;
-
-    // 상품 로컬스토리지에서 제품 찾아서 개수 차감
     decreaseProductStorage(LOCAL_DB.PRODUCT, productName);
-    // 투입금액에서 차감
     decresePurchaseStorage(LOCAL_DB.PURCHASE, productPrice);
 
-    // 상품현황 개수 업데이트
-    // 투입 금액 업데이트
+    // 투입 금액과 상품현황 뷰 업데이트
+    this.state.updateState();
+    this.addContents();
   }
 }
 

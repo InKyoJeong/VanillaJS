@@ -1,4 +1,5 @@
 import { ID } from '../../constants/index.js';
+import State from '../../observer/State.js';
 import ChangeReturn from './ChargeReturn.js';
 import PurchaseInput from './PurchaseInput.js';
 import PurchaseList from './PurchaseList.js';
@@ -6,6 +7,7 @@ import PurchaseList from './PurchaseList.js';
 class PurchaseManager {
   constructor($target) {
     this.$target = $target;
+    this.state = new State();
     this.render();
   }
 
@@ -30,9 +32,9 @@ class PurchaseManager {
   }
 
   addContents() {
-    new PurchaseInput(this.$inputContainer);
-    new PurchaseList(this.$listContainer);
-    new ChangeReturn(this.$changeContainer);
+    new PurchaseInput(this.$inputContainer, this.state);
+    new PurchaseList(this.$listContainer, this.state);
+    new ChangeReturn(this.$changeContainer, this.state);
   }
 }
 

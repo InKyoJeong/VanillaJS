@@ -55,8 +55,10 @@
 - 구매 구현
   - [x] 상품 현황에서 구매 버튼을 누르면 상품 로컬스토리지에서 차감
   - [x] 상품 현황에서 구매 버튼을 누르면 투입 로컬스토리지에서 차감
-  - [ ] 상품 현황에서 구매 버튼을 누르면 투입 금액 뷰 업데이트
-  - [ ] 상품 현황에서 구매 버튼을 누르면 상품 현황 개수 뷰 업데이트
+  - [x] 상품 현황에서 구매 버튼을 누르면 투입 금액 뷰 업데이트
+  - [x] 상품 현황에서 구매 버튼을 누르면 상품 현황 개수 뷰 업데이트
+    - [ ] 💥 오류발견 : 구매 버튼을 누르고 바로 충전을하면 [구매한 금액+충전한 금액] 만큼 충전이됨
+  - [ ] 남은 상품이 1개일때 구매하면 0개 표시 대신 삭제
 - 잔돈계산 구현
   - [ ] 반환된 동전 개수는 0개로 초기화
   - [ ] 반환버튼을 누르면 투입 금액을 0원으로 변경
@@ -65,15 +67,23 @@
   - [ ] 계산한 반환 동전을 표시하고 로컬스토리지의 보유동전차감
   - [ ] 모든 금액에대해 잔돈을 반환하지 못하면 최대 가능한 만큼 반환
 
+<br>
+
+#### 메모
+
+- 옵저버
+  - 상품 추가, 잔돈 충전에서는 Input에서 List로 업데이트를 알림
+  - 상품 구매에서는 List와 Return에서 Input으로 업데이트를 알림
+
 <!--
-🎉 랜덤 클래스 만들기
-pickNumberInList 메서드
-Random.pickNumberInList(array)
-입력된 배열의 요소 중 무작위로 1개의 요소를 반환
-ex)
-Random.pickNumberInList([1, 3, 10]); 1
-Random.pickNumberInList([1, 3, 10]); 10
-Random.pickNumberInList([1, 3, 10]); 3
+  🎉 랜덤 클래스 만들기
+  pickNumberInList 메서드
+  Random.pickNumberInList(array)
+  입력된 배열의 요소 중 무작위로 1개의 요소를 반환
+  ex)
+  Random.pickNumberInList([1, 3, 10]); 1
+  Random.pickNumberInList([1, 3, 10]); 10
+  Random.pickNumberInList([1, 3, 10]); 3
 
 this.fiveHundred = 0;
 this.oneHundred = 0;

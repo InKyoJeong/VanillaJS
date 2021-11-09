@@ -4,8 +4,10 @@ import { addPurchaseStorage, getPurchaseStorage } from '../../utils/localStorage
 import { isValidPurchaseInput } from '../../utils/valid.js';
 
 class PurchaseInput {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
+    this.state.event.subscribe(this.render.bind(this));
     this.render();
     this.amount = getPurchaseStorage(LOCAL_DB.PURCHASE);
   }
