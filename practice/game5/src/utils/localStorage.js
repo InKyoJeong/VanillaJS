@@ -21,10 +21,10 @@ export const getLocalStorage = key => {
   return list;
 };
 
-// 초기 금액이 없을때
 export const coinStorage = key => {
   let list = getLocalStorage(key);
 
+  // 초기 저장된 금액이 없을때
   if (!list.length) {
     [500, 100, 50, 10].forEach(coin => {
       list.push({ name: coin, count: 0 });
@@ -35,10 +35,18 @@ export const coinStorage = key => {
   return getLocalStorage(key);
 };
 
+export const addPurchaseStorage = (key, value) => {
+  let list = getLocalStorage(key);
+  list = value;
+
+  saveLocalStorage(key, list);
+};
+
 export const addLocalStorage = (key, value) => {
   let list = getLocalStorage(key);
   let index = list.findIndex(v => v.name === value.name);
 
+  // 이미 있는 제품일때
   if (key === LOCAL_DB.PRODUCT && index >= 0) {
     list.splice(index, 1, value);
     saveLocalStorage(key, list);

@@ -1,3 +1,5 @@
+import { coinIdList } from '../constants/index.js';
+
 export const productContents = list => {
   let html = ``;
   list.map(v => {
@@ -19,10 +21,10 @@ export const chargeAmount = list => {
 
 export const chargeCoinList = list => {
   let html = ``;
-  list.map(v => {
+  list.map((v, i) => {
     html += `
       <div>
-        <span>${v.name}원: ${v.count}개</span>
+        <span id=${coinIdList[i]}>${v.name}원: ${v.count}개</span>
       </div>
     `;
   });

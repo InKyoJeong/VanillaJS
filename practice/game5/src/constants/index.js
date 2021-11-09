@@ -17,18 +17,40 @@ export const ID = {
   CHARGE_INPUT_CONTAINER: 'charge-input-container',
   VENDING_MACHINE_CHARGE_INPUT: 'vending-machine-charge-input',
   VENDING_MACHINE_CHARGE_BUTTON: 'vending-machine-charge-button',
-  VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-button',
-  VENDING_MACHINE_COINT_500_QUANTITY: 'vending-machine-coin-500-quantity',
-  VENDING_MACHINE_COINT_100_QUANTITY: 'vending-machine-coin-100-quantity',
-  VENDING_MACHINE_COINT_50_QUANTITY: 'vending-machine-coin-50-quantity',
-  VENDING_MACHINE_COINT_10_QUANTITY: 'vending-machine-coin-10-quantity',
+  VENDING_MACHINE_CHARGE_AMOUNT: 'vending-machine-charge-amount',
+  VENDING_MACHINE_COIN_500_QUANTITY: 'vending-machine-coin-500-quantity',
+  VENDING_MACHINE_COIN_100_QUANTITY: 'vending-machine-coin-100-quantity',
+  VENDING_MACHINE_COIN_50_QUANTITY: 'vending-machine-coin-50-quantity',
+  VENDING_MACHINE_COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
+  // 상품 구매
+  PURCHASE_INPUT_CONTAINER: 'purchase-input-container',
+  CHARGE_INPUT: 'charge-input',
+  CHARGE_BUTTON: 'charge-button',
+  CHARGE_AMOUNT: 'charge-amount',
+  COIN_RETURN_BUTTON: 'coin-return-button',
+  COIN_500_QUANTITY: 'coin-500-quantity',
+  COIN_100_QUANTITY: 'coin-100-quantity',
+  COIN_50_QUANTITY: 'coin-50-quantity',
+  COIN_10_QUANTITY: 'coin-10-quantity',
 };
+
+export const coinIdList = [
+  ID.VENDING_MACHINE_COIN_500_QUANTITY,
+  ID.VENDING_MACHINE_COIN_100_QUANTITY,
+  ID.VENDING_MACHINE_COIN_50_QUANTITY,
+  ID.VENDING_MACHINE_COIN_10_QUANTITY,
+];
 
 export const CLASS = {
   // 상품추가 메뉴
   PRODUCT_MANAGE_NAME: 'product-manage-name',
   PRODUCT_MANAGE_PRICE: 'product-manage-price',
   PRODUCT_MANAGE_QUANTITY: 'product-manage-quantity',
+  // 상품 구매
+  PURCHASE_BUTTON: 'purchase-button',
+  PRODUCT_PURCHASE_NAME: 'product-purchase-name',
+  PRODUCT_PURCHASE_PRICE: ' product-purchase-price',
+  PRODUCT_PURCHASE_QUANTITY: ' product-purchase-quantity',
 };
 
 export const NUM = {
@@ -46,4 +68,5 @@ export const MESSAGE = {
 export const LOCAL_DB = {
   PRODUCT: 'PRODUCT',
   COIN: 'COIN',
+  PURCHASE: 'PURCHASE',
 };
