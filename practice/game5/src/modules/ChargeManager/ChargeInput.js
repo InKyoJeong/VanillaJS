@@ -1,4 +1,5 @@
 import { ID } from '../../constants/index.js';
+import { isValidChargeInput } from '../../utils/valid.js';
 
 class ChargeInput {
   constructor($target) {
@@ -33,6 +34,10 @@ class ChargeInput {
   clickButton(e) {
     const charge = this.$chargeInput.value;
     console.log(e.target, charge, typeof charge);
+
+    if (!isValidChargeInput(charge)) {
+      return;
+    }
   }
 }
 

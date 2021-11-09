@@ -19,3 +19,14 @@ export const isValidProductInput = (name, price, quantity) => {
 
   return isValid;
 };
+
+export const isValidChargeInput = charge => {
+  let isValid = true;
+
+  if (charge < NUM.MIN_PRICE || charge % NUM.MIN_PRICE_UNIT !== 0) {
+    displayAlert(MESSAGE.PRICE_OR_UNIT_IS_LOW);
+    isValid = false;
+  }
+
+  return isValid;
+};
