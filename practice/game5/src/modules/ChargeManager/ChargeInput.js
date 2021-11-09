@@ -2,11 +2,12 @@ import { ID, LOCAL_DB } from '../../constants/index.js';
 import { isValidChargeInput } from '../../utils/valid.js';
 import Random from '../../classes/Random.js';
 import { addCoinStorage } from '../../utils/localStorage.js';
+import { clearInput } from '../../utils/clearInput.js';
 
 class ChargeInput {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
-
+    this.state = state;
     this.render();
   }
 
@@ -38,9 +39,11 @@ class ChargeInput {
     if (!isValidChargeInput(charge)) {
       return;
     }
+    clearInput(this.$chargeInput);
 
     let coinArray = new Random().countCharge([500, 100, 50, 10], Number(charge));
     addCoinStorage(LOCAL_DB.COIN, coinArray);
+    this.state.updateState();
   }
 }
 

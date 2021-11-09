@@ -3,9 +3,10 @@ import { coinStorage } from '../../utils/localStorage.js';
 import { chargeAmount, chargeCoinList } from '../../utils/template.js';
 
 class ChargeList {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
-
+    this.state = state;
+    this.state.event.subscribe(this.render.bind(this));
     this.render();
   }
 

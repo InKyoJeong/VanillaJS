@@ -1,10 +1,12 @@
 import { ID } from '../../constants/index.js';
+import State from '../../observer/State.js';
 import ChargeInput from './ChargeInput.js';
 import ChargeList from './ChargeList.js';
 
 class ChargeManager {
   constructor($target) {
     this.$target = $target;
+    this.state = new State();
     this.render();
   }
 
@@ -28,8 +30,8 @@ class ChargeManager {
   }
 
   addContents() {
-    new ChargeList(this.$listContainer);
-    new ChargeInput(this.$inputContainer);
+    new ChargeList(this.$listContainer, this.state);
+    new ChargeInput(this.$inputContainer, this.state);
   }
 }
 

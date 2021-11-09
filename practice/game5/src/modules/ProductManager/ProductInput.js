@@ -47,10 +47,10 @@ class ProductInput {
     if (!isValidProductInput(name, price, quantity)) {
       return;
     }
+    clearInput(this.$nameInput, this.$priceInput, this.$quantityInput);
 
     addLocalStorage(LOCAL_DB.PRODUCT, product);
     this.state.updateState();
-    clearInput(this.$nameInput, this.$priceInput, this.$quantityInput);
   }
 }
 
