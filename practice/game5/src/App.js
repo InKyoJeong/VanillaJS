@@ -1,7 +1,7 @@
-import { ID } from "./constants/index.js";
-import ProductManager from "./modules/ProductManager/index.js";
-import ChargeManager from "./modules/ChargeManager/index.js";
-import PurchaseManager from "./modules/PurchaseManager/index.js";
+import { ID } from './constants/index.js';
+import ProductManager from './modules/ProductManager/index.js';
+import ChargeManager from './modules/ChargeManager/index.js';
+import PurchaseManager from './modules/PurchaseManager/index.js';
 
 class App {
   constructor($target) {
@@ -18,7 +18,7 @@ class App {
 
   addContainer() {
     this.$target.innerHTML = `
-      <h1>자판기 미션</h1>
+      <h1>자판기</h1>
       <div id=${ID.MENU_BUTTON_CONTAINER}></div>
       <div id=${ID.RESULT_CONTAINER}></div>
     `;
@@ -39,7 +39,7 @@ class App {
   }
 
   addEvents() {
-    this.$container.addEventListener("click", this.changeManager.bind(this));
+    this.$container.addEventListener('click', this.changeManager.bind(this));
   }
 
   changeManager(e) {

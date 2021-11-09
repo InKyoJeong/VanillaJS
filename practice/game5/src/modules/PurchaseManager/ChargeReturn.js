@@ -1,12 +1,13 @@
 import { ID, LOCAL_DB } from '../../constants/index.js';
 import { decreaseCoinStorage, decresePurchaseStorage, getPurchaseStorage } from '../../utils/localStorage.js';
+import { returnCoinList } from '../../utils/template.js';
 
 class ChangeReturn {
   constructor($target, state) {
     this.$target = $target;
     this.state = state;
+    this.arr = [0, 0, 0, 0];
     this.render();
-    this.fiveHundred = 0;
   }
 
   render() {
@@ -19,10 +20,7 @@ class ChangeReturn {
     this.$target.innerHTML = `
         <h3>동전 반환</h3>
         <button id=${ID.COIN_RETURN_BUTTON}>반환 하기</button>
-        <div>500원 / 0개</div>
-        <div>100원 / 0개</div>
-        <div>50원 / 0개</div>
-        <div>10원 / 0개</div>
+        ${returnCoinList(this.arr)}
     `;
   }
 
@@ -43,6 +41,9 @@ class ChangeReturn {
     // 투입 금액 0원으로 초기화
     decresePurchaseStorage(LOCAL_DB.PURCHASE, returnAmount);
     this.state.updateState();
+    // 반환 동전 뷰 업데이트
+    this.arr = returnCoins;
+    this.addContents();
   }
 
   generateReturnCoin(amount) {

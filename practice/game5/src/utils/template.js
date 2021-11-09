@@ -47,3 +47,12 @@ export const purchaseContents = list => {
 
   return html;
 };
+
+export const returnCoinList = list => {
+  let name = [500, 100, 50, 10];
+  return `
+    <div>
+      ${list.map((v, i) => `<div>${name[i]}원 / ${v}개</div>`).join('')}
+    </div>
+  `;
+};
