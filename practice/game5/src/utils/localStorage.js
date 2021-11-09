@@ -85,12 +85,23 @@ export const addCoinStorage = (key, arr) => {
 
 export const decreaseCoinStorage = (key, arr) => {
   let list = getLocalStorage(key);
+  let decreasedCoin = [];
+  // 실제 반환한 동전 만큼만 표시하기 위해 decreasedCoin 배열 추가
 
   list.forEach((v, i) => {
-    return v.count <= arr[i] ? (v.count = 0) : (v.count -= arr[i]);
+    // return v.count <= arr[i] ? (v.count = 0) : (v.count -= arr[i]);
+    if (v.count <= arr[i]) {
+      v.count = 0;
+      decreasedCoin.push(v.count);
+    }
+    if (v.count > arr[i]) {
+      v.count -= arr[i];
+      decreasedCoin.push(arr[i]);
+    }
   });
 
   saveLocalStorage(key, list);
+  return decreasedCoin;
 };
 
 export const decreaseProductStorage = (key, name) => {

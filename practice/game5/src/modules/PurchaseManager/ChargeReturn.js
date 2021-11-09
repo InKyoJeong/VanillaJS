@@ -42,7 +42,8 @@ class ChangeReturn {
     decresePurchaseStorage(LOCAL_DB.PURCHASE, returnAmount);
     this.state.updateState();
     // 반환 동전 뷰 업데이트
-    this.arr = returnCoins;
+    this.arr = decreaseCoinStorage(LOCAL_DB.COIN, returnCoins); // 1) 실제 반환하는 동전만큼만 표시할 경우
+    // this.arr = returnCoins // 2) 최소 개수 동전 계산한 만큼 모두 표시할 경우
     this.addContents();
   }
 
