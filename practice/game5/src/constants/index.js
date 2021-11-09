@@ -65,6 +65,7 @@ export const MESSAGE = {
   INPUT_CANNOT_BLANK: '공백없이 입력해주세요.',
   PRICE_OR_UNIT_IS_LOW: `금액은 ${NUM.MIN_PRICE}원 이상이고, 최소 단위를 ${NUM.MIN_PRICE_UNIT}원으로 입력해주세요.`,
   QUANTITY_IS_LOW: `수량은 ${NUM.MIN_QUANTITY}개 이상으로 입력해주세요.`,
+  CANNOT_PURCHASE: '금액이 부족해서 구매할 수 없어요.',
 };
 
 export const LOCAL_DB = {

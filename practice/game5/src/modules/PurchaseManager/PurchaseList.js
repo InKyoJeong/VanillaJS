@@ -1,6 +1,12 @@
 import { CLASS, LOCAL_DB } from '../../constants/index.js';
-import { decreaseProductStorage, decresePurchaseStorage, getLocalStorage } from '../../utils/localStorage.js';
+import {
+  decreaseProductStorage,
+  decresePurchaseStorage,
+  getLocalStorage,
+  getPurchaseStorage,
+} from '../../utils/localStorage.js';
 import { purchaseContents } from '../../utils/template.js';
+import { isValidPurchaseProduct } from '../../utils/valid.js';
 
 class PurchaseList {
   constructor($target, state) {
@@ -28,6 +34,11 @@ class PurchaseList {
     const div = e.target.closest('div');
     const { productName } = div.children[0].dataset;
     const { productPrice } = div.children[1].dataset;
+
+    if (!isValidPurchaseProduct(productPrice)) {
+      return;
+    }
+
     decreaseProductStorage(LOCAL_DB.PRODUCT, productName);
     decresePurchaseStorage(LOCAL_DB.PURCHASE, productPrice);
 
