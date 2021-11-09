@@ -54,6 +54,13 @@ export const addPurchaseStorage = (key, value) => {
   saveLocalStorage(key, list);
 };
 
+export const decresePurchaseStorage = (key, value) => {
+  let list = getLocalStorage(key);
+  list -= value;
+
+  saveLocalStorage(key, list);
+};
+
 export const addLocalStorage = (key, value) => {
   let list = getLocalStorage(key);
   let index = list.findIndex(v => v.name === value.name);
@@ -72,6 +79,14 @@ export const addLocalStorage = (key, value) => {
 export const addCoinStorage = (key, arr) => {
   let list = getLocalStorage(key);
   list.forEach((v, i) => (v.count += arr[i]));
+
+  saveLocalStorage(key, list);
+};
+
+export const decreaseProductStorage = (key, name) => {
+  let list = getLocalStorage(key);
+  const index = list.findIndex(v => v.name === name);
+  list[index].quantity--;
 
   saveLocalStorage(key, list);
 };

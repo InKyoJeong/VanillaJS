@@ -24,6 +24,8 @@ export const ID = {
   VENDING_MACHINE_COIN_10_QUANTITY: 'vending-machine-coin-10-quantity',
   // 상품 구매
   PURCHASE_INPUT_CONTAINER: 'purchase-input-container',
+  PURCHASE_LIST_CONTAINER: 'purchase-list-container',
+  CHANGE_RETURN_CONTAINER: 'change-return-container',
   CHARGE_INPUT: 'charge-input',
   CHARGE_BUTTON: 'charge-button',
   CHARGE_AMOUNT: 'charge-amount',
