@@ -33,17 +33,17 @@ class ChangeReturn {
   }
 
   clickButton() {
-    let returnAmount = getPurchaseStorage(LOCAL_DB.PURCHASE);
     // purchase금액 스토리지 만큼 최소개수 동전생성
-    let returnCoins = this.generateReturnCoin(returnAmount);
-    // 최소 개수 동전 만큼 코인 스토리지에서 차감
-    decreaseCoinStorage(LOCAL_DB.COIN, returnCoins);
+    const returnAmount = getPurchaseStorage(LOCAL_DB.PURCHASE);
+    const returnCoins = this.generateReturnCoin(returnAmount);
     // 투입 금액 0원으로 초기화
     decresePurchaseStorage(LOCAL_DB.PURCHASE, returnAmount);
     this.state.updateState();
-    // 반환 동전 뷰 업데이트
+    // 최소 개수 동전 만큼 코인 스토리지에서 차감 + arr에 반환하는 동전 저장
     this.arr = decreaseCoinStorage(LOCAL_DB.COIN, returnCoins); // 1) 실제 반환하는 동전만큼만 표시할 경우
     // this.arr = returnCoins // 2) 최소 개수 동전 계산한 만큼 모두 표시할 경우
+
+    // 반환 동전 뷰 업데이트
     this.addContents();
   }
 
