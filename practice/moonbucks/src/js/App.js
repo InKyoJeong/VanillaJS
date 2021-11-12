@@ -2,6 +2,7 @@ class App {
   constructor() {
     this.dom();
     this.addEvents();
+    this.editIndex = 0;
   }
 
   dom() {
@@ -29,8 +30,20 @@ class App {
 
   addContents(value) {
     const li = document.createElement("li");
-    li.innerText = value;
-    this.$menuList.appendChild(li);
+    const span = document.createElement("span");
+    const button = document.createElement("button");
+    button.id = `menu-item-edit-${this.editIndex++}`;
+    button.innerText = "✏️수정";
+    button.addEventListener("click", this.editItem.bind(this));
+    span.innerText = value;
+    li.append(span, button);
+    this.$menuList.append(li);
+  }
+
+  editItem(e) {
+    const { parentElement } = e.target;
+    const message = prompt("수정하시겠어요?");
+    parentElement.children[0].innerText = message;
   }
 }
 
