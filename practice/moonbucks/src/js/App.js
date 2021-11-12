@@ -90,8 +90,8 @@ class App {
     this.$inputField.value = "";
   }
 
-  makeElement(elementName, className, element) {
-    const element = document.createElement(element);
+  makeElement(elementName, className, tagName) {
+    const element = document.createElement(tagName);
     element.innerText = elementName;
     element.className = className;
 
