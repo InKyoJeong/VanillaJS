@@ -43,6 +43,7 @@ class App {
 
     const { categoryName } = e.target.dataset;
     this.currentCategory = categoryName;
+    this.updateCount();
     this.changeCategory(this.currentCategory);
   }
 
