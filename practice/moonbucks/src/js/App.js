@@ -10,6 +10,7 @@ class App {
     this.$inputField = document.querySelector(".input-field");
     this.$submitButton = document.querySelector(".input-submit");
     this.$menuList = document.querySelector("#espresso-menu-list");
+    this.$menuCount = document.querySelector(".menu-count");
   }
 
   addEvents() {
@@ -47,6 +48,8 @@ class App {
     li.id = `menu-item-edit-${this.editIndex++}`;
     li.append(span, editButtton, deleteButton);
     this.$menuList.append(li);
+
+    this.updateCount();
   }
 
   editItem(e) {
@@ -60,6 +63,12 @@ class App {
     if (confirm("삭제하시겠어요?")) {
       parentElement.remove();
     }
+    this.updateCount();
+  }
+
+  updateCount() {
+    const count = this.$menuList.childElementCount;
+    this.$menuCount.innerText = `총 ${count}개`;
   }
 }
 
