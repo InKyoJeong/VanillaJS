@@ -1,9 +1,11 @@
+import { CATEGORY } from "./constants/index.js";
 import {
   deleteLocalStorage,
   editLocalStorage,
   getLocalStorage,
   saveLocalStorage,
 } from "./utils/localStorage.js";
+import { makeElement } from "./utils/makeElement.js";
 
 class App {
   constructor() {
@@ -48,34 +50,24 @@ class App {
     const { categoryName } = e.target.dataset;
     this.currentCategory = categoryName;
     this.changeCategory(this.currentCategory);
-    console.log("카테고리 변경됨", this.currentCategory, categoryName);
   }
 
-  changeCategory(category) {
+  changeCategory(name) {
     // repaint
     this.$menuList.innerHTML = "";
     this.list = [];
     this.loadItems();
 
     // changeTitle
-    const obj = {
-      espresso: "☕ 에스프레소",
-      frappuccino: "🥤 프라푸치노",
-      blended: "🍹 블렌디드",
-      teavana: "🫖 티바나",
-      desert: "🍰 디저트",
-    };
-    this.$h2.innerText = `${obj[category]} 메뉴 관리`;
+    this.$h2.innerText = `${CATEGORY[name]} 메뉴 관리`;
 
-    // changeInput
+    // change Input
     this.$inputField.setAttribute(
       "placeholder",
-      `${obj[category].slice(2)} 메뉴 이름`
+      `${CATEGORY[name].slice(2)} 메뉴 이름`
     );
-    this.$inputField.setAttribute("id", `${category}-menu-name`);
-
-    // changeSubmit
-    this.$submitButton.setAttribute("id", `${category}-menu-submit-button`);
+    this.$inputField.setAttribute("id", `${name}-menu-name`);
+    this.$submitButton.setAttribute("id", `${name}-menu-submit-button`);
   }
 
   submitForm(e) {
@@ -90,37 +82,29 @@ class App {
     this.$inputField.value = "";
   }
 
-  makeElement(elementName, className, tagName) {
-    const element = document.createElement(tagName);
-    element.innerText = elementName;
-    element.className = className;
-
-    return element;
-  }
-
   makeItemBlock(obj) {
-    const editButton = this.makeElement(
+    const editButton = makeElement(
       "수정",
       "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button",
       "button"
     );
     editButton.addEventListener("click", this.editItem.bind(this));
 
-    const deleteButton = this.makeElement(
+    const deleteButton = makeElement(
       "삭제",
       "bg-gray-50 text-gray-500 text-sm menu-remove-button",
       "button"
     );
     deleteButton.addEventListener("click", this.deleteItem.bind(this));
 
-    const soldButton = this.makeElement(
+    const soldButton = makeElement(
       "품절",
       "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button",
       "button"
     );
     soldButton.addEventListener("click", this.soldItem.bind(this));
 
-    const span = this.makeElement(obj.text, "w-100 pl-2 menu-name", "span");
+    const span = makeElement(obj.text, "w-100 pl-2 menu-name", "span");
 
     const li = document.createElement("li");
     li.className = "menu-list-item d-flex items-center py-2";
