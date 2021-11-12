@@ -31,12 +31,21 @@ class App {
   addContents(value) {
     const li = document.createElement("li");
     const span = document.createElement("span");
-    const button = document.createElement("button");
-    button.id = `menu-item-edit-${this.editIndex++}`;
-    button.innerText = "✏️수정";
-    button.addEventListener("click", this.editItem.bind(this));
+    const editButtton = document.createElement("button");
+    const deleteButton = document.createElement("button");
+    editButtton.innerText = "수정";
+    editButtton.className =
+      "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button";
+    editButtton.addEventListener("click", this.editItem.bind(this));
+    deleteButton.innerText = "삭제";
+    deleteButton.className =
+      "bg-gray-50 text-gray-500 text-sm menu-remove-button";
+    deleteButton.addEventListener("click", this.deleteItem.bind(this));
+    span.className = "w-100 pl-2 menu-name";
     span.innerText = value;
-    li.append(span, button);
+    li.className = "menu-list-item d-flex items-center py-2";
+    li.id = `menu-item-edit-${this.editIndex++}`;
+    li.append(span, editButtton, deleteButton);
     this.$menuList.append(li);
   }
 
@@ -44,6 +53,13 @@ class App {
     const { parentElement } = e.target;
     const message = prompt("수정하시겠어요?");
     parentElement.children[0].innerText = message;
+  }
+
+  deleteItem(e) {
+    const { parentElement } = e.target;
+    if (confirm("삭제하시겠어요?")) {
+      parentElement.remove();
+    }
   }
 }
 
