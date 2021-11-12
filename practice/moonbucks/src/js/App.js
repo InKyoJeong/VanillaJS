@@ -95,6 +95,7 @@ class App {
     const span = document.createElement("span");
     const editButtton = document.createElement("button");
     const deleteButton = document.createElement("button");
+    const soldButton = document.createElement("button");
     editButtton.innerText = "수정";
     editButtton.className =
       "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button";
@@ -103,12 +104,16 @@ class App {
     deleteButton.className =
       "bg-gray-50 text-gray-500 text-sm menu-remove-button";
     deleteButton.addEventListener("click", this.deleteItem.bind(this));
+    soldButton.innerHTML = "품절";
+    soldButton.className =
+      "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button";
+    soldButton.addEventListener("click", this.soldItem.bind(this));
     span.className = "w-100 pl-2 menu-name";
     span.innerText = obj.text;
     li.className = "menu-list-item d-flex items-center py-2";
     const item = { text: obj.text, id: obj.id };
     li.dataset.index = obj.id;
-    li.append(span, editButtton, deleteButton);
+    li.append(span, soldButton, editButtton, deleteButton);
     this.$menuList.append(li);
     this.updateCount();
 
@@ -138,6 +143,11 @@ class App {
     // LS
     const { index } = parentElement.dataset;
     deleteLocalStorage(this.currentCategory, index);
+  }
+
+  soldItem(e) {
+    const span = e.target.parentElement.children[0];
+    span.classList.toggle("sold-out");
   }
 
   updateCount() {
