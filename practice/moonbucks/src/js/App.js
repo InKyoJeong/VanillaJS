@@ -36,7 +36,7 @@ class App {
     const list = getLocalStorage(this.currentCategory);
 
     if (list !== null) {
-      list.forEach((item) => this.addContents(item));
+      list.forEach((item) => this.paintItems(item));
     }
   }
 
@@ -86,38 +86,57 @@ class App {
     }
     const id = this.itemIndex++;
 
-    this.addContents({ text, id });
+    this.paintItems({ text, id });
     this.$inputField.value = "";
   }
 
-  addContents(obj) {
-    const li = document.createElement("li");
-    const span = document.createElement("span");
-    const editButtton = document.createElement("button");
-    const deleteButton = document.createElement("button");
-    const soldButton = document.createElement("button");
-    editButtton.innerText = "수정";
-    editButtton.className =
-      "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button";
-    editButtton.addEventListener("click", this.editItem.bind(this));
-    deleteButton.innerText = "삭제";
-    deleteButton.className =
-      "bg-gray-50 text-gray-500 text-sm menu-remove-button";
-    deleteButton.addEventListener("click", this.deleteItem.bind(this));
-    soldButton.innerHTML = "품절";
-    soldButton.className =
-      "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button";
-    soldButton.addEventListener("click", this.soldItem.bind(this));
-    span.className = "w-100 pl-2 menu-name";
-    span.innerText = obj.text;
-    li.className = "menu-list-item d-flex items-center py-2";
-    const item = { text: obj.text, id: obj.id };
-    li.dataset.index = obj.id;
-    li.append(span, soldButton, editButtton, deleteButton);
-    this.$menuList.append(li);
-    this.updateCount();
+  makeElement(elementName, className, element) {
+    const element = document.createElement(element);
+    element.innerText = elementName;
+    element.className = className;
 
+    return element;
+  }
+
+  makeItemBlock(obj) {
+    const editButton = this.makeElement(
+      "수정",
+      "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button",
+      "button"
+    );
+    editButton.addEventListener("click", this.editItem.bind(this));
+
+    const deleteButton = this.makeElement(
+      "삭제",
+      "bg-gray-50 text-gray-500 text-sm menu-remove-button",
+      "button"
+    );
+    deleteButton.addEventListener("click", this.deleteItem.bind(this));
+
+    const soldButton = this.makeElement(
+      "품절",
+      "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button",
+      "button"
+    );
+    soldButton.addEventListener("click", this.soldItem.bind(this));
+
+    const span = this.makeElement(obj.text, "w-100 pl-2 menu-name", "span");
+
+    const li = document.createElement("li");
+    li.className = "menu-list-item d-flex items-center py-2";
+    li.dataset.index = obj.id;
+    li.append(span, soldButton, editButton, deleteButton);
+
+    return li;
+  }
+
+  paintItems(obj) {
+    const itemBlock = this.makeItemBlock(obj);
+    this.$menuList.append(itemBlock);
+
+    const item = { text: obj.text, id: obj.id };
     this.list.push(item);
+    this.updateCount();
 
     // LS
     saveLocalStorage(this.currentCategory, this.list);
