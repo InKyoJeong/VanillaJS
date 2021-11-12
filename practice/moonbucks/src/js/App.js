@@ -43,7 +43,6 @@ class App {
 
     const { categoryName } = e.target.dataset;
     this.currentCategory = categoryName;
-    this.updateCount();
     this.changeCategory(this.currentCategory);
   }
 
@@ -52,6 +51,7 @@ class App {
     this.$menuList.innerHTML = "";
     this.list = [];
     this.loadItems();
+    this.updateCount();
 
     // changeTitle
     this.$h2.innerText = `${CATEGORY[name]} 메뉴 관리`;
@@ -79,30 +79,30 @@ class App {
 
   makeItemBlock(obj) {
     const editButton = makeElement(
+      "button",
       "수정",
-      "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button",
-      "button"
+      "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
     );
     editButton.addEventListener("click", this.editItem.bind(this));
 
     const deleteButton = makeElement(
+      "button",
       "삭제",
-      "bg-gray-50 text-gray-500 text-sm menu-remove-button",
-      "button"
+      "bg-gray-50 text-gray-500 text-sm menu-remove-button"
     );
     deleteButton.addEventListener("click", this.deleteItem.bind(this));
 
     const soldButton = makeElement(
+      "button",
       "품절",
-      "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button",
-      "button"
+      "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button"
     );
     soldButton.addEventListener("click", this.soldItem.bind(this));
 
     const span =
       obj.sold === true
-        ? makeElement(obj.text, "w-100 pl-2 menu-name sold-out", "span")
-        : makeElement(obj.text, "w-100 pl-2 menu-name", "span");
+        ? makeElement("span", obj.text, "w-100 pl-2 menu-name sold-out")
+        : makeElement("span", obj.text, "w-100 pl-2 menu-name");
 
     const li = document.createElement("li");
     li.className = "menu-list-item d-flex items-center py-2";

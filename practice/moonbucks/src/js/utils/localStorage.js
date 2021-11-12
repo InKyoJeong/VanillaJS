@@ -1,5 +1,4 @@
 export const saveLocalStorage = (key, list) => {
-  console.log("저장됨");
   try {
     localStorage.setItem(key, JSON.stringify(list));
   } catch (err) {
