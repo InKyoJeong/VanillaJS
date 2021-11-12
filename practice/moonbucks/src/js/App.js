@@ -10,26 +10,6 @@ class App {
     this.addEvents();
     this.loadItems();
     this.itemIndex = Date.now() + "";
-
-    //test
-    this.test();
-  }
-
-  //test
-  test() {
-    let x = fetch("http://localhost:3000/api/category/espresso/menu", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // body: JSON.stringify({ name: "아메리카노" }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => console.log("데이터", data))
-      .catch((error) => console.error("Error:", error));
-    console.log(x);
   }
 
   dom() {
