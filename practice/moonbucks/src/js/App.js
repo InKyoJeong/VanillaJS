@@ -1,10 +1,5 @@
 import { CATEGORY } from "./constants/index.js";
-import {
-  deleteLocalStorage,
-  editLocalStorage,
-  getLocalStorage,
-  saveLocalStorage,
-} from "./utils/localStorage.js";
+import { getLocalStorage, saveLocalStorage } from "./utils/localStorage.js";
 import { makeElement } from "./utils/makeElement.js";
 
 class App {
@@ -34,7 +29,6 @@ class App {
   }
 
   loadItems() {
-    // LS
     const list = getLocalStorage(this.currentCategory);
 
     if (list !== null) {
@@ -78,7 +72,7 @@ class App {
     }
     const id = this.itemIndex++;
 
-    this.paintItems({ text, id });
+    this.paintItems({ text, id, sold: false });
     this.$inputField.value = "";
   }
 
@@ -104,7 +98,10 @@ class App {
     );
     soldButton.addEventListener("click", this.soldItem.bind(this));
 
-    const span = makeElement(obj.text, "w-100 pl-2 menu-name", "span");
+    const span =
+      obj.sold === true
+        ? makeElement(obj.text, "w-100 pl-2 menu-name sold-out", "span")
+        : makeElement(obj.text, "w-100 pl-2 menu-name", "span");
 
     const li = document.createElement("li");
     li.className = "menu-list-item d-flex items-center py-2";
@@ -117,12 +114,10 @@ class App {
   paintItems(obj) {
     const itemBlock = this.makeItemBlock(obj);
     this.$menuList.append(itemBlock);
-
-    const item = { text: obj.text, id: obj.id };
-    this.list.push(item);
     this.updateCount();
 
-    // LS
+    const item = { text: obj.text, id: obj.id, sold: obj.sold };
+    this.list.push(item);
     saveLocalStorage(this.currentCategory, this.list);
   }
 
@@ -131,9 +126,10 @@ class App {
     const message = prompt("수정하시겠어요?");
     parentElement.children[0].innerText = message;
 
-    // LS
     const { index } = parentElement.dataset;
-    editLocalStorage(this.currentCategory, index, message);
+    const editIndex = this.list.findIndex((item) => item.id === Number(index));
+    this.list[editIndex].text = message;
+    saveLocalStorage(this.currentCategory, this.list);
   }
 
   deleteItem(e) {
@@ -143,14 +139,19 @@ class App {
     }
     this.updateCount();
 
-    // LS
     const { index } = parentElement.dataset;
-    deleteLocalStorage(this.currentCategory, index);
+    this.list = this.list.filter((item) => item.id !== Number(index));
+    saveLocalStorage(this.currentCategory, this.list);
   }
 
   soldItem(e) {
     const span = e.target.parentElement.children[0];
     span.classList.toggle("sold-out");
+
+    const { index } = e.target.parentElement.dataset;
+    const soldIndex = this.list.findIndex((item) => item.id === Number(index));
+    this.list[soldIndex].sold = !this.list[soldIndex].sold;
+    saveLocalStorage(this.currentCategory, this.list);
   }
 
   updateCount() {
