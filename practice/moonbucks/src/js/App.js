@@ -5,21 +5,24 @@ import {
   updateMenuName,
   deleteMenu,
 } from "./api/index.js";
-import { CATEGORY } from "./constants/index.js";
+import MenuCategory from "./MenuCategory.js";
 import { makeElement } from "./utils/makeElement.js";
 
 class App {
   constructor() {
-    this.currentCategory = "espresso"; // 초기 카테고리
     this.dom();
     this.addEvents();
+    this.state = "espresso"; // 초기 카테고리
     this.loadItems();
-    this.itemIndex = Date.now() + "";
+
+    new MenuCategory({
+      loadItems: this.loadItems,
+      setState: this.setState,
+      $inputField: this.$inputField,
+    });
   }
 
   dom() {
-    this.$nav = document.querySelector("nav");
-    this.$h2 = document.querySelector("h2");
     this.$menuForm = document.querySelector("#espresso-menu-form");
     this.$inputField = document.querySelector(".input-field");
     this.$submitButton = document.querySelector(".input-submit");
@@ -28,38 +31,24 @@ class App {
   }
 
   addEvents() {
-    this.$nav.addEventListener("click", this.clickCategory.bind(this));
     this.$submitButton.addEventListener("click", this.addItem.bind(this));
     this.$menuForm.addEventListener("submit", this.addItem.bind(this));
   }
 
-  async loadItems() {
-    const menuList = await getMenu(this.currentCategory);
+  setState = (state) => {
+    this.state = state;
+  };
 
+  loadItems = async () => {
+    this.$menuList.innerHTML = "";
+
+    const menuList = await getMenu(this.state);
     if (menuList !== null) {
       menuList.forEach((item) => this.paintItems(item));
     }
-  }
 
-  clickCategory(e) {
-    if (!e.target.classList.contains("cafe-category-name")) {
-      return;
-    }
-
-    const { categoryName } = e.target.dataset;
-    this.currentCategory = categoryName;
-    this.changeCategory(this.currentCategory);
-  }
-
-  changeCategory(name) {
-    // repaint
-    this.$menuList.innerHTML = "";
-    this.loadItems();
     this.updateCount();
-
-    // changeTitle
-    this.$h2.innerText = `${CATEGORY[name]} 메뉴 관리`;
-  }
+  };
 
   makeItemBlock(obj) {
     const editButton = makeElement(
@@ -114,7 +103,7 @@ class App {
       return;
     }
 
-    const newItem = await postMenu(this.currentCategory, name);
+    const newItem = await postMenu(this.state, name);
     if (newItem.message) {
       alert(newItem.message);
       this.$inputField.value = "";
@@ -134,7 +123,7 @@ class App {
     parentElement.children[0].innerText = message;
 
     const { index } = parentElement.dataset;
-    await updateMenuName(this.currentCategory, index, message);
+    await updateMenuName(this.state, index, message);
   }
 
   async deleteItem(e) {
@@ -145,7 +134,7 @@ class App {
     this.updateCount();
 
     const { index } = parentElement.dataset;
-    await deleteMenu(this.currentCategory, index);
+    await deleteMenu(this.state, index);
   }
 
   async soldItem(e) {
@@ -153,7 +142,7 @@ class App {
     span.classList.toggle("sold-out");
 
     const { index } = e.target.parentElement.dataset;
-    await updateMenuSold(this.currentCategory, index);
+    await updateMenuSold(this.state, index);
   }
 }
 
