@@ -1,13 +1,12 @@
 import {
   getMenu,
-  postMenu,
   updateMenuSold,
   updateMenuName,
   deleteMenu,
-} from "./api/index.js";
-import { makeItem } from "./utils/makeItem.js";
-import { $ } from "./utils/selector.js";
-import Category from "./Category.js";
+} from "../api/index.js";
+import { makeItem } from "../utils/makeItem.js";
+import { $ } from "../utils/selector.js";
+import MenuCategory from "./MenuCategory.js";
 import MenuInput from "./MenuInput.js";
 
 class App {
@@ -18,7 +17,7 @@ class App {
     this.category = "espresso"; // 초기 카테고리
     this.loadItems();
 
-    new Category({
+    new MenuCategory({
       loadItems: this.loadItems,
       setCategory: this.setCategory,
       $inputField: this.$inputField,

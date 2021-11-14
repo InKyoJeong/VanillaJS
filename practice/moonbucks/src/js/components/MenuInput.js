@@ -1,5 +1,5 @@
-import { postMenu } from "./api/index.js";
-import { $ } from "./utils/selector.js";
+import { postMenu } from "../api/index.js";
+import { $ } from "../utils/selector.js";
 
 class MenuInput {
   constructor({ paintItems, $inputField }) {

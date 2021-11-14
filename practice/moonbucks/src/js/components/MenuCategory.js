@@ -1,6 +1,6 @@
-import { CATEGORY } from "./constants/index.js";
+import { CATEGORY } from "../constants/index.js";
 
-class Category {
+class MenuCategory {
   constructor({ loadItems, setCategory, $inputField }) {
     this.render();
     this.loadItems = loadItems;
@@ -43,4 +43,4 @@ class Category {
   }
 }
 
-export default Category;
+export default MenuCategory;
