@@ -1,10 +1,15 @@
+import {
+  getMenu,
+  postMenu,
+  updateMenuSold,
+  updateMenuName,
+  deleteMenu,
+} from "./api/index.js";
 import { CATEGORY } from "./constants/index.js";
-import { getLocalStorage, saveLocalStorage } from "./utils/localStorage.js";
 import { makeElement } from "./utils/makeElement.js";
 
 class App {
   constructor() {
-    this.list = [];
     this.currentCategory = "espresso"; // 초기 카테고리
     this.dom();
     this.addEvents();
@@ -24,15 +29,15 @@ class App {
 
   addEvents() {
     this.$nav.addEventListener("click", this.clickCategory.bind(this));
-    this.$submitButton.addEventListener("click", this.submitForm.bind(this));
-    this.$menuForm.addEventListener("submit", this.submitForm.bind(this));
+    this.$submitButton.addEventListener("click", this.addItem.bind(this));
+    this.$menuForm.addEventListener("submit", this.addItem.bind(this));
   }
 
-  loadItems() {
-    const list = getLocalStorage(this.currentCategory);
+  async loadItems() {
+    const menuList = await getMenu(this.currentCategory);
 
-    if (list !== null) {
-      list.forEach((item) => this.paintItems(item));
+    if (menuList !== null) {
+      menuList.forEach((item) => this.paintItems(item));
     }
   }
 
@@ -49,32 +54,11 @@ class App {
   changeCategory(name) {
     // repaint
     this.$menuList.innerHTML = "";
-    this.list = [];
     this.loadItems();
     this.updateCount();
 
     // changeTitle
     this.$h2.innerText = `${CATEGORY[name]} 메뉴 관리`;
-
-    // change Input
-    this.$inputField.setAttribute(
-      "placeholder",
-      `${CATEGORY[name].slice(2)} 메뉴 이름`
-    );
-    this.$inputField.setAttribute("id", `${name}-menu-name`);
-    this.$submitButton.setAttribute("id", `${name}-menu-submit-button`);
-  }
-
-  submitForm(e) {
-    e.preventDefault();
-    const text = this.$inputField.value;
-    if (text === "") {
-      return;
-    }
-    const id = this.itemIndex++;
-
-    this.paintItems({ text, id, sold: false });
-    this.$inputField.value = "";
   }
 
   makeItemBlock(obj) {
@@ -100,9 +84,9 @@ class App {
     soldButton.addEventListener("click", this.soldItem.bind(this));
 
     const span =
-      obj.sold === true
-        ? makeElement("span", obj.text, "w-100 pl-2 menu-name sold-out")
-        : makeElement("span", obj.text, "w-100 pl-2 menu-name");
+      obj.isSoldOut === true
+        ? makeElement("span", obj.name, "w-100 pl-2 menu-name sold-out")
+        : makeElement("span", obj.name, "w-100 pl-2 menu-name");
 
     const li = document.createElement("li");
     li.className = "menu-list-item d-flex items-center py-2";
@@ -116,13 +100,20 @@ class App {
     const itemBlock = this.makeItemBlock(obj);
     this.$menuList.append(itemBlock);
     this.updateCount();
-
-    const item = { text: obj.text, id: obj.id, sold: obj.sold };
-    this.list.push(item);
-    saveLocalStorage(this.currentCategory, this.list);
   }
 
-  editItem(e) {
+  async addItem(e) {
+    e.preventDefault();
+    const name = this.$inputField.value;
+    if (name.trim() === "") {
+      return;
+    }
+    const newItem = await postMenu(this.currentCategory, name);
+    this.paintItems(newItem);
+    this.$inputField.value = "";
+  }
+
+  async editItem(e) {
     const { parentElement } = e.target;
     const message = prompt("수정하시겠어요?");
     if (message === null) {
@@ -131,12 +122,10 @@ class App {
     parentElement.children[0].innerText = message;
 
     const { index } = parentElement.dataset;
-    const editIndex = this.list.findIndex((item) => item.id === Number(index));
-    this.list[editIndex].text = message;
-    saveLocalStorage(this.currentCategory, this.list);
+    await updateMenuName(this.currentCategory, index, message);
   }
 
-  deleteItem(e) {
+  async deleteItem(e) {
     const { parentElement } = e.target;
     if (confirm("삭제하시겠어요?")) {
       parentElement.remove();
@@ -144,18 +133,15 @@ class App {
     this.updateCount();
 
     const { index } = parentElement.dataset;
-    this.list = this.list.filter((item) => item.id !== Number(index));
-    saveLocalStorage(this.currentCategory, this.list);
+    await deleteMenu(this.currentCategory, index);
   }
 
-  soldItem(e) {
+  async soldItem(e) {
     const span = e.target.parentElement.children[0];
     span.classList.toggle("sold-out");
 
     const { index } = e.target.parentElement.dataset;
-    const soldIndex = this.list.findIndex((item) => item.id === Number(index));
-    this.list[soldIndex].sold = !this.list[soldIndex].sold;
-    saveLocalStorage(this.currentCategory, this.list);
+    await updateMenuSold(this.currentCategory, index);
   }
 
   updateCount() {
