@@ -5,44 +5,45 @@ import {
   updateMenuName,
   deleteMenu,
 } from "./api/index.js";
-import MenuCategory from "./MenuCategory.js";
-import { makeElement } from "./utils/makeElement.js";
+import Category from "./Category.js";
+import { makeItem } from "./utils/makeItem.js";
+import { $ } from "./utils/selector.js";
 
 class App {
   constructor() {
     this.dom();
     this.addEvents();
-    this.state = "espresso"; // 초기 카테고리
+    this.category = "espresso"; // 초기 카테고리
     this.loadItems();
 
-    new MenuCategory({
+    new Category({
       loadItems: this.loadItems,
-      setState: this.setState,
+      setCategory: this.setCategory,
       $inputField: this.$inputField,
     });
   }
 
   dom() {
-    this.$menuForm = document.querySelector("#espresso-menu-form");
-    this.$inputField = document.querySelector(".input-field");
-    this.$submitButton = document.querySelector(".input-submit");
-    this.$menuList = document.querySelector("#espresso-menu-list");
-    this.$menuCount = document.querySelector(".menu-count");
+    this.$menuForm = $("#espresso-menu-form");
+    this.$inputField = $(".input-field");
+    this.$submitButton = $(".input-submit");
+    this.$menuList = $("#espresso-menu-list");
+    this.$menuCount = $(".menu-count");
   }
 
   addEvents() {
-    this.$submitButton.addEventListener("click", this.addItem.bind(this));
-    this.$menuForm.addEventListener("submit", this.addItem.bind(this));
+    this.$submitButton.addEventListener("click", this.addItem);
+    this.$menuForm.addEventListener("submit", this.addItem);
   }
 
-  setState = (state) => {
-    this.state = state;
+  setCategory = (category) => {
+    this.category = category;
   };
 
   loadItems = async () => {
     this.$menuList.innerHTML = "";
 
-    const menuList = await getMenu(this.state);
+    const menuList = await getMenu(this.category);
     if (menuList !== null) {
       menuList.forEach((item) => this.paintItems(item));
     }
@@ -50,43 +51,13 @@ class App {
     this.updateCount();
   };
 
-  makeItemBlock(obj) {
-    const editButton = makeElement(
-      "button",
-      "수정",
-      "bg-gray-50 text-gray-500 text-sm mr-1 menu-edit-button"
+  paintItems(item) {
+    const itemBlock = makeItem(
+      item,
+      this.editItem,
+      this.deleteItem,
+      this.soldItem
     );
-    editButton.addEventListener("click", this.editItem.bind(this));
-
-    const deleteButton = makeElement(
-      "button",
-      "삭제",
-      "bg-gray-50 text-gray-500 text-sm menu-remove-button"
-    );
-    deleteButton.addEventListener("click", this.deleteItem.bind(this));
-
-    const soldButton = makeElement(
-      "button",
-      "품절",
-      "bg-gray-50 text-gray-500 text-sm mr-1 menu-sold-out-button"
-    );
-    soldButton.addEventListener("click", this.soldItem.bind(this));
-
-    const span =
-      obj.isSoldOut === true
-        ? makeElement("span", obj.name, "w-100 pl-2 menu-name sold-out")
-        : makeElement("span", obj.name, "w-100 pl-2 menu-name");
-
-    const li = document.createElement("li");
-    li.className = "menu-list-item d-flex items-center py-2";
-    li.dataset.index = obj.id;
-    li.append(span, soldButton, editButton, deleteButton);
-
-    return li;
-  }
-
-  paintItems(obj) {
-    const itemBlock = this.makeItemBlock(obj);
     this.$menuList.append(itemBlock);
     this.updateCount();
   }
@@ -96,14 +67,14 @@ class App {
     this.$menuCount.innerText = `총 ${count}개`;
   }
 
-  async addItem(e) {
+  addItem = async (e) => {
     e.preventDefault();
     const name = this.$inputField.value;
     if (name.trim() === "") {
       return;
     }
 
-    const newItem = await postMenu(this.state, name);
+    const newItem = await postMenu(this.category, name);
     if (newItem.message) {
       alert(newItem.message);
       this.$inputField.value = "";
@@ -112,9 +83,9 @@ class App {
     this.paintItems(newItem);
 
     this.$inputField.value = "";
-  }
+  };
 
-  async editItem(e) {
+  editItem = async (e) => {
     const { parentElement } = e.target;
     const message = prompt("수정하시겠어요?");
     if (message === null) {
@@ -123,10 +94,10 @@ class App {
     parentElement.children[0].innerText = message;
 
     const { index } = parentElement.dataset;
-    await updateMenuName(this.state, index, message);
-  }
+    await updateMenuName(this.category, index, message);
+  };
 
-  async deleteItem(e) {
+  deleteItem = async (e) => {
     const { parentElement } = e.target;
     if (confirm("삭제하시겠어요?")) {
       parentElement.remove();
@@ -134,16 +105,16 @@ class App {
     this.updateCount();
 
     const { index } = parentElement.dataset;
-    await deleteMenu(this.state, index);
-  }
+    await deleteMenu(this.category, index);
+  };
 
-  async soldItem(e) {
+  soldItem = async (e) => {
     const span = e.target.parentElement.children[0];
     span.classList.toggle("sold-out");
 
     const { index } = e.target.parentElement.dataset;
-    await updateMenuSold(this.state, index);
-  }
+    await updateMenuSold(this.category, index);
+  };
 }
 
 export default App;

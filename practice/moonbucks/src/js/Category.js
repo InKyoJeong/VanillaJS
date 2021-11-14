@@ -1,9 +1,9 @@
 import { CATEGORY } from "./constants/index.js";
 
-class MenuCategory {
-  constructor({ loadItems, setState, $inputField }) {
+class Category {
+  constructor({ loadItems, setCategory, $inputField }) {
     this.render();
-    this.setState = setState;
+    this.setCategory = setCategory;
     this.loadItems = loadItems;
     this.$inputField = $inputField;
   }
@@ -37,11 +37,11 @@ class MenuCategory {
       `${CATEGORY[categoryName].slice(2)} 메뉴 이름`
     );
     this.$inputField.setAttribute("id", `${categoryName}-menu-name`);
-
     this.$h2.innerText = `${CATEGORY[categoryName]} 메뉴 관리`;
-    this.setState(categoryName);
+
+    this.setCategory(categoryName);
     this.loadItems();
   }
 }
 
-export default MenuCategory;
+export default Category;
