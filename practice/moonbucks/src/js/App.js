@@ -5,14 +5,16 @@ import {
   updateMenuName,
   deleteMenu,
 } from "./api/index.js";
-import Category from "./Category.js";
 import { makeItem } from "./utils/makeItem.js";
 import { $ } from "./utils/selector.js";
+import Category from "./Category.js";
+import MenuInput from "./MenuInput.js";
 
 class App {
   constructor() {
-    this.dom();
-    this.addEvents();
+    this.$inputField = $(".input-field");
+    this.$menuList = $("#espresso-menu-list");
+    this.$menuCount = $(".menu-count");
     this.category = "espresso"; // 초기 카테고리
     this.loadItems();
 
@@ -21,19 +23,11 @@ class App {
       setCategory: this.setCategory,
       $inputField: this.$inputField,
     });
-  }
 
-  dom() {
-    this.$menuForm = $("#espresso-menu-form");
-    this.$inputField = $(".input-field");
-    this.$submitButton = $(".input-submit");
-    this.$menuList = $("#espresso-menu-list");
-    this.$menuCount = $(".menu-count");
-  }
-
-  addEvents() {
-    this.$submitButton.addEventListener("click", this.addItem);
-    this.$menuForm.addEventListener("submit", this.addItem);
+    new MenuInput({
+      paintItems: this.paintItems,
+      $inputField: this.$inputField,
+    });
   }
 
   setCategory = (category) => {
@@ -51,7 +45,7 @@ class App {
     this.updateCount();
   };
 
-  paintItems(item) {
+  paintItems = (item) => {
     const itemBlock = makeItem(
       item,
       this.editItem,
@@ -60,30 +54,12 @@ class App {
     );
     this.$menuList.append(itemBlock);
     this.updateCount();
-  }
+  };
 
   updateCount() {
     const count = this.$menuList.childElementCount;
     this.$menuCount.innerText = `총 ${count}개`;
   }
-
-  addItem = async (e) => {
-    e.preventDefault();
-    const name = this.$inputField.value;
-    if (name.trim() === "") {
-      return;
-    }
-
-    const newItem = await postMenu(this.category, name);
-    if (newItem.message) {
-      alert(newItem.message);
-      this.$inputField.value = "";
-      return;
-    }
-    this.paintItems(newItem);
-
-    this.$inputField.value = "";
-  };
 
   editItem = async (e) => {
     const { parentElement } = e.target;

@@ -3,8 +3,8 @@ import { CATEGORY } from "./constants/index.js";
 class Category {
   constructor({ loadItems, setCategory, $inputField }) {
     this.render();
-    this.setCategory = setCategory;
     this.loadItems = loadItems;
+    this.setCategory = setCategory;
     this.$inputField = $inputField;
   }
   render() {
@@ -31,7 +31,6 @@ class Category {
   }
 
   changeCategory(categoryName) {
-    // change Input
     this.$inputField.setAttribute(
       "placeholder",
       `${CATEGORY[categoryName].slice(2)} 메뉴 이름`
