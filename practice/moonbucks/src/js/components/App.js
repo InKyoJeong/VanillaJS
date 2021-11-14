@@ -16,6 +16,7 @@ class App {
     this.$menuCount = $(".menu-count");
     this.category = "espresso"; // 초기 카테고리
     this.loadItems();
+    this.addEvent();
 
     new MenuCategory({
       loadItems: this.loadItems,
@@ -29,9 +30,28 @@ class App {
     });
   }
 
+  addEvent() {
+    this.$menuList.addEventListener("click", this.clickButton.bind(this));
+  }
+
+  clickButton(e) {
+    if (e.target.classList.contains("menu-sold-out-button")) {
+      this.soldItem(e);
+    } else if (e.target.classList.contains("menu-edit-button")) {
+      this.editItem(e);
+    } else if (e.target.classList.contains("menu-remove-button")) {
+      this.deleteItem(e);
+    } else return;
+  }
+
   setCategory = (category) => {
     this.category = category;
   };
+
+  updateCount() {
+    const count = this.$menuList.childElementCount;
+    this.$menuCount.innerText = `총 ${count}개`;
+  }
 
   loadItems = async () => {
     this.$menuList.innerHTML = "";
@@ -45,20 +65,10 @@ class App {
   };
 
   paintItems = (item) => {
-    const itemBlock = makeItem(
-      item,
-      this.editItem,
-      this.deleteItem,
-      this.soldItem
-    );
+    const itemBlock = makeItem(item);
     this.$menuList.append(itemBlock);
     this.updateCount();
   };
-
-  updateCount() {
-    const count = this.$menuList.childElementCount;
-    this.$menuCount.innerText = `총 ${count}개`;
-  }
 
   editItem = async (e) => {
     const { parentElement } = e.target;
