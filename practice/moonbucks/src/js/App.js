@@ -102,14 +102,26 @@ class App {
     this.updateCount();
   }
 
+  updateCount() {
+    const count = this.$menuList.childElementCount;
+    this.$menuCount.innerText = `총 ${count}개`;
+  }
+
   async addItem(e) {
     e.preventDefault();
     const name = this.$inputField.value;
     if (name.trim() === "") {
       return;
     }
+
     const newItem = await postMenu(this.currentCategory, name);
+    if (newItem.message) {
+      alert(newItem.message);
+      this.$inputField.value = "";
+      return;
+    }
     this.paintItems(newItem);
+
     this.$inputField.value = "";
   }
 
@@ -142,11 +154,6 @@ class App {
 
     const { index } = e.target.parentElement.dataset;
     await updateMenuSold(this.currentCategory, index);
-  }
-
-  updateCount() {
-    const count = this.$menuList.childElementCount;
-    this.$menuCount.innerText = `총 ${count}개`;
   }
 }
 
