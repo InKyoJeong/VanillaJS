@@ -15,8 +15,8 @@ class App {
     this.$menuList = $("#espresso-menu-list");
     this.$menuCount = $(".menu-count");
     this.category = "espresso"; // 초기 카테고리
-    this.loadItems();
     this.addEvent();
+    this.loadItems();
 
     new MenuCategory({
       loadItems: this.loadItems,
@@ -37,10 +37,13 @@ class App {
   clickButton(e) {
     if (e.target.classList.contains("menu-sold-out-button")) {
       this.soldItem(e);
+      return;
     } else if (e.target.classList.contains("menu-edit-button")) {
       this.editItem(e);
+      return;
     } else if (e.target.classList.contains("menu-remove-button")) {
       this.deleteItem(e);
+      return;
     } else return;
   }
 
@@ -87,10 +90,11 @@ class App {
     if (confirm("삭제하시겠어요?")) {
       parentElement.remove();
     }
-    this.updateCount();
 
     const { index } = parentElement.dataset;
     await deleteMenu(this.category, index);
+
+    this.updateCount();
   };
 
   soldItem = async (e) => {
