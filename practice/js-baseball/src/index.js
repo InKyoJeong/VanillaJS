@@ -1,4 +1,5 @@
 import { NUM } from "./constants.js";
+import { createMyElement } from "./utils.js";
 import { isValidUserInput } from "./valid.js";
 
 export default class BaseballGame {
@@ -104,15 +105,14 @@ export default class BaseballGame {
 
   displayRestartButton() {
     this.result.innerHTML = "";
-    const guide = document.createElement("span");
-    guide.innerText = "🎉 정답을 맞추셨습니다! 🎉";
-    const restartButton = document.createElement("button");
-    restartButton.innerText = "재시작";
-    const restartSpan = document.createElement("span");
-    restartSpan.innerText = "게임을 새로 시작하시겠습니까?";
-
-    restartButton.addEventListener("click", this.init.bind(this));
+    const guide = createMyElement("span", "🎉 정답을 맞추셨습니다! 🎉");
+    const restartSpan = createMyElement(
+      "span",
+      "게임을 새로 시작하시겠습니까?"
+    );
+    const restartButton = createMyElement("button", "재시작");
     const restartContainer = document.createElement("div");
+    restartButton.addEventListener("click", this.init.bind(this));
     restartContainer.append(restartSpan, restartButton);
     this.result.append(guide, restartContainer);
   }
