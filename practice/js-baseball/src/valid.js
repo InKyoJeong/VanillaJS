@@ -1,10 +1,14 @@
 import { ERROR, NUM } from "./constants.js";
 
-export const isValidUser = (input) => {
+export const isValidUserInput = (input) => {
   let isValid = true;
 
-  if (input.length !== NUM.MAX_LENGTH) {
-    alert(ERROR.NUMBER_LENGTH_ISNOT_CORRECT);
+  if (
+    input.length !== NUM.MAX_LENGTH ||
+    input.includes(NUM.ZERO) ||
+    input.includes(NaN)
+  ) {
+    alert(ERROR.NUMBER_ISNOT_CORRECT);
     isValid = false;
   }
 

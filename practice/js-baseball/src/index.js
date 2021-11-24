@@ -1,11 +1,11 @@
 import { NUM } from "./constants.js";
-import { isValidUser } from "./valid.js";
+import { isValidUserInput } from "./valid.js";
 
 export default class BaseballGame {
   constructor() {
     this.dom();
     this.addEvents();
-    this.getComputerNumber();
+    this.computerInput = this.getComputerNumber();
   }
 
   dom() {
@@ -35,14 +35,16 @@ export default class BaseballGame {
 
   getUserNumber(e) {
     e.preventDefault();
+    const userNumbers = this.userInput.value
+      .split("")
+      .map((num) => Number(num));
 
-    const userNumbers = this.userInput.value.split("");
-    if (!isValidUser(userNumbers)) {
+    if (!isValidUserInput(userNumbers)) {
       this.clearInput();
       return;
     }
 
-    return userNumbers.map((number) => Number(number));
+    this.play(this.computerInput, userNumbers);
   }
 
   clearInput() {
@@ -50,7 +52,21 @@ export default class BaseballGame {
   }
 
   play(computerInputNumbers, userInputNumbers) {
-    return "결과 값 String";
+    console.log(computerInputNumbers, userInputNumbers);
+    let strike = 0;
+    let ball = 0;
+
+    for (let i = 0; i < NUM.MAX_LENGTH; i++) {
+      if (computerInputNumbers.indexOf(userInputNumbers[i]) === i) {
+        strike++;
+        continue;
+      }
+      if (computerInputNumbers.includes(userInputNumbers[i])) {
+        ball++;
+      }
+    }
+
+    // return this.printResult(strike, ball);
   }
 }
 
