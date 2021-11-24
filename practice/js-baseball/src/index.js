@@ -1,4 +1,5 @@
-import { NUM } from "./constants/index.js";
+import { NUM } from "./constants.js";
+import { isValidUser } from "./valid.js";
 
 export default class BaseballGame {
   constructor() {
@@ -34,9 +35,13 @@ export default class BaseballGame {
 
   getUserNumber(e) {
     e.preventDefault();
-    const userNumbers = this.userInput.value;
+    const userNumbers = this.userInput.value.split("");
 
-    return userNumbers;
+    if (!isValidUser(userNumbers)) {
+      return;
+    }
+
+    return userNumbers.map((number) => Number(number));
   }
 
   play(computerInputNumbers, userInputNumbers) {
