@@ -5,8 +5,7 @@ export default class BaseballGame {
   constructor() {
     this.dom();
     this.addEvents();
-    this.result.innerHTML = "";
-    this.computerInput = this.getComputerNumber();
+    this.init();
   }
 
   dom() {
@@ -17,6 +16,13 @@ export default class BaseballGame {
 
   addEvents() {
     this.userForm.addEventListener("submit", this.getUserNumber.bind(this));
+  }
+
+  init() {
+    this.result.innerHTML = "";
+    this.computerInput = this.getComputerNumber();
+    this.clearInput();
+    this.userInput.focus();
   }
 
   getComputerNumber() {
@@ -105,6 +111,7 @@ export default class BaseballGame {
     const restartSpan = document.createElement("span");
     restartSpan.innerText = "게임을 새로 시작하시겠습니까?";
 
+    restartButton.addEventListener("click", this.init.bind(this));
     const restartContainer = document.createElement("div");
     restartContainer.append(restartSpan, restartButton);
     this.result.append(guide, restartContainer);
