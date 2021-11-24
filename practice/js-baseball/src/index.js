@@ -3,28 +3,40 @@ import { NUM } from "./constants/index.js";
 export default class BaseballGame {
   constructor() {
     this.dom();
+    this.addEvents();
     this.getComputerNumber();
   }
 
   dom() {
+    this.userForm = document.querySelector("form");
     this.userInput = document.querySelector("#user-input");
-    this.submitButton = document.querySelector("#submit");
     this.result = document.querySelector("#result");
   }
 
+  addEvents() {
+    this.userForm.addEventListener("submit", this.getUserNumber.bind(this));
+  }
+
   getComputerNumber() {
-    const numberArray = [];
-    while (numberArray.length < NUM.MAX_LENGTH) {
+    const computerNumbers = [];
+    while (computerNumbers.length < NUM.MAX_LENGTH) {
       const randomNumber = MissionUtils.Random.pickNumberInRange(
         NUM.MIN_NUMBER,
         NUM.MAX_NUMBER
       );
-      if (!numberArray.includes(randomNumber)) {
-        numberArray.push(randomNumber);
+      if (!computerNumbers.includes(randomNumber)) {
+        computerNumbers.push(randomNumber);
       }
     }
 
-    return numberArray;
+    return computerNumbers;
+  }
+
+  getUserNumber(e) {
+    e.preventDefault();
+    const userNumbers = this.userInput.value;
+
+    return userNumbers;
   }
 
   play(computerInputNumbers, userInputNumbers) {
