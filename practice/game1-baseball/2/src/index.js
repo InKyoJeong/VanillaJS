@@ -10,20 +10,20 @@ export default class BaseballGame {
   }
 
   dom() {
-    this.userForm = document.querySelector("form");
-    this.userInput = document.querySelector("#user-input");
-    this.result = document.querySelector("#result");
+    this.$userForm = document.querySelector("form");
+    this.$userInput = document.querySelector("#user-input");
+    this.$result = document.querySelector("#result");
   }
 
   addEvents() {
-    this.userForm.addEventListener("submit", this.getUserNumber.bind(this));
+    this.$userForm.addEventListener("submit", this.getUserNumber.bind(this));
   }
 
   init() {
-    this.result.innerHTML = "";
+    this.$result.innerHTML = "";
     this.computerInput = this.getComputerNumber();
     this.clearInput();
-    this.userInput.focus();
+    this.$userInput.focus();
   }
 
   getComputerNumber() {
@@ -43,7 +43,7 @@ export default class BaseballGame {
 
   getUserNumber(e) {
     e.preventDefault();
-    const userNumbers = this.userInput.value
+    const userNumbers = this.$userInput.value
       .split("")
       .map((num) => Number(num));
 
@@ -57,11 +57,10 @@ export default class BaseballGame {
   }
 
   clearInput() {
-    this.userInput.value = "";
+    this.$userInput.value = "";
   }
 
   play(computerInputNumbers, userInputNumbers) {
-    console.log(computerInputNumbers, userInputNumbers);
     let strike = 0;
     let ball = 0;
 
@@ -100,11 +99,11 @@ export default class BaseballGame {
     if (text === "정답") {
       return this.displayRestartButton();
     }
-    this.result.innerHTML = text;
+    this.$result.innerHTML = text;
   }
 
   displayRestartButton() {
-    this.result.innerHTML = "";
+    this.$result.innerHTML = "";
     const guide = createMyElement("span", "🎉 정답을 맞추셨습니다! 🎉");
     const restartSpan = createMyElement(
       "span",
@@ -114,7 +113,7 @@ export default class BaseballGame {
     const restartContainer = document.createElement("div");
     restartButton.addEventListener("click", this.init.bind(this));
     restartContainer.append(restartSpan, restartButton);
-    this.result.append(guide, restartContainer);
+    this.$result.append(guide, restartContainer);
   }
 }
 

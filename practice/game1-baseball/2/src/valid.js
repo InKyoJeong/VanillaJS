@@ -5,13 +5,12 @@ export const isValidUserInput = (input) => {
 
   if (
     input.length !== NUM.MAX_LENGTH ||
-    input.includes(NUM.ZERO) ||
+    input.includes(0) ||
     input.includes(NaN)
   ) {
-    alert(ERROR.NUMBER_ISNOT_CORRECT);
+    alert(ERROR.NUMBER_IS_NOT_CORRECT);
     isValid = false;
   }
-
   if (new Set([...input]).size !== NUM.MAX_LENGTH) {
     alert(ERROR.NUMBER_IS_DUPLICATED);
     isValid = false;
