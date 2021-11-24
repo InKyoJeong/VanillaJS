@@ -35,13 +35,18 @@ export default class BaseballGame {
 
   getUserNumber(e) {
     e.preventDefault();
-    const userNumbers = this.userInput.value.split("");
 
+    const userNumbers = this.userInput.value.split("");
     if (!isValidUser(userNumbers)) {
+      this.clearInput();
       return;
     }
 
     return userNumbers.map((number) => Number(number));
+  }
+
+  clearInput() {
+    this.userInput.value = "";
   }
 
   play(computerInputNumbers, userInputNumbers) {
