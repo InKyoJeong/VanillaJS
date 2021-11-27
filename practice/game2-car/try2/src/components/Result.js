@@ -20,11 +20,12 @@ class Result {
       this.printResult();
       count--;
     }
+
+    this.printWinner();
   }
 
   printResult() {
     this.cars.forEach((car) => {
-      // console.log(car);
       const div = document.createElement("div");
       const span = document.createElement("span");
       span.innerText = `${car.name}: ${car.distance}`;
@@ -34,6 +35,15 @@ class Result {
 
     const br = document.createElement("br");
     this.$resultContainer.append(br);
+  }
+
+  getWinner() {
+    let maxDistance = 0;
+    this.cars.forEach((car) => {
+      maxDistance = Math.max(maxDistance, car.distance.length);
+    });
+
+    return this.cars.filter((car) => car.distance.length === maxDistance);
   }
 }
 
