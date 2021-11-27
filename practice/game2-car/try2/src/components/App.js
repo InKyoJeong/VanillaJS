@@ -26,10 +26,6 @@ class App {
     this.$resultContainer.setAttribute("hidden", true);
   }
 
-  setState = (newState) => {
-    this.state = { ...this.state, ...newState };
-  };
-
   mounted() {
     new NameInput({
       $nameInput: this.$nameInput,
@@ -37,6 +33,10 @@ class App {
       showCountInput: this.showCountInput,
     });
   }
+
+  setState = (newState) => {
+    this.state = { ...this.state, ...newState };
+  };
 
   showCountInput = () => {
     new CountInput({

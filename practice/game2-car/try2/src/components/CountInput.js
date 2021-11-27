@@ -21,8 +21,8 @@ class CountInput {
   submitCount(e) {
     e.preventDefault();
 
-    const tryCount = Number(this.$countInput.value);
-    this.setState({ count: tryCount });
+    const count = Number(this.$countInput.value);
+    this.setState({ count });
     this.showResult();
   }
 }

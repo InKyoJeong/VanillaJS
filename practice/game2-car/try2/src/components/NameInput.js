@@ -1,3 +1,5 @@
+import { isValidNames } from "../utils/valid.js";
+
 class NameInput {
   constructor({ $nameInput, setState, showCountInput }) {
     this.$nameInput = $nameInput;
@@ -19,8 +21,11 @@ class NameInput {
   submitName(e) {
     e.preventDefault();
 
-    const carNames = this.$nameInput.value.split(",");
-    this.setState({ names: carNames });
+    const names = this.$nameInput.value.split(",");
+    if (!isValidNames(names)) {
+      return;
+    }
+    this.setState({ names });
     this.showCountInput();
   }
 }
