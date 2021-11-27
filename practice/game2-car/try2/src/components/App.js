@@ -14,6 +14,10 @@ class App {
     this.mounted();
   }
 
+  setState = (newState) => {
+    this.state = { ...this.state, ...newState };
+  };
+
   addDom() {
     [, this.$countContainer, this.$resultContainer] = this.$target.children;
     this.$nameInput = document.getElementById(`${ID.CAR_NAMES_INPUT}`);
@@ -32,10 +36,6 @@ class App {
       showCountInput: this.showCountInput,
     });
   }
-
-  setState = (newState) => {
-    this.state = { ...this.state, ...newState };
-  };
 
   showCountInput = () => {
     new CountInput({

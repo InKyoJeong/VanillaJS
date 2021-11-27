@@ -32,7 +32,6 @@ class Result {
       div.append(span);
       this.$resultContainer.append(div);
     });
-
     const br = document.createElement("br");
     this.$resultContainer.append(br);
   }
