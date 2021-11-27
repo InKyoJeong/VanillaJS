@@ -4,8 +4,8 @@ import { isValidCount } from "../utils/valid.js";
 class CountInput {
   constructor({ $countContainer, $countInput, setState, showResult }) {
     $countContainer.removeAttribute("hidden");
-    this.$countInput.focus();
     this.$countInput = $countInput;
+    this.$countInput.focus();
     this.setState = setState;
     this.showResult = showResult;
     this.addDom();
