@@ -5,7 +5,7 @@ import { isValidUserInput } from "./valid.js";
 export default class BaseballGame {
   constructor() {
     this.dom();
-    this.addEvents();
+    this.addEvent();
     this.init();
   }
 
@@ -15,7 +15,7 @@ export default class BaseballGame {
     this.$result = document.querySelector("#result");
   }
 
-  addEvents() {
+  addEvent() {
     this.$userForm.addEventListener("submit", this.getUserNumber.bind(this));
   }
 
@@ -97,19 +97,19 @@ export default class BaseballGame {
 
   displayResult(text) {
     if (text === "정답") {
+      this.$result.innerHTML = "";
       return this.displayRestartButton();
     }
     this.$result.innerHTML = text;
   }
 
   displayRestartButton() {
-    this.$result.innerHTML = "";
     const guide = createMyElement("span", "🎉 정답을 맞추셨습니다! 🎉");
     const restartSpan = createMyElement(
       "span",
       "게임을 새로 시작하시겠습니까?"
     );
-    const restartButton = createMyElement("button", "재시작");
+    const restartButton = createMyElement("button", "게임 재시작");
     const restartContainer = document.createElement("div");
     restartButton.addEventListener("click", this.init.bind(this));
     restartContainer.append(restartSpan, restartButton);
