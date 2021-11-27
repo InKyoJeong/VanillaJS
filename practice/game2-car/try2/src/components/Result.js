@@ -45,6 +45,17 @@ class Result {
 
     return this.cars.filter((car) => car.distance.length === maxDistance);
   }
+
+  printWinner() {
+    let winner = this.getWinner();
+    winner = winner.reduce((acc, cur) => {
+      return acc.concat(cur.name);
+    }, []);
+
+    const span = document.createElement("span");
+    span.innerText = `최종우승자: ${[...winner]}`;
+    this.$resultContainer.append(span);
+  }
 }
 
 export default Result;
