@@ -1,4 +1,4 @@
-import { NUM } from "../constants";
+import { NUM } from "../constants/index.js";
 
 class Car {
   constructor(name) {

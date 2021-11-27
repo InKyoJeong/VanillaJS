@@ -2,7 +2,6 @@ import { ID } from "../constants/index.js";
 import CountInput from "./CountInput.js";
 import NameInput from "./NameInput.js";
 import Result from "./Result.js";
-
 class App {
   constructor($target) {
     this.$target = $target;
