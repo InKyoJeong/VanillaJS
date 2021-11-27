@@ -1,3 +1,4 @@
+import { clearInput } from "../utils/clearInput.js";
 import { isValidNames } from "../utils/valid.js";
 
 class NameInput {
@@ -23,6 +24,7 @@ class NameInput {
 
     const names = this.$nameInput.value.split(",");
     if (!isValidNames(names)) {
+      clearInput(this.$nameInput);
       return;
     }
     this.setState({ names });
