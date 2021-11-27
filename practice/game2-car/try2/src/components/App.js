@@ -36,6 +36,7 @@ class App {
 
   setState = (newState) => {
     this.state = { ...this.state, ...newState };
+    console.log("state: ", this.state);
   };
 
   showCountInput = () => {

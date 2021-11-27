@@ -1,11 +1,12 @@
+import { isValidCount } from "../utils/valid.js";
+
 class CountInput {
   constructor({ $countContainer, $countInput, setState, showResult }) {
+    $countContainer.removeAttribute("hidden");
     this.$countInput = $countInput;
     this.setState = setState;
     this.showResult = showResult;
-    this.$countContainer = $countContainer;
-    this.$countContainer.removeAttribute("hidden");
-
+    this.$countInput.focus();
     this.addDom();
     this.addEvent();
   }
@@ -22,6 +23,9 @@ class CountInput {
     e.preventDefault();
 
     const count = Number(this.$countInput.value);
+    if (!isValidCount(count)) {
+      return;
+    }
     this.setState({ count });
     this.showResult();
   }

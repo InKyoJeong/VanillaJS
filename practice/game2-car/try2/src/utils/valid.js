@@ -17,14 +17,20 @@ export const isValidNames = (names) => {
     alert(ERROR.NAME_LENGTH_IS_LONG);
     return false;
   }
-
   if (isNameEmpty(names)) {
     alert(ERROR.NAME_IS_EMPTY);
     return false;
   }
-
   if (isDuplicatedName(names)) {
     alert(ERROR.NAME_IS_DUPLICATED);
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidCount = (count) => {
+  if (count < NUM.MIN_COUNT) {
     return false;
   }
 

@@ -6,7 +6,6 @@ class NameInput {
     this.$nameInput = $nameInput;
     this.setState = setState;
     this.showCountInput = showCountInput;
-
     this.addDom();
     this.addEvent();
   }
