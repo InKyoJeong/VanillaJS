@@ -6,11 +6,11 @@ class NameInput {
     this.$nameInput = $nameInput;
     this.setState = setState;
     this.showCountInput = showCountInput;
-    this.addDom();
+    this.selectDom();
     this.addEvent();
   }
 
-  addDom() {
+  selectDom() {
     this.$carNameForm = this.$nameInput.parentElement;
   }
 

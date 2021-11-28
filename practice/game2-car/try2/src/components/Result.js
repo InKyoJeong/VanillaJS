@@ -1,4 +1,3 @@
-import Car from "../classes/Car.js";
 import Game from "../classes/Game.js";
 
 class Result {
@@ -8,18 +7,14 @@ class Result {
     this.state = state;
 
     this.game = new Game(this.state.names);
-    this.printResult(this.state.count);
+    this.printResults(this.state.count);
   }
 
-  printResult(count) {
+  printResults(count) {
     while (count) {
-      const results = this.game.advanceCar();
-      results.forEach(({ name, distance }) => {
-        const div = document.createElement("div");
-        const span = document.createElement("span");
-        span.innerText = `${name}: ${distance}`;
-        div.append(span);
-        this.$resultContainer.append(div);
+      const advanceResults = this.game.advanceCar();
+      advanceResults.forEach(({ name, distance }) => {
+        this.printOneBlock(name, distance);
       });
       const br = document.createElement("br");
       this.$resultContainer.append(br);
@@ -27,6 +22,14 @@ class Result {
     }
 
     this.printWinner();
+  }
+
+  printOneBlock(name, distance) {
+    const div = document.createElement("div");
+    const span = document.createElement("span");
+    span.innerText = `${name}: ${distance}`;
+    div.append(span);
+    this.$resultContainer.append(div);
   }
 
   printWinner() {

@@ -8,11 +8,11 @@ class CountInput {
     this.$countInput.focus();
     this.setState = setState;
     this.showResult = showResult;
-    this.addDom();
+    this.selectDom();
     this.addEvent();
   }
 
-  addDom() {
+  selectDom() {
     this.$countForm = this.$countInput.parentElement;
   }
 

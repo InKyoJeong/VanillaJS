@@ -7,6 +7,7 @@ class Game {
 
   advanceCar() {
     this.cars.forEach((car) => car.advance());
+
     return this.cars;
   }
 

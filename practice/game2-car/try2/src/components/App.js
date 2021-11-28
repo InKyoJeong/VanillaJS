@@ -9,7 +9,7 @@ class App {
       names: "",
       count: 0,
     };
-    this.addDom();
+    this.selectDom();
     this.hideContainer();
     this.mounted();
   }
@@ -18,7 +18,7 @@ class App {
     this.state = { ...this.state, ...newState };
   };
 
-  addDom() {
+  selectDom() {
     [, this.$countContainer, this.$resultContainer] = this.$target.children;
     this.$nameInput = document.getElementById(`${ID.CAR_NAMES_INPUT}`);
     this.$countInput = document.getElementById(`${ID.RACING_COUNT_INPUT}`);
