@@ -25,11 +25,11 @@ class Result {
   }
 
   printOneBlock(name, distance) {
-    const div = document.createElement("div");
-    const span = document.createElement("span");
-    span.innerText = `${name}: ${distance}`;
-    div.append(span);
-    this.$resultContainer.append(div);
+    const carContainer = document.createElement("div");
+    const carText = document.createElement("span");
+    carText.innerText = `${name}: ${distance}`;
+    carContainer.append(carText);
+    this.$resultContainer.append(carContainer);
   }
 
   printWinner() {
@@ -38,9 +38,9 @@ class Result {
       return acc.concat(cur.name);
     }, []);
 
-    const span = document.createElement("span");
-    span.innerText = `최종우승자: ${[...winner]}`;
-    this.$resultContainer.append(span);
+    const winnerText = document.createElement("span");
+    winnerText.innerText = `최종우승자: ${[...winner]}`;
+    this.$resultContainer.append(winnerText);
   }
 }
 

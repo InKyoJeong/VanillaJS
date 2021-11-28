@@ -4,7 +4,8 @@
 src
 ├── js
 │ ├── classes
-│ │   └── Car.js
+│ │   ├── Car.js
+│ │   └── Game.js
 │ ├── components
 │ │   ├── App.js
 │ │   ├── CountInput.js
