@@ -37,6 +37,13 @@ class NameInput {
       clearInput(this.$nameInput);
       return;
     }
+
+    this.disableNameInput();
+  }
+
+  disableNameInput() {
+    this.$nameInput.disabled = true;
+    this.$submitButton.disabled = true;
   }
 }
 
