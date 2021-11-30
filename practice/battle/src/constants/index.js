@@ -5,3 +5,7 @@ export const ID = {
   NAME_INPUT: 'name-input',
   NAME_SUBMIT: 'name-submit',
 };
+
+export const NUM = {
+  MAX_NAME_LENGTH: 5,
+};

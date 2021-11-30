@@ -1,4 +1,5 @@
 import { ID } from '../constants/index.js';
+import { isValidNameInput } from '../utils/valid.js';
 
 class NameInput {
   constructor($target) {
@@ -30,8 +31,10 @@ class NameInput {
   }
 
   clickButton() {
-    const { value } = this.$nameInput;
-    console.log(value);
+    const names = this.$nameInput.value.split(',');
+    if (!isValidNameInput(names)) {
+      return;
+    }
   }
 }
 
