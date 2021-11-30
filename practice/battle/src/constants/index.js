@@ -4,10 +4,13 @@ export const ID = {
   RESULT_CONTAINER: ' result-container',
   NAME_INPUT: 'name-input',
   NAME_SUBMIT: 'name-submit',
+  COUNT_INPUT: 'count-input',
+  COUNT_SUBMIT: 'count-submit',
 };
 
 export const NUM = {
   MAX_NAME_LENGTH: 5,
+  MIN_COUNT: 0,
 };
 
 export const ERROR = {
