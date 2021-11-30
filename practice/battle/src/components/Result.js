@@ -8,7 +8,6 @@ class Result {
     this.game = new Game(this.state.names, this.state.count);
 
     this.render();
-    this.printResult();
   }
 
   render() {
@@ -32,8 +31,24 @@ class Result {
     this.nextButton = document.querySelector(`#${ID.NEXT_TURN_BUTTON}`);
   }
 
+  addEvent() {
+    this.nextButton.addEventListener('click', this.nextPrint.bind(this));
+  }
+
   firstPrint() {
     this.$innerContainer.innerHTML = `
+        <p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>
+    `;
+  }
+
+  nextPrint() {
+    const [first, second, total] = this.game.playNextTurn();
+    this.game.moveNextPlayer();
+
+    this.$innerContainer.innerHTML += `
+        <p>결과 : ${first}, ${second}</p>
+        <p>토탈 : ${total}</p>
+        <hr>
         <p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>
     `;
   }
