@@ -1,11 +1,13 @@
 export const ID = {
   NAME_INPUT_CONTAINER: 'name-input-container',
   COUNT_INPUT_CONTAINER: 'count-input-container',
-  RESULT_CONTAINER: ' result-container',
+  RESULT_CONTAINER: 'result-container',
+  RESULT_INNER_CONTAINER: 'result-inner-container',
   NAME_INPUT: 'name-input',
   NAME_SUBMIT: 'name-submit',
   COUNT_INPUT: 'count-input',
   COUNT_SUBMIT: 'count-submit',
+  NEXT_TURN_BUTTON: 'next-turn-button',
 };
 
 export const NUM = {
