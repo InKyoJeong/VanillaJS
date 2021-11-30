@@ -1,4 +1,6 @@
 import { ID } from '../constants/index.js';
+import { clearInput } from '../utils/clearInput.js';
+import { isValidCount } from '../utils/valid.js';
 
 class CountInput {
   constructor({ $countContainer, setState }) {
@@ -33,7 +35,7 @@ class CountInput {
   clickButton() {
     const count = Number(this.$countInput.value);
     if (!isValidCount(count)) {
-      console.log('false');
+      clearInput(this.$countInput);
       return;
     }
   }
