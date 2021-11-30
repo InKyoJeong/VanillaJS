@@ -3,6 +3,7 @@ import Player from './Player.js';
 class Game {
   constructor(players, count) {
     this.players = players.map(name => new Player(name, count));
+    this.count = count;
     this.cycleIndex = 0;
     this.playerIndex = 0;
   }
@@ -27,6 +28,10 @@ class Game {
 
   moveNextCycle() {
     return this.cycleIndex++;
+  }
+
+  isGameFinished() {
+    return this.cycleIndex === this.count;
   }
 }
 

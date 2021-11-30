@@ -42,15 +42,24 @@ class Result {
   }
 
   nextPrint() {
-    const [first, second, total] = this.game.playNextTurn();
-    this.game.moveNextPlayer();
+    if (!this.game.isGameFinished()) {
+      const [first, second, total] = this.game.playNextTurn();
+      this.game.moveNextPlayer();
+      this.$innerContainer.innerHTML += `
+          <p>결과 : ${first}, ${second}</p>
+          <p>토탈 : ${total}</p>
+          <hr>
+          <p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>
+          `;
+    }
+  }
 
-    this.$innerContainer.innerHTML += `
-        <p>결과 : ${first}, ${second}</p>
-        <p>토탈 : ${total}</p>
-        <hr>
-        <p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>
-    `;
+  printBlock() {
+    //
+  }
+
+  printResult() {
+    //
   }
 }
 
