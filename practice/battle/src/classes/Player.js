@@ -1,4 +1,4 @@
-import { NUM } from '../constants/index.js';
+import { pickRandom } from '../utils/pickRandom.js';
 
 class Player {
   constructor(name, count) {
@@ -11,14 +11,8 @@ class Player {
   }
 
   playOneTurn(index) {
-    const first = MissionUtils.Random.pickNumberInRange(
-      NUM.MIN_RANDOM,
-      NUM.MAX_RANDOM
-    );
-    const second = MissionUtils.Random.pickNumberInRange(
-      NUM.MIN_RANDOM,
-      NUM.MAX_RANDOM
-    );
+    const first = pickRandom();
+    const second = pickRandom();
     const sum = first + second;
 
     if (first !== second) {
