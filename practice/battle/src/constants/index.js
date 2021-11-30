@@ -11,6 +11,8 @@ export const ID = {
 export const NUM = {
   MAX_NAME_LENGTH: 5,
   MIN_COUNT: 0,
+  MIN_RANDOM: 1,
+  MAX_RANDOM: 6,
 };
 
 export const ERROR = {
