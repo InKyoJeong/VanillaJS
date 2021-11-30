@@ -6,7 +6,7 @@ class App {
   constructor($target) {
     this.$target = $target;
     this.state = {
-      names: "",
+      names: [],
       count: 0,
     };
     this.selectDom();
@@ -16,6 +16,7 @@ class App {
 
   setState = (newState) => {
     this.state = { ...this.state, ...newState };
+    console.log(this.state);
   };
 
   selectDom() {

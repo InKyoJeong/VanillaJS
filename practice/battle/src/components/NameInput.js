@@ -3,8 +3,9 @@ import { clearInput } from '../utils/clearInput.js';
 import { isValidNameInput } from '../utils/valid.js';
 
 class NameInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor({ $nameContainer, setState }) {
+    this.$nameContainer = $nameContainer;
+    this.setState = setState;
     this.render();
   }
 
@@ -15,7 +16,7 @@ class NameInput {
   }
 
   addContents() {
-    this.$target.innerHTML = `
+    this.$nameContainer.innerHTML = `
         <h3>이름을 5자 이하, 쉼표로 구분</h3>
         <input type="text" placeholder="" id=${ID.NAME_INPUT} />
         <button id=${ID.NAME_SUBMIT}>확인</button>
@@ -39,6 +40,7 @@ class NameInput {
     }
 
     this.disableNameInput();
+    this.setState({ names });
   }
 
   disableNameInput() {

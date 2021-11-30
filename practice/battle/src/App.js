@@ -5,6 +5,10 @@ class App {
   constructor($target) {
     this.$target = $target;
     this.render();
+    this.state = {
+      names: [],
+      count: 0,
+    };
   }
 
   render() {
@@ -25,8 +29,16 @@ class App {
     this.$nameContainer = document.querySelector(`#${ID.NAME_INPUT_CONTAINER}`);
   }
 
+  setState = newState => {
+    this.state = { ...this.state, ...newState };
+    console.log(this.state);
+  };
+
   renderNameInput() {
-    new NameInput(this.$nameContainer);
+    new NameInput({
+      $nameContainer: this.$nameContainer,
+      setState: this.setState,
+    });
   }
 }
 export default App;
