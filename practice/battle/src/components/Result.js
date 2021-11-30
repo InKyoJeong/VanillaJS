@@ -48,8 +48,6 @@ class Result {
     if (this.game.isGameFinished()) {
       return this.printFinalResult();
     }
-
-    console.log('게임현황', this.game);
   }
 
   printTitle() {
@@ -68,8 +66,13 @@ class Result {
   printFinalResult() {
     this.nextButton.hidden = true;
     this.$innerContainer.innerHTML += `
-        <p>총점: </p> 
+        <p>총점</p>
     `;
+    this.game.players.forEach(player => {
+      this.$innerContainer.innerHTML += `
+        <p>${player.name} : ${player.getTotalScore()}</p>
+      `;
+    });
   }
 }
 
