@@ -1,6 +1,7 @@
 import { ID } from './constants/index.js';
 import NameInput from './components/NameInput.js';
 import CountInput from './components/CountInput.js';
+import Result from './components/Result.js';
 
 class App {
   constructor($target) {
@@ -31,6 +32,7 @@ class App {
     this.$countContainer = document.querySelector(
       `#${ID.COUNT_INPUT_CONTAINER}`
     );
+    this.$resultContainer = document.querySelector(`${ID.RESULT_CONTAINER}`);
   }
 
   setState = newState => {
@@ -49,6 +51,14 @@ class App {
     new CountInput({
       $countContainer: this.$countContainer,
       setState: this.setState,
+      showResult: this.showResult,
+    });
+  };
+
+  showResult = () => {
+    new Result({
+      $resultContainer: this.$resultContainer,
+      state: this.state,
     });
   };
 }

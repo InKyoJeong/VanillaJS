@@ -3,9 +3,10 @@ import { clearInput } from '../utils/clearInput.js';
 import { isValidCount } from '../utils/valid.js';
 
 class CountInput {
-  constructor({ $countContainer, setState }) {
+  constructor({ $countContainer, setState, showResult }) {
     this.$countContainer = $countContainer;
     this.setState = setState;
+    this.showResult = showResult;
     this.render();
   }
 
@@ -41,6 +42,7 @@ class CountInput {
 
     this.setState({ count });
     this.disableCountInput();
+    this.showResult();
   }
 
   disableCountInput() {
