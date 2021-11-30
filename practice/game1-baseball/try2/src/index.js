@@ -1,4 +1,4 @@
-import { NUM } from "./constants.js";
+import { ID, NUM } from "./constants.js";
 import { createMyElement } from "./utils.js";
 import { isValidUserInput } from "./valid.js";
 
@@ -111,6 +111,7 @@ export default class BaseballGame {
     );
     const restartButton = createMyElement("button", "게임 재시작");
     const restartContainer = document.createElement("div");
+    restartButton.id = ID.GAME_RESTART_BUTTON;
     restartButton.addEventListener("click", this.init.bind(this));
     restartContainer.append(restartSpan, restartButton);
     this.$result.append(guide, restartContainer);
