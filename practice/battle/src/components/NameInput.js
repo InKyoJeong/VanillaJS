@@ -1,4 +1,5 @@
 import { ID } from '../constants/index.js';
+import { clearInput } from '../utils/clearInput.js';
 import { isValidNameInput } from '../utils/valid.js';
 
 class NameInput {
@@ -33,6 +34,7 @@ class NameInput {
   clickButton() {
     const names = this.$nameInput.value.split(',');
     if (!isValidNameInput(names)) {
+      clearInput(this.$nameInput);
       return;
     }
   }
