@@ -38,6 +38,12 @@ class CountInput {
       clearInput(this.$countInput);
       return;
     }
+    this.disableCountInput();
+  }
+
+  disableCountInput() {
+    this.$countInput.disabled = true;
+    this.$submitButton.disabled = true;
   }
 }
 
