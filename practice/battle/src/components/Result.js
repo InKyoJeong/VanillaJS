@@ -14,7 +14,7 @@ class Result {
     this.addContents();
     this.selectDom();
     this.addEvent();
-    this.firstPrint();
+    this.printTitle();
   }
 
   addContents() {
@@ -32,34 +32,44 @@ class Result {
   }
 
   addEvent() {
-    this.nextButton.addEventListener('click', this.nextPrint.bind(this));
+    this.nextButton.addEventListener('click', this.playGame.bind(this));
   }
 
-  firstPrint() {
-    this.$innerContainer.innerHTML = `
-        <p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>
-    `;
+  playGame() {
+    if (!this.game.isLastTurn()) {
+      this.printBlockResult();
+      this.game.moveNextPlayerIndex();
+      this.printTitle();
+    } else {
+      this.printBlockResult();
+      this.game.moveNextPlayerIndex();
+    }
+
+    if (this.game.isGameFinished()) {
+      return this.printFinalResult();
+    }
+
+    console.log('게임현황', this.game);
   }
 
-  nextPrint() {
-    if (!this.game.isGameFinished()) {
-      const [first, second, total] = this.game.playNextTurn();
-      this.game.moveNextPlayer();
-      this.$innerContainer.innerHTML += `
+  printTitle() {
+    this.$innerContainer.innerHTML += `<p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>`;
+  }
+
+  printBlockResult() {
+    const [first, second, total] = this.game.playCurrentTurn();
+    this.$innerContainer.innerHTML += `
           <p>결과 : ${first}, ${second}</p>
           <p>토탈 : ${total}</p>
           <hr>
-          <p>${this.game.getCurrentPlayerName()}의 차례입니다.</p>
-          `;
-    }
+    `;
   }
 
-  printBlock() {
-    //
-  }
-
-  printResult() {
-    //
+  printFinalResult() {
+    this.nextButton.hidden = true;
+    this.$innerContainer.innerHTML += `
+        <p>총점: </p> 
+    `;
   }
 }
 

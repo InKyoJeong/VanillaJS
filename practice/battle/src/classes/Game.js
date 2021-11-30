@@ -8,7 +8,7 @@ class Game {
     this.playerIndex = 0;
   }
 
-  playNextTurn() {
+  playCurrentTurn() {
     return this.players[this.playerIndex].playOneTurn(this.cycleIndex);
   }
 
@@ -16,7 +16,15 @@ class Game {
     return this.players[this.playerIndex].name;
   }
 
-  moveNextPlayer() {
+  getCurrentPlayerIndex() {
+    return this.playerIndex;
+  }
+
+  getCurrentCycle() {
+    return this.cycleIndex;
+  }
+
+  moveNextPlayerIndex() {
     if (this.playerIndex + 1 === this.players.length) {
       this.playerIndex = 0;
       this.moveNextCycle();
@@ -32,6 +40,13 @@ class Game {
 
   isGameFinished() {
     return this.cycleIndex === this.count;
+  }
+
+  isLastTurn() {
+    return (
+      this.cycleIndex + 1 === this.count &&
+      this.playerIndex + 1 === this.players.length
+    );
   }
 }
 
