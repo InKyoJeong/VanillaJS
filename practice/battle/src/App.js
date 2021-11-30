@@ -1,5 +1,6 @@
 import { ID } from './constants/index.js';
 import NameInput from './components/NameInput.js';
+import CountInput from './components/CountInput.js';
 
 class App {
   constructor($target) {
@@ -27,6 +28,9 @@ class App {
   }
   selectDom() {
     this.$nameContainer = document.querySelector(`#${ID.NAME_INPUT_CONTAINER}`);
+    this.$countContainer = document.querySelector(
+      `#${ID.COUNT_INPUT_CONTAINER}`
+    );
   }
 
   setState = newState => {
@@ -38,7 +42,15 @@ class App {
     new NameInput({
       $nameContainer: this.$nameContainer,
       setState: this.setState,
+      showCountInput: this.showCountInput,
     });
   }
+
+  showCountInput = () => {
+    new CountInput({
+      $countContainer: this.$countContainer,
+      setState: this.setState,
+    });
+  };
 }
 export default App;

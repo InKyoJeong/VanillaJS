@@ -3,9 +3,10 @@ import { clearInput } from '../utils/clearInput.js';
 import { isValidNameInput } from '../utils/valid.js';
 
 class NameInput {
-  constructor({ $nameContainer, setState }) {
+  constructor({ $nameContainer, setState, showCountInput }) {
     this.$nameContainer = $nameContainer;
     this.setState = setState;
+    this.showCountInput = showCountInput;
     this.render();
   }
 
@@ -39,8 +40,9 @@ class NameInput {
       return;
     }
 
-    this.disableNameInput();
     this.setState({ names });
+    this.disableNameInput();
+    this.showCountInput();
   }
 
   disableNameInput() {

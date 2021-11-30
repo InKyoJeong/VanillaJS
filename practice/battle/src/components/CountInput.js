@@ -1,6 +1,7 @@
 class CountInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor({ $countContainer, setState }) {
+    this.$countContainer = $countContainer;
+    this.setState = setState;
     this.render();
   }
 
@@ -9,7 +10,7 @@ class CountInput {
   }
 
   addContents() {
-    this.$target.innerHTML = `
+    this.$countContainer.innerHTML = `
         <h3>플레이턴 수 입력</h3>
         <input type="number" placeholder="" />
         <button>확인</button>
