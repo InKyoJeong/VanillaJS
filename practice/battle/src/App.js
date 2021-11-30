@@ -9,6 +9,8 @@ class App {
 
   render() {
     this.addContainer();
+    this.selectDom();
+    this.renderNameInput();
   }
 
   addContainer() {
@@ -18,6 +20,13 @@ class App {
         <div id=${ID.COUNT_INPUT_CONTAINER}></div>
         <div id=${ID.RESULT_CONTAINER}></div>
     `;
+  }
+  selectDom() {
+    this.$nameContainer = document.querySelector(`#${ID.NAME_INPUT_CONTAINER}`);
+  }
+
+  renderNameInput() {
+    new NameInput(this.$nameContainer);
   }
 }
 export default App;
