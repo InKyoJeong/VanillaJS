@@ -38,6 +38,8 @@ class CountInput {
       clearInput(this.$countInput);
       return;
     }
+
+    this.setState({ count });
     this.disableCountInput();
   }
 
