@@ -19,6 +19,8 @@ class GameResult {
       this.$resultContainer.append(br);
       count--;
     }
+
+    this.printWinner();
   }
 
   printOneBlock(name, distance) {
@@ -27,6 +29,11 @@ class GameResult {
     carText.innerText = `${name}: ${distance}`;
     carContainer.append(carText);
     this.$resultContainer.append(carContainer);
+  }
+
+  printWinner() {
+    const winner = this.game.getWinner();
+    console.log(winner);
   }
 }
 
