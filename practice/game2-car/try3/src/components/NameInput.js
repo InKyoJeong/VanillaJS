@@ -2,8 +2,9 @@ import { clearInput } from "../utils/clearInput.js";
 import { isValidNames } from "../utils/valid.js";
 
 class NameInput {
-  constructor($nameInput) {
+  constructor({ $nameInput, setState }) {
     this.$nameInput = $nameInput;
+    this.setState = setState;
     this.selectDom();
     this.addEvent();
   }
@@ -24,6 +25,8 @@ class NameInput {
       clearInput(this.$nameInput);
       return;
     }
+
+    this.setState({ names });
   }
 }
 
