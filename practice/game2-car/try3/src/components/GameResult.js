@@ -1,3 +1,4 @@
+import { ID } from "../constants/index.js";
 import Game from "../classes/Game.js";
 
 class GameResult {
@@ -32,8 +33,15 @@ class GameResult {
   }
 
   printWinner() {
-    const winner = this.game.getWinner();
-    console.log(winner);
+    let winner = this.game.getWinner();
+    winner = winner.reduce((acc, cur) => {
+      return acc.concat(cur.name);
+    }, []);
+
+    const winnerText = document.createElement("span");
+    winnerText.id = ID.RACING_WINNERS;
+    winnerText.innerText = `최종우승자: ${[...winner]}`;
+    this.$resultContainer.append(winnerText);
   }
 }
 
