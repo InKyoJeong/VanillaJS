@@ -1,6 +1,7 @@
 import { ID } from "./constants/index.js";
 import NameInput from "./components/NameInput.js";
 import CountInput from "./components/CountInput.js";
+import GameResult from "./components/GameResult.js";
 
 class App {
   constructor($target) {
@@ -14,7 +15,7 @@ class App {
 
   setState = (newState) => {
     this.state = { ...this.state, ...newState };
-    console.log(this.state);
+    console.log("상태체크", this.state);
   };
 
   render() {
@@ -44,8 +45,16 @@ class App {
     new CountInput({
       $countInput: this.$countInput,
       setState: this.setState,
+      showGameResult: this.showGameResult,
     });
   }
+
+  showGameResult = () => {
+    new GameResult({
+      $resultContainer: this.$resultContainer,
+      state: this.state,
+    });
+  };
 }
 
 export default App;

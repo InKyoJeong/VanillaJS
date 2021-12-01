@@ -2,9 +2,10 @@ import { clearInput } from "../utils/clearInput.js";
 import { isValidCount } from "../utils/valid.js";
 
 class CountInput {
-  constructor({ $countInput, setState }) {
+  constructor({ $countInput, setState, showGameResult }) {
     this.$countInput = $countInput;
     this.setState = setState;
+    this.showGameResult = showGameResult;
     this.selectDom();
     this.addEvent();
   }
@@ -27,6 +28,7 @@ class CountInput {
     }
 
     this.setState({ count });
+    this.showGameResult();
   }
 }
 
