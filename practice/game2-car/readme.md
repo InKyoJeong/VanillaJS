@@ -28,3 +28,22 @@ src
 │ └── index.js
 └── index.html
 ```
+
+#### try3
+
+```
+src
+├── js
+│ ├── classes
+│ │   ├── Car.js
+│ │   └── Game.js
+│ ├── components
+│ │   ├── App.js
+│ │   ├── CountInput.js
+│ │   ├── NameInput.js
+│ │   └── GameResult.js
+│ ├── constants
+│ ├── utils
+│ └── index.js
+└── index.html
+```

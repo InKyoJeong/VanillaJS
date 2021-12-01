@@ -15,7 +15,6 @@ class App {
 
   setState = (newState) => {
     this.state = { ...this.state, ...newState };
-    console.log("상태체크", this.state);
   };
 
   render() {
