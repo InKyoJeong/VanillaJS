@@ -40,7 +40,7 @@ class GameResult {
 
     const winnerText = document.createElement("span");
     winnerText.id = ID.RACING_WINNERS;
-    winnerText.innerText = `최종우승자: ${[...winner]}`;
+    winnerText.innerText = `${[...winner]}`;
     this.$resultContainer.append(winnerText);
   }
 }
