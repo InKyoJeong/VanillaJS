@@ -10,18 +10,14 @@ class App {
       names: [],
       count: 0,
     };
-    this.render();
+    this.addTemplate();
+    this.selectDom();
+    this.mounted();
   }
 
   setState = (newState) => {
     this.state = { ...this.state, ...newState };
   };
-
-  render() {
-    this.addTemplate();
-    this.selectDom();
-    this.mounted();
-  }
 
   addTemplate() {
     this.$target.insertAdjacentHTML(

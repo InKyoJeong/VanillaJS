@@ -38,12 +38,12 @@ src
 │ │   ├── Car.js
 │ │   └── Game.js
 │ ├── components
-│ │   ├── App.js
 │ │   ├── CountInput.js
 │ │   ├── NameInput.js
 │ │   └── GameResult.js
 │ ├── constants
 │ ├── utils
+│ ├── App.js
 │ └── index.js
 └── index.html
 ```
