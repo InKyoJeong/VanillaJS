@@ -21,10 +21,16 @@ class App extends Component {
 
   template() {
     return `
-      <div data-component="item-insert"></div>
-      <div data-component="items"></div>
-      <div data-component="item-filter"></div>
+      <div id="item-insert"></div>
+      <div id="item-container"></div>
+      <div id="item-filter"></div>
     `;
+  }
+
+  selectDom() {
+    this.$itemInsert = document.querySelector("#item-insert");
+    this.$itemContainer = document.querySelector("#item-container");
+    this.$itemFilter = document.querySelector("#item-filter");
   }
 }
 

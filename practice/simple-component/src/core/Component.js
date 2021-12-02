@@ -13,6 +13,9 @@ class Component {
   setEvent() {
     //
   }
+  selectDom() {
+    //
+  }
   mounted() {
     //
   }
@@ -22,6 +25,7 @@ class Component {
 
   render() {
     this.$target.innerHTML = this.template();
+    this.selectDom();
     this.mounted();
   }
 
