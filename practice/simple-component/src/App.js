@@ -41,8 +41,20 @@ class App extends Component {
     new ItemInsert(this.$itemInsert, {
       addItem: this.addItem.bind(this),
     });
-    new ItemContainer(this.$itemContainer);
+    new ItemContainer(this.$itemContainer, {
+      filteredItems: this.filteredItems,
+    });
     new ItemFilter(this.$itemFilter);
+  }
+
+  get filteredItems() {
+    const { isFilter, items } = this.$state;
+    return items.filter(
+      ({ active }) =>
+        (isFilter === 1 && active) ||
+        (isFilter === 2 && !active) ||
+        isFilter === 0
+    );
   }
 
   addItem(contents) {

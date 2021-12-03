@@ -7,7 +7,6 @@ class ItemInsert extends Component {
   }
 
   setEvent() {
-    console.log(this.$props);
     const { addItem } = this.$props;
     this.addEvent("keyup", `.${CLASS.ITEM_INPUT}`, ({ key, target }) => {
       if (key !== "Enter") {
