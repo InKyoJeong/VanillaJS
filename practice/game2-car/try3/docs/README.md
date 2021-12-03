@@ -11,8 +11,7 @@
 ## <a name="folder"></a>폴더 구조
 
 ```
-src
-├── js
+├── src
 │ ├── classes
 │ │   ├── Car.js
 │ │   └── Game.js

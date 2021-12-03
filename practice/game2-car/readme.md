@@ -13,8 +13,7 @@
 #### try2
 
 ```
-src
-├── js
+├── src
 │ ├── classes
 │ │   ├── Car.js
 │ │   └── Game.js
@@ -32,8 +31,7 @@ src
 #### try3
 
 ```
-src
-├── js
+├── src
 │ ├── classes
 │ │   ├── Car.js
 │ │   └── Game.js
@@ -43,6 +41,30 @@ src
 │ │   └── GameResult.js
 │ ├── constants
 │ ├── utils
+│ ├── App.js
+│ └── index.js
+└── index.html
+```
+
+#### try4
+
+> https://github.com/InKyoJeong/javascript-racingcar-precourse
+
+```
+├── docs/readme.md
+├── src
+│ ├── classes
+│ │   ├── Car.js
+│ │   └── Game.js
+│ ├── components
+│ │   ├── CountInput.js
+│ │   ├── NameInput.js
+│ │   └── Result.js
+│ ├── constants/index.js
+│ ├── utils
+│ │   ├── clearInput.js
+│ │   ├── element.js
+│ │   └── valid.js
 │ ├── App.js
 │ └── index.js
 └── index.html
