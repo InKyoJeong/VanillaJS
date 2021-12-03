@@ -38,9 +38,18 @@ class App extends Component {
   }
 
   mounted() {
-    new ItemInsert(this.$itemInsert);
+    new ItemInsert(this.$itemInsert, {
+      addItem: this.addItem.bind(this),
+    });
     new ItemContainer(this.$itemContainer);
     new ItemFilter(this.$itemFilter);
+  }
+
+  addItem(contents) {
+    const id = Math.max(0, ...this.$state.items.map((v) => v.id)) + 1;
+    this.setState({
+      items: [...this.$state.items, { id, contents, active: false }],
+    });
   }
 }
 

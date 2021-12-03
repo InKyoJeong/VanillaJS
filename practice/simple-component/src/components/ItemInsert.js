@@ -6,17 +6,14 @@ class ItemInsert extends Component {
     return `<input type="text" placeholder="내용 입력" class=${CLASS.ITEM_INPUT} />`;
   }
 
-  // selectDom() {
-  //   this.$itemInput = document.querySelector(`${CLASS.ITEM_INPUT}`);
-  // }
-
   setEvent() {
-    // const { addItem } = this.$props;
+    console.log(this.$props);
+    const { addItem } = this.$props;
     this.addEvent("keyup", `.${CLASS.ITEM_INPUT}`, ({ key, target }) => {
       if (key !== "Enter") {
         return;
       }
-      // addItem(target.value);
+      addItem(target.value);
       console.log(target.value);
     });
   }
