@@ -47,7 +47,9 @@ class App extends Component {
       toggleItem: this.toggleItem.bind(this),
     });
 
-    new ItemFilter(this.$itemFilter);
+    new ItemFilter(this.$itemFilter, {
+      filterItem: this.filterItem.bind(this),
+    });
   }
 
   get filteredItems() {
@@ -81,6 +83,10 @@ class App extends Component {
     const index = items.findIndex((v) => v.id === id);
     items[index].active = !items[index].active;
     this.setState({ items });
+  }
+
+  filterItem(isFilter) {
+    this.setState({ isFilter });
   }
 }
 
