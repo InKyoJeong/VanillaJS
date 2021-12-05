@@ -26,10 +26,14 @@ class ItemContainer extends Component {
   }
 
   setEvent() {
-    const { deleteItem } = this.$props;
+    const { deleteItem, toggleItem } = this.$props;
 
     this.addEvent("click", ".deleteBtn", ({ target }) => {
       deleteItem(Number(target.closest("[data-id]").dataset.id));
+    });
+
+    this.addEvent("click", ".toggleBtn", ({ target }) => {
+      toggleItem(Number(target.closest("[data-id]").dataset.id));
     });
   }
 }

@@ -44,6 +44,7 @@ class App extends Component {
     new ItemContainer(this.$itemContainer, {
       filteredItems: this.filteredItems,
       deleteItem: this.deleteItem.bind(this),
+      toggleItem: this.toggleItem.bind(this),
     });
 
     new ItemFilter(this.$itemFilter);
@@ -72,6 +73,13 @@ class App extends Component {
       items.findIndex((v) => v.id === id),
       1
     );
+    this.setState({ items });
+  }
+
+  toggleItem(id) {
+    const items = [...this.$state.items];
+    const index = items.findIndex((v) => v.id === id);
+    items[index].active = !items[index].active;
     this.setState({ items });
   }
 }
