@@ -43,7 +43,9 @@ class App extends Component {
     });
     new ItemContainer(this.$itemContainer, {
       filteredItems: this.filteredItems,
+      deleteItem: this.deleteItem.bind(this),
     });
+
     new ItemFilter(this.$itemFilter);
   }
 
@@ -62,6 +64,15 @@ class App extends Component {
     this.setState({
       items: [...this.$state.items, { id, contents, active: false }],
     });
+  }
+
+  deleteItem(id) {
+    const items = [...this.$state.items];
+    items.splice(
+      items.findIndex((v) => v.id === id),
+      1
+    );
+    this.setState({ items });
   }
 }
 

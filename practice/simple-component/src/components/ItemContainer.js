@@ -3,7 +3,7 @@ import Component from "../core/Component.js";
 class ItemContainer extends Component {
   template() {
     const { filteredItems } = this.$props;
-    console.log(filteredItems);
+
     return `
       <ul>
         ${filteredItems
@@ -23,6 +23,14 @@ class ItemContainer extends Component {
           .join("")}
       </ul>
     `;
+  }
+
+  setEvent() {
+    const { deleteItem } = this.$props;
+
+    this.addEvent("click", ".deleteBtn", ({ target }) => {
+      deleteItem(Number(target.closest("[data-id]").dataset.id));
+    });
   }
 }
 
