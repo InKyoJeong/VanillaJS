@@ -1,4 +1,5 @@
 import { ID } from "./constants/index.js";
+import StationManager from "./components/StationManager/index.js";
 
 class App {
   constructor($target) {
@@ -32,7 +33,11 @@ class App {
   }
 
   selectMenu(e) {
-    console.log(e.target.id);
+    const { id } = e.target;
+
+    if (id === ID.STATION_MANAGER_BUTTON) {
+      new StationManager(this.$resultContainer);
+    }
   }
 }
 
