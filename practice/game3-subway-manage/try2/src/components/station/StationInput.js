@@ -14,7 +14,7 @@ class StationInput {
 
   addTemplate() {
     this.$target.innerHTML = `
-        <h3>역 이름</h3>
+        <p>역 이름</p>
         <input id=${ID.STATION_NAME_INPUT} placeholder="역 이름을 입력해주세요." />
         <button id=${ID.STATION_ADD_BUTTON}>역 추가</button>
       `;
