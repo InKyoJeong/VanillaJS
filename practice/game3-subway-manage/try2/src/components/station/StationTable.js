@@ -6,8 +6,15 @@ import {
 } from "../../utils/template.js";
 
 class StationTable {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
+    this.state.event.subscribe(this.render.bind(this));
+
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
   }
 
@@ -20,6 +27,14 @@ class StationTable {
         </table>
     `;
   }
+
+  //   addEvent() {
+  //     this.$target.addEventListener("click", this.clickButton.bind(this));
+  //   }
+
+  //   clickButton(e) {
+  //     console.log(e.target);
+  //   }
 }
 
 export default StationTable;

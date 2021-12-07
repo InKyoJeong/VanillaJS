@@ -5,8 +5,10 @@ import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { isValidStationName } from "../../utils/valid.js";
 
 class StationInput {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
+
     this.addTemplate();
     this.selectDom();
     this.addEvent();
@@ -37,6 +39,7 @@ class StationInput {
     clearInput(this.$nameInput);
 
     this.updateLocalStorage(value);
+    this.state.updateState();
   }
 
   updateLocalStorage(value) {
