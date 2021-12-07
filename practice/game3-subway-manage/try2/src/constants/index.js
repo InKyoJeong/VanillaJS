@@ -17,3 +17,7 @@ export const ID = {
 export const CLASS = {
   STATION_DELETE_BUTTON: "station-delete-button",
 };
+
+export const NUM = {
+  MIN_STATION_LENGTH: 2,
+};

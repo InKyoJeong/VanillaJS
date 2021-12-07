@@ -1,4 +1,5 @@
 import { ID } from "../../constants/index.js";
+import { isValidStationName } from "../../utils/valid.js";
 
 class StationInput {
   constructor($target) {
@@ -27,6 +28,10 @@ class StationInput {
 
   submitName() {
     console.log(this.$nameInput.value);
+    const { value } = this.$nameInput;
+    if (!isValidStationName(value)) {
+      return;
+    }
   }
 }
 
