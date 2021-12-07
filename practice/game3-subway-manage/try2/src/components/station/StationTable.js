@@ -1,4 +1,4 @@
-import { LOCAL_DB } from "../../constants/index.js";
+import { CLASS, LOCAL_DB } from "../../constants/index.js";
 import { getLocalStorage } from "../../utils/localStorage.js";
 import {
   stationTableHeader,
@@ -16,6 +16,7 @@ class StationTable {
 
   render() {
     this.addTemplate();
+    this.addEvent();
   }
 
   addTemplate() {
@@ -28,13 +29,19 @@ class StationTable {
     `;
   }
 
-  //   addEvent() {
-  //     this.$target.addEventListener("click", this.clickButton.bind(this));
-  //   }
+  addEvent() {
+    this.$target.addEventListener("click", this.clickButton.bind(this));
+  }
 
-  //   clickButton(e) {
-  //     console.log(e.target);
-  //   }
+  clickButton(e) {
+    if (!e.target.classList.contains(CLASS.STATION_DELETE_BUTTON)) {
+      return;
+    }
+
+    const tr = e.target.closest("tr");
+    tr.remove();
+    // console.log(tr.firstElementChild);
+  }
 }
 
 export default StationTable;
