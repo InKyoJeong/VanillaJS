@@ -22,6 +22,11 @@ export const NUM = {
   MIN_STATION_LENGTH: 2,
 };
 
+export const ERROR = {
+  STATION_NAME_IS_DUPLICATED: "중복된 역 이름이 존재합니다.",
+  STATION_NAME_IS_SHORT: `역 이름은 ${NUM.MIN_STATION_LENGTH}자 이상으로 입력해주세요.`,
+};
+
 export const LOCAL_DB = {
   STATION: "STATION",
 };

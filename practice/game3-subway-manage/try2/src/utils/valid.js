@@ -1,4 +1,4 @@
-import { LOCAL_DB, NUM } from "../constants/index.js";
+import { LOCAL_DB, NUM, ERROR } from "../constants/index.js";
 import { getLocalStorage } from "./localStorage.js";
 
 const isDuplicatedStation = (value) => {
@@ -9,10 +9,12 @@ const isDuplicatedStation = (value) => {
 
 export const isValidStationName = (value) => {
   if (value.length < NUM.MIN_STATION_LENGTH) {
+    alert(ERROR.STATION_NAME_IS_SHORT);
     return false;
   }
 
   if (isDuplicatedStation(value)) {
+    alert(ERROR.STATION_NAME_IS_DUPLICATED);
     return false;
   }
 
