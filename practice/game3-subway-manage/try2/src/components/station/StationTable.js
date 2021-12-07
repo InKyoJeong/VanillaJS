@@ -1,5 +1,5 @@
 import { CLASS, LOCAL_DB } from "../../constants/index.js";
-import { getLocalStorage } from "../../utils/localStorage.js";
+import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import {
   stationTableHeader,
   stationTableContents,
@@ -40,7 +40,15 @@ class StationTable {
 
     const tr = e.target.closest("tr");
     tr.remove();
-    // console.log(tr.firstElementChild);
+
+    const { stationName } = tr.firstElementChild.dataset;
+    this.updateLocalStorage(stationName);
+  }
+
+  updateLocalStorage(stationName) {
+    let station = getLocalStorage(LOCAL_DB.STATION);
+    station = station.filter(({ name }) => name !== stationName);
+    saveLocalStorage(LOCAL_DB.STATION, station);
   }
 }
 
