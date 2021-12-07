@@ -1,5 +1,5 @@
 import Station from "../../classes/Station.js";
-import { ID } from "../../constants/index.js";
+import { ID, LOCAL_DB } from "../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { isValidStationName } from "../../utils/valid.js";
 
@@ -39,9 +39,8 @@ class StationInput {
   }
 
   updateLocalStorage(newStation) {
-    let station = getLocalStorage("STATION");
-    station = [...station, newStation];
-    saveLocalStorage("STATION", station);
+    const station = getLocalStorage(LOCAL_DB.STATION);
+    saveLocalStorage(LOCAL_DB.STATION, [...station, newStation]);
   }
 }
 

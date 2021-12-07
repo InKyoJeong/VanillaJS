@@ -21,3 +21,7 @@ export const CLASS = {
 export const NUM = {
   MIN_STATION_LENGTH: 2,
 };
+
+export const LOCAL_DB = {
+  STATION: "STATION",
+};

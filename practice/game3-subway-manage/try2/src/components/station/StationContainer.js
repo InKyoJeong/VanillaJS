@@ -1,7 +1,8 @@
 import { ID } from "../../constants/index.js";
 import StationInput from "./StationInput.js";
+import StationTable from "./StationTable.js";
 
-class StationManager {
+class StationContainer {
   constructor($target) {
     this.$target = $target;
     this.addTemplate();
@@ -27,7 +28,8 @@ class StationManager {
 
   mounted() {
     new StationInput(this.$inputContainer);
+    new StationTable(this.$tableContainer);
   }
 }
 
-export default StationManager;
+export default StationContainer;
