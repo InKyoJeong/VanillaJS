@@ -1,4 +1,6 @@
+import Station from "../../classes/Station.js";
 import { ID } from "../../constants/index.js";
+import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { isValidStationName } from "../../utils/valid.js";
 
 class StationInput {
@@ -27,11 +29,19 @@ class StationInput {
   }
 
   submitName() {
-    console.log(this.$nameInput.value);
     const { value } = this.$nameInput;
     if (!isValidStationName(value)) {
       return;
     }
+
+    const newStation = new Station(value);
+    this.updateLocalStorage(newStation);
+  }
+
+  updateLocalStorage(newStation) {
+    let station = getLocalStorage("STATION");
+    station = [...station, newStation];
+    saveLocalStorage("STATION", station);
   }
 }
 
