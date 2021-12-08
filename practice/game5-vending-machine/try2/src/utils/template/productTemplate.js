@@ -1,5 +1,5 @@
-import { ID, LOCAL_DB } from "../../constants/index.js";
-import { getLocalStorage } from "./localStorage.js";
+import { ID, LOCAL_DB } from "../../../constants/index.js";
+import { getLocalStorage } from "../localStorage.js";
 
 export const productInputTemplate = () => {
   return `

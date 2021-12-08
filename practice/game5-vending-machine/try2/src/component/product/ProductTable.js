@@ -1,5 +1,5 @@
 import { $, $$ } from "../../utils/selector.js";
-import { productTableTemplate } from "../../utils/template.js";
+import { productTableTemplate } from "../../utils/template/productTemplate.js";
 
 class ProductTable {
   constructor($target, state) {
