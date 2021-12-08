@@ -1,5 +1,6 @@
 import { ID } from "./constants/index.js";
 import StationContainer from "./components/station/StationContainer.js";
+import LineContainer from "./components/line/LineContainer.js";
 
 class App {
   constructor($target) {
@@ -37,6 +38,9 @@ class App {
 
     if (id === ID.STATION_MANAGER_BUTTON) {
       new StationContainer(this.$resultContainer);
+    }
+    if (id === ID.LINE_MANAGER_BUTTON) {
+      new LineContainer(this.$resultContainer);
     }
   }
 }
