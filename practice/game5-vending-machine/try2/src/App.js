@@ -1,7 +1,8 @@
 import { ID } from "../constants/index.js";
 import { $ } from "./utils/selector.js";
-import ProductContainer from "./component/product/ProductContainer.js";
 import { mainTemplate } from "./utils/template/mainTemplate.js";
+import ProductContainer from "./component/product/ProductContainer.js";
+import ChargeContainer from "./component/charge/ChargeContainer.js";
 
 class App {
   constructor($target) {
@@ -37,6 +38,9 @@ class App {
 
     if (id === ID.PRODUCT_ADD_MENU) {
       new ProductContainer(this.$resultContainer);
+    }
+    if (id === ID.VENDING_MACHINE_MANAGE_MENU) {
+      new ChargeContainer(this.$resultContainer);
     }
   }
 }
