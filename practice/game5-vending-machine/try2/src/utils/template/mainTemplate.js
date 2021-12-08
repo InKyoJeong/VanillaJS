@@ -1,3 +1,5 @@
+import { ID } from "../../../constants/index.js";
+
 export const mainTemplate = () => {
   return `
       <h1>🥤 자판기 🥤</h1>

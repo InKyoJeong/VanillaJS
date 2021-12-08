@@ -12,12 +12,12 @@ class ProductContainer {
   }
 
   render() {
-    this.addTemplate();
+    this.addContainer();
     this.selectDom();
     this.mounted();
   }
 
-  addTemplate() {
+  addContainer() {
     this.$target.innerHTML = `
       <div id=${ID.PRODUCT_INPUT_CONTAINER}></div>
       <div id=${ID.PRODUCT_TABLE_CONTAINER}></div>
