@@ -7,8 +7,15 @@ import {
 } from "../../utils/template.js";
 
 class ProductTable {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
+    this.state.event.subscribe(this.render.bind(this));
+
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
     this.addTableStyle();
   }

@@ -2,11 +2,16 @@ import { ID } from "../../../constants/index.js";
 import { $ } from "../../utils/selector.js";
 import ProductInput from "./ProductInput.js";
 import ProductTable from "./ProductTable.js";
+import State from "../../observer/State.js";
 
 class ProductContainer {
   constructor($target) {
     this.$target = $target;
+    this.state = new State();
+    this.render();
+  }
 
+  render() {
     this.addTemplate();
     this.selectDom();
     this.mounted();
@@ -25,8 +30,8 @@ class ProductContainer {
   }
 
   mounted() {
-    new ProductInput(this.$inputContainer);
-    new ProductTable(this.$tableContainer);
+    new ProductInput(this.$inputContainer, this.state);
+    new ProductTable(this.$tableContainer, this.state);
   }
 }
 
