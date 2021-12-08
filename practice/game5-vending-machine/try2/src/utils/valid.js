@@ -27,3 +27,10 @@ export const isValidProductInput = (name, price, quantity) => {
 
   return true;
 };
+
+export const isValidChargeInput = (amount) => {
+  if (!isValidPrice(amount)) {
+    alert(ERROR.PRICE_IS_NOT_CORRECT);
+    return false;
+  }
+};
