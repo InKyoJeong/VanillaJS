@@ -3,6 +3,7 @@ import { ID, LOCAL_DB } from "../../../constants/index.js";
 import { clearInput } from "../../utils/clearInput.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { isValidProductInput } from "../../utils/valid.js";
+import { $ } from "../../utils/selector.js";
 
 class ProductInput {
   constructor($target) {
@@ -24,12 +25,10 @@ class ProductInput {
   }
 
   selectDom() {
-    this.$nameInput = document.querySelector(`#${ID.PRODUCT_NAME_INPUT}`);
-    this.$priceInput = document.querySelector(`#${ID.PRODUCT_PRICE_INPUT}`);
-    this.$quantityInput = document.querySelector(
-      `#${ID.PRODUCT_QUANTITY_INPUT}`
-    );
-    this.$addButton = document.querySelector(`#${ID.PRODUCT_ADD_BUTTON}`);
+    this.$nameInput = $(`#${ID.PRODUCT_NAME_INPUT}`);
+    this.$priceInput = $(`#${ID.PRODUCT_PRICE_INPUT}`);
+    this.$quantityInput = $(`#${ID.PRODUCT_QUANTITY_INPUT}`);
+    this.$addButton = $(`#${ID.PRODUCT_ADD_BUTTON}`);
   }
 
   addEvent() {

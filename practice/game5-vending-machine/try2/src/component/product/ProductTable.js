@@ -1,5 +1,6 @@
 import { LOCAL_DB } from "../../../constants/index.js";
 import { getLocalStorage } from "../../utils/localStorage.js";
+import { $, $$ } from "../../utils/selector.js";
 import {
   productTableHeader,
   productTableContents,
@@ -23,11 +24,9 @@ class ProductTable {
   }
 
   addTableStyle() {
-    document.querySelector("table").style.borderCollapse = "collapse";
-    document.querySelector("table").style.textAlign = "center";
-    document
-      .querySelectorAll("td")
-      .forEach((e) => (e.style.padding = "0.5em 2em"));
+    $("table").style.borderCollapse = "collapse";
+    $("table").style.textAlign = "center";
+    $$("td").forEach((e) => (e.style.padding = "0.5em 2em"));
   }
 }
 
