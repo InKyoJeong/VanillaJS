@@ -1,10 +1,5 @@
-import { LOCAL_DB } from "../../../constants/index.js";
-import { getLocalStorage } from "../../utils/localStorage.js";
 import { $, $$ } from "../../utils/selector.js";
-import {
-  productTableHeader,
-  productTableContents,
-} from "../../utils/template.js";
+import { productTableTemplate } from "../../utils/template.js";
 
 class ProductTable {
   constructor($target, state) {
@@ -21,13 +16,7 @@ class ProductTable {
   }
 
   addTemplate() {
-    this.$target.innerHTML = `
-      <h3>상품 현황</h3>
-      <table border="1">
-        ${productTableHeader}
-        ${productTableContents(getLocalStorage(LOCAL_DB.PRODUCT))}
-      </table>
-    `;
+    this.$target.innerHTML = productTableTemplate();
   }
 
   addTableStyle() {
