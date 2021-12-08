@@ -4,6 +4,7 @@ import ProductContainer from "./component/product/ProductContainer.js";
 class App {
   constructor($target) {
     this.$target = $target;
+
     this.addTemplate();
     this.selectDom();
     this.addEvent();
