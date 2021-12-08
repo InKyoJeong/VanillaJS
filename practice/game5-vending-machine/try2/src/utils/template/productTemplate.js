@@ -1,4 +1,4 @@
-import { ID, LOCAL_DB } from "../../../constants/index.js";
+import { CLASS, ID, LOCAL_DB } from "../../../constants/index.js";
 import { getLocalStorage } from "../localStorage.js";
 
 export const productInputTemplate = () => {
@@ -23,10 +23,10 @@ const productTableRows = (list) => {
   let html = "";
   list.map(({ name, price, quantity }) => {
     html += `
-      <tr>
-        <td>${name}</td>
-        <td>${price}</td>
-        <td>${quantity}</td>
+      <tr class=${CLASS.PRODUCT_MANAGE_ITEM}>
+        <td class=${CLASS.PRODUCT_MANAGE_NAME}>${name}</td>
+        <td class=${CLASS.PRODUCT_MANAGE_PRICE}>${price}</td>
+        <td class=${CLASS.PRODUCT_MANAGE_QUANTITY}>${quantity}</td>
       </tr>
     `;
   });

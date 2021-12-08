@@ -14,6 +14,13 @@ export const ID = {
   PRODUCT_ADD_BUTTON: "product-add-button",
 };
 
+export const CLASS = {
+  PRODUCT_MANAGE_ITEM: "product-manage-item",
+  PRODUCT_MANAGE_NAME: "product-manage-name",
+  PRODUCT_MANAGE_PRICE: "product-manage-price",
+  PRODUCT_MANAGE_QUANTITY: "product-manage-quantity",
+};
+
 export const NUM = {
   PRICE_MIN_UNIT: 10,
   PRICE_MIN_COUNT: 100,
