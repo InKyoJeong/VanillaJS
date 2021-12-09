@@ -41,5 +41,5 @@ export const productTableTemplate = () => {
       ${productTableHeader}
       ${productTableRows(getLocalStorage(LOCAL_DB.PRODUCT))}
     </table>
-`;
+  `;
 };
