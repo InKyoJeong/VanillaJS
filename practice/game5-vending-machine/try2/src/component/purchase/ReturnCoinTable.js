@@ -33,10 +33,6 @@ class ReturnCoinTable {
   }
 
   clickButton() {
-    this.getReturnCoin();
-  }
-
-  getReturnCoin() {
     let remain = getLocalStorage(LOCAL_DB.PURCHASE);
     const machineCoins = getLocalStorage(LOCAL_DB.COIN);
 
@@ -53,9 +49,17 @@ class ReturnCoinTable {
     });
 
     this.returnCoin = usedCoinArray;
-    this.addTemplate();
+    this.updateLocalStorage(machineCoins, remain);
+    this.updateView();
+  }
+
+  updateLocalStorage(machineCoins, remain) {
     saveLocalStorage(LOCAL_DB.COIN, machineCoins);
     saveLocalStorage(LOCAL_DB.PURCHASE, remain);
+  }
+
+  updateView() {
+    this.addTemplate();
     this.state.updateState();
   }
 }
