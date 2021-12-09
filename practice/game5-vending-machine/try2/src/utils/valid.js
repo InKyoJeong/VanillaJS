@@ -33,4 +33,6 @@ export const isValidChargeInput = (amount) => {
     alert(ERROR.PRICE_IS_NOT_CORRECT);
     return false;
   }
+
+  return true;
 };

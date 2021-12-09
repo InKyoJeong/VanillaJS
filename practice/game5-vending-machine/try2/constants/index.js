@@ -45,4 +45,7 @@ export const ERROR = {
 
 export const LOCAL_DB = {
   PRODUCT: "PRODUCT",
+  COIN: "COIN",
 };
+
+export const COIN_LIST = [10, 50, 100, 500];
