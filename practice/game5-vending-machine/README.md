@@ -46,7 +46,7 @@
 │ │   └── Product.js
 │ ├── components
 │ │   ├── charge
-│ │   │    └── ChargeContainer.js
+│ │   │    ├── ChargeContainer.js
 │ │   │    ├── ChargeInput.js
 │ │   │    └── ChargeTable.js
 │ │   ├── product
@@ -71,8 +71,8 @@
 │ │   ├── clearInput.js
 │ │   ├── localStorage.js
 │ │   ├── makeCoinArray.js
-│ │   └── selector.js
-│ │   └── tableStyle.js
+│ │   ├── selector.js
+│ │   ├── tableStyle.js
 │ │   └── valid.js
 │ ├── App.js
 │ └── index.js
