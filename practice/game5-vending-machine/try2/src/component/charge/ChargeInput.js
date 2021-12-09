@@ -49,8 +49,7 @@ class ChargeInput {
     }
 
     this.updateLocalStorage(amount);
-    this.showTotalCharge();
-    this.state.updateState();
+    this.updateView();
   }
 
   updateLocalStorage(amount) {
@@ -64,6 +63,11 @@ class ChargeInput {
     const coinArray = getRandomCoinArray(amount);
     coinArray.forEach((v, i) => (coinStorage[i].count += v));
     saveLocalStorage(LOCAL_DB.COIN, coinStorage);
+  }
+
+  updateView() {
+    this.showTotalCharge();
+    this.state.updateState();
   }
 }
 

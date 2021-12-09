@@ -51,6 +51,7 @@ class ReturnCoinTable {
     machineCoins.forEach((coin, i) => {
       coin.count -= returnCoin[i];
     });
+
     saveLocalStorage(LOCAL_DB.COIN, machineCoins);
   }
 
@@ -59,6 +60,7 @@ class ReturnCoinTable {
     COIN_LIST.forEach((coin, i) => {
       purchase -= coin * returnCoin[i];
     });
+
     saveLocalStorage(LOCAL_DB.PURCHASE, purchase);
   }
 

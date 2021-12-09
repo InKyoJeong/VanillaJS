@@ -46,11 +46,6 @@ class PurchaseTable {
     this.updatePurchaseStorage(productPrice);
   }
 
-  updateView() {
-    this.state.updateState();
-    this.addTemplate();
-  }
-
   updateProductStorage(productName) {
     const products = getLocalStorage(LOCAL_DB.PRODUCT);
     const index = products.findIndex(({ name }) => name === productName);
@@ -58,12 +53,19 @@ class PurchaseTable {
     if (products[index].quantity === 0) {
       products.splice(index, 1);
     }
+
     saveLocalStorage(LOCAL_DB.PRODUCT, products);
   }
 
   updatePurchaseStorage(productPrice) {
     const purchase = getLocalStorage(LOCAL_DB.PURCHASE);
+
     saveLocalStorage(LOCAL_DB.PURCHASE, purchase - Number(productPrice));
+  }
+
+  updateView() {
+    this.state.updateState();
+    this.addTemplate();
   }
 }
 

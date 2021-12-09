@@ -79,11 +79,11 @@ const returnCoinTableRows = (list) => {
   let html = "";
 
   if (!list.length) {
-    COIN_LIST.forEach((coin) => {
+    COIN_LIST.forEach((coin, i) => {
       html += `
         <tr>
           <td>${coin}원</td>
-          <td></td>
+          <td id=${RETURN_COIN_QUANTITY_ID[i]}></td>
         </tr>
       `;
     });
