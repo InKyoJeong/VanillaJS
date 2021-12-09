@@ -17,17 +17,19 @@ class ChargeContainer {
   addContainer() {
     this.$target.innerHTML = `
       <div id=${ID.CHARGE_INPUT_CONTAINER}></div>
+      <div id=${ID.CHARGE_TOTAL_CONTAINER}></div>
       <div id=${ID.CHARGE_TABLE_CONTAINER}></div>
     `;
   }
 
   selectDom() {
     this.$inputContainer = $(`#${ID.CHARGE_INPUT_CONTAINER}`);
+    this.$totalContainer = $(`#${ID.CHARGE_TOTAL_CONTAINER}`);
     this.$tableContainer = $(`#${ID.CHARGE_TABLE_CONTAINER}`);
   }
 
   mounted() {
-    new ChargeInput(this.$inputContainer);
+    new ChargeInput(this.$inputContainer, this.$totalContainer);
   }
 }
 

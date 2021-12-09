@@ -4,23 +4,28 @@ import { COIN_LIST, ID, LOCAL_DB } from "../../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { getRandomCoinArray } from "../../utils/makeCoinArray.js";
 import { isValidChargeInput } from "../../utils/valid.js";
+import {
+  chargeInputTemplate,
+  totalChargeTemplate,
+} from "../../utils/template/chargeTemplate.js";
 
 class ChargeInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor($inputContainer, $totalContainer) {
+    this.$inputContainer = $inputContainer;
+    this.$totalContainer = $totalContainer;
 
     this.addTemplate();
+    this.showTotalCharge();
     this.selectDom();
     this.addEvent();
   }
 
   addTemplate() {
-    this.$target.innerHTML = `
-      <h3>자판기 동전 충전하기</h3>
-      <input id=${ID.VENDING_MACHINE_CHARGE_INPUT} type="number" placeholder="자판기가 보유할 금액" />
-      <button id=${ID.VENDING_MACHINE_CHARGE_BUTTON}>충전하기</button>
-      <p id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}>보유 금액: </p>
-    `;
+    this.$inputContainer.innerHTML = chargeInputTemplate();
+  }
+
+  showTotalCharge() {
+    this.$totalContainer.innerHTML = totalChargeTemplate();
   }
 
   selectDom() {
@@ -34,25 +39,25 @@ class ChargeInput {
 
   clickButton() {
     const amount = Number(this.$chargeInput.value);
-
     if (!isValidChargeInput(amount)) {
       return;
     }
 
     this.updateLocalStorage(amount);
+    this.showTotalCharge();
   }
 
   updateLocalStorage(amount) {
-    const charge = getLocalStorage(LOCAL_DB.COIN);
-    if (!charge.length) {
+    const coinStorage = getLocalStorage(LOCAL_DB.COIN);
+    if (!coinStorage.length) {
       COIN_LIST.forEach((name) => {
-        charge.push(new Coin(name));
+        coinStorage.push(new Coin(name));
       });
     }
 
     const coinArray = getRandomCoinArray(amount);
-    coinArray.forEach((v, i) => (charge[i].count += v));
-    saveLocalStorage(LOCAL_DB.COIN, charge);
+    coinArray.forEach((v, i) => (coinStorage[i].count += v));
+    saveLocalStorage(LOCAL_DB.COIN, coinStorage);
   }
 }
 
