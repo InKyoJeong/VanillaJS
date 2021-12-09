@@ -75,27 +75,22 @@ const returnCoinTableTableHeader = `
   </tr>   
 `;
 
+const returnCoinQuantity = (list, i) => {
+  if (!list.length) {
+    return `<td id=${RETURN_COIN_QUANTITY_ID[i]}></td>`;
+  }
+
+  return `<td id=${RETURN_COIN_QUANTITY_ID[i]}>${list[i]}개</td>`;
+};
+
 const returnCoinTableRows = (list) => {
   let html = "";
-
-  if (!list.length) {
-    COIN_LIST.forEach((coin, i) => {
-      html += `
-        <tr>
-          <td>${coin}원</td>
-          <td id=${RETURN_COIN_QUANTITY_ID[i]}></td>
-        </tr>
-      `;
-    });
-
-    return html;
-  }
 
   COIN_LIST.forEach((coin, i) => {
     html += `
       <tr>
         <td>${coin}원</td>
-        <td id=${RETURN_COIN_QUANTITY_ID[i]}>${list[i]}개</td> 
+        ${returnCoinQuantity(list, i)}
       </tr>
     `;
   });

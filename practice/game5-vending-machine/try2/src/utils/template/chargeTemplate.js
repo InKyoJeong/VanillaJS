@@ -43,26 +43,21 @@ const chargeTableHeader = `
   </tr>
 `;
 
+const coinQuantity = (list, i) => {
+  if (!list.length) {
+    return `<td id=${COIN_QUANTITY_ID[i]}></td>`;
+  }
+  return `<td id=${COIN_QUANTITY_ID[i]}>${list[i].count}개</td>`;
+};
+
 const chargeTableRows = (list) => {
   let html = "";
-  if (!list.length) {
-    COIN_LIST.forEach((coin, i) => {
-      html += `
-    <tr>
-        <td>${coin}원</td>
-        <td id=${COIN_QUANTITY_ID[i]}></td> 
-      </tr>
-    `;
-    });
 
-    return html;
-  }
-
-  list.map((v, i) => {
+  COIN_LIST.forEach((coin, i) => {
     html += `
       <tr>
-        <td>${v.name}원</td>
-        <td id=${COIN_QUANTITY_ID[i]}>${v.count}개</td> 
+        <td>${coin}원</td>
+        ${coinQuantity(list, i)} 
       </tr>
     `;
   });
