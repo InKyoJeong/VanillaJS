@@ -1,7 +1,9 @@
-import { $, $$ } from "./selector.js";
+import { $$ } from "./selector.js";
 
 export const addTableStyle = () => {
-  $("table").style.borderCollapse = "collapse";
-  $("table").style.textAlign = "center";
+  $$("table").forEach((e) => {
+    e.style.borderCollapse = "collapse";
+    e.style.textAlign = "center";
+  });
   $$("td").forEach((e) => (e.style.padding = "0.5em 2em"));
 };

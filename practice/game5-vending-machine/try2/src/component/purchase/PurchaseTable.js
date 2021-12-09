@@ -37,6 +37,7 @@ class PurchaseTable {
     if (!isPurchaseAvailable(productPrice)) {
       return;
     }
+    // this.updateStorage, this.updateView로 나눠도 괜찮을듯
     this.updateProductStorage(productName);
     this.updatePurchaseStorage(productPrice);
     this.state.updateState();

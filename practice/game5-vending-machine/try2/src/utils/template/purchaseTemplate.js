@@ -58,3 +58,19 @@ export const purchaseTableTemplate = () => {
     </table>
   `;
 };
+
+const returnCoinTableTableHeader = `
+  <tr>
+    <td>동전</td>
+    <td>개수</td>
+  </tr>   
+`;
+
+export const returnCoinTableTemplate = () => {
+  return `
+    <h3>잔돈</h3>
+    <table border="1">
+      ${returnCoinTableTableHeader}
+    </table>
+  `;
+};
