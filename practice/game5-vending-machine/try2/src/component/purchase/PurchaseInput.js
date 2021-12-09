@@ -1,6 +1,6 @@
 import { ID } from "../../../constants/index.js";
 import { $ } from "../../utils/selector.js";
-import { isValidPurchaseInput } from "../../utils/valid.js";
+import { isValidChargeInput } from "../../utils/valid.js";
 
 class PurchaseInput {
   constructor($target) {
@@ -34,7 +34,7 @@ class PurchaseInput {
 
   clickButton() {
     const amount = Number(this.$chargeInput.value);
-    if (!isValidPurchaseInput(amount)) {
+    if (!isValidChargeInput(amount)) {
       return;
     }
   }

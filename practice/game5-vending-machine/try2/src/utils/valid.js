@@ -40,12 +40,3 @@ export const isValidChargeInput = (amount) => {
 
   return true;
 };
-
-export const isValidPurchaseInput = (amount) => {
-  if (!isValidCharge(amount)) {
-    alert(ERROR.CHARGE_AMOUNT_IS_NOT_CORRECT);
-    return false;
-  }
-
-  return true;
-};
