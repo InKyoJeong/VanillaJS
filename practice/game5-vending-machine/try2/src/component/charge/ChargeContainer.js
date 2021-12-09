@@ -1,11 +1,13 @@
-import { ID } from "../../../constants/index.js";
 import { $ } from "../../utils/selector.js";
+import { ID } from "../../../constants/index.js";
+import State from "../../observer/State.js";
 import ChargeInput from "./ChargeInput.js";
 import ChargeTable from "./ChargeTable.js";
 
 class ChargeContainer {
   constructor($target) {
     this.$target = $target;
+    this.state = new State();
     this.render();
   }
 
@@ -30,8 +32,8 @@ class ChargeContainer {
   }
 
   mounted() {
-    new ChargeInput(this.$inputContainer, this.$totalContainer);
-    new ChargeTable(this.$tableContainer);
+    new ChargeInput(this.$inputContainer, this.$totalContainer, this.state);
+    new ChargeTable(this.$tableContainer, this.state);
   }
 }
 
