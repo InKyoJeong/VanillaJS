@@ -8,6 +8,7 @@ class ChargeContainer {
   constructor($target) {
     this.$target = $target;
     this.state = new State();
+
     this.render();
   }
 

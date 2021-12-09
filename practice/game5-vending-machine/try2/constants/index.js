@@ -19,6 +19,14 @@ export const ID = {
   VENDING_MACHINE_CHARGE_INPUT: "vending-machine-charge-input",
   VENDING_MACHINE_CHARGE_BUTTON: "vending-machine-charge-button",
   VENDING_MACHINE_CHARGE_AMOUNT: "vending-machine-charge-amount",
+  // purchase
+  PURCHASE_INPUT_CONTAINER: "purchase-input-container",
+  PURCHASE_TABLE_CONTAINER: "purchase-table-container",
+  RETURN_COIN_TABLE_CONTAINER: "return-coin-table-container",
+  CHARGE_INPUT: "charge-input",
+  CHARGE_BUTTON: "charge-button",
+  CHARGE_AMOUNT: "charge-amount",
+  COIN_RETURN_BUTTON: "coin-return-button",
 };
 
 export const COIN_QUANTITY_ID = [

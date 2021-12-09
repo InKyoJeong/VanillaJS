@@ -15,6 +15,10 @@ class ChargeInput {
     this.$totalContainer = $totalContainer;
     this.state = state;
 
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
     this.showTotalCharge();
     this.selectDom();
@@ -45,8 +49,8 @@ class ChargeInput {
     }
 
     this.updateLocalStorage(amount);
-    this.state.updateState();
     this.showTotalCharge();
+    this.state.updateState();
   }
 
   updateLocalStorage(amount) {

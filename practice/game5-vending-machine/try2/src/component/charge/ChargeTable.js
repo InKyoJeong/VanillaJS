@@ -6,6 +6,7 @@ class ChargeTable {
     this.$target = $target;
     this.state = state;
     this.state.event.subscribe(this.render.bind(this));
+
     this.render();
   }
 
