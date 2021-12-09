@@ -1,6 +1,8 @@
+import Coin from "../../classes/Coin.js";
 import { $ } from "../../utils/selector.js";
-import { ID } from "../../../constants/index.js";
-import { getRandomCoinArray } from "../../utils/randomCoin.js";
+import { COIN_LIST, ID, LOCAL_DB } from "../../../constants/index.js";
+import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
+import { getRandomCoinArray } from "../../utils/makeCoinArray.js";
 import { isValidChargeInput } from "../../utils/valid.js";
 
 class ChargeInput {
@@ -37,8 +39,20 @@ class ChargeInput {
       return;
     }
 
+    this.updateLocalStorage(amount);
+  }
+
+  updateLocalStorage(amount) {
+    const charge = getLocalStorage(LOCAL_DB.COIN);
+    if (!charge.length) {
+      COIN_LIST.forEach((name) => {
+        charge.push(new Coin(name));
+      });
+    }
+
     const coinArray = getRandomCoinArray(amount);
-    console.log(coinArray);
+    coinArray.forEach((v, i) => (charge[i].count += v));
+    saveLocalStorage(LOCAL_DB.COIN, charge);
   }
 }
 
