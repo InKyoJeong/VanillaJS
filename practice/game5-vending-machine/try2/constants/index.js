@@ -19,11 +19,14 @@ export const ID = {
   VENDING_MACHINE_CHARGE_INPUT: "vending-machine-charge-input",
   VENDING_MACHINE_CHARGE_BUTTON: "vending-machine-charge-button",
   VENDING_MACHINE_CHARGE_AMOUNT: "vending-machine-charge-amount",
-  VENDING_MACHINE_COIN_500_QUANTITY: "vending-machine-coin-500-quantity",
-  VENDING_MACHINE_COIN_100_QUANTITY: "vending-machine-coin-100-quantity",
-  VENDING_MACHINE_COIN_50_QUANTITY: "vending-machine-coin-50-quantity",
-  VENDING_MACHINE_COIN_10_QUANTITY: "vending-machine-coin-10-quantity",
 };
+
+export const COIN_QUANTITY_ID = [
+  "vending-machine-coin-500-quantity",
+  "vending-machine-coin-100-quantity",
+  "vending-machine-coin-50-quantity",
+  "vending-machine-coin-10-quantity",
+];
 
 export const CLASS = {
   PRODUCT_MANAGE_ITEM: "product-manage-item",

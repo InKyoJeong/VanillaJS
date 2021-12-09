@@ -1,4 +1,4 @@
-import { $, $$ } from "../../utils/selector.js";
+import { addTableStyle } from "../../utils/tableStyle.js";
 import { productTableTemplate } from "../../utils/template/productTemplate.js";
 
 class ProductTable {
@@ -12,17 +12,11 @@ class ProductTable {
 
   render() {
     this.addTemplate();
-    this.addTableStyle();
   }
 
   addTemplate() {
     this.$target.innerHTML = productTableTemplate();
-  }
-
-  addTableStyle() {
-    $("table").style.borderCollapse = "collapse";
-    $("table").style.textAlign = "center";
-    $$("td").forEach((e) => (e.style.padding = "0.5em 2em"));
+    addTableStyle();
   }
 }
 
