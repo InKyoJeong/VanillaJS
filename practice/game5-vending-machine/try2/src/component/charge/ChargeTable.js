@@ -12,11 +12,11 @@ class ChargeTable {
 
   render() {
     this.addTemplate();
+    addTableStyle();
   }
 
   addTemplate() {
     this.$target.innerHTML = chargeTableTemplate();
-    addTableStyle();
   }
 }
 

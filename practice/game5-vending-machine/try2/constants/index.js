@@ -38,10 +38,17 @@ export const COIN_QUANTITY_ID = [
 ];
 
 export const CLASS = {
+  // product
   PRODUCT_MANAGE_ITEM: "product-manage-item",
   PRODUCT_MANAGE_NAME: "product-manage-name",
   PRODUCT_MANAGE_PRICE: "product-manage-price",
   PRODUCT_MANAGE_QUANTITY: "product-manage-quantity",
+  // purchase
+  PRODUCT_PURCHASE_ITEM: "product-purchase-item",
+  PURCHASE_BUTTON: "purchase-button",
+  PRODUCT_PURCHASE_NAME: "product-purchase-name",
+  PRODUCT_PURCHASE_PRICE: "product-purchase-price",
+  PRODUCT_PURCHASE_QUANTITY: "product-purchase-quantity",
 };
 
 export const NUM = {

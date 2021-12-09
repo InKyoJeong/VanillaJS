@@ -12,11 +12,11 @@ class ProductTable {
 
   render() {
     this.addTemplate();
+    addTableStyle();
   }
 
   addTemplate() {
     this.$target.innerHTML = productTableTemplate();
-    addTableStyle();
   }
 }
 
