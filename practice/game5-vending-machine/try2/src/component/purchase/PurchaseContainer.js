@@ -38,7 +38,7 @@ class PurchaseContainer {
   mounted() {
     new PurchaseInput(this.$inputContainer, this.$totalContainer, this.state);
     new PurchaseTable(this.$tableContainer, this.state);
-    new ReturnCoinTable(this.$returnContainer);
+    new ReturnCoinTable(this.$returnContainer, this.state);
   }
 }
 

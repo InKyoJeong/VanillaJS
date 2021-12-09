@@ -5,9 +5,11 @@ import { COIN_LIST, ID, LOCAL_DB } from "../../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 
 class ReturnCoinTable {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
     this.returnCoin = [];
+
     this.render();
   }
 
@@ -54,6 +56,7 @@ class ReturnCoinTable {
     this.addTemplate();
     saveLocalStorage(LOCAL_DB.COIN, machineCoins);
     saveLocalStorage(LOCAL_DB.PURCHASE, remain);
+    this.state.updateState();
   }
 }
 
