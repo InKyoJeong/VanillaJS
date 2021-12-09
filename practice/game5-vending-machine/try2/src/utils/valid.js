@@ -11,6 +11,10 @@ const isValidQuantity = (quantity) => {
   return quantity >= NUM.QUANTITY_MIN_COUNT && Number.isInteger(quantity);
 };
 
+const isValidCharge = (amount) => {
+  return amount % NUM.PRICE_MIN_UNIT === 0;
+};
+
 export const isValidProductInput = (name, price, quantity) => {
   if (isProductNameEmpty(name)) {
     alert(ERROR.PRODUCT_NAME_IS_BLANK);
@@ -29,8 +33,17 @@ export const isValidProductInput = (name, price, quantity) => {
 };
 
 export const isValidChargeInput = (amount) => {
-  if (!isValidPrice(amount)) {
-    alert(ERROR.PRICE_IS_NOT_CORRECT);
+  if (!isValidCharge(amount)) {
+    alert(ERROR.CHARGE_AMOUNT_IS_NOT_CORRECT);
+    return false;
+  }
+
+  return true;
+};
+
+export const isValidPurchaseInput = (amount) => {
+  if (!isValidCharge(amount)) {
+    alert(ERROR.CHARGE_AMOUNT_IS_NOT_CORRECT);
     return false;
   }
 
