@@ -41,6 +41,7 @@ class PurchaseTable {
     }
 
     this.updateProductStorage(productName);
+    this.updatePurchaseStorage(productPrice);
   }
 
   updateProductStorage(productName) {
@@ -51,6 +52,11 @@ class PurchaseTable {
       products.splice(index, 1);
     }
     saveLocalStorage(LOCAL_DB.PRODUCT, products);
+  }
+
+  updatePurchaseStorage(productPrice) {
+    const purchase = getLocalStorage(LOCAL_DB.PURCHASE);
+    saveLocalStorage(LOCAL_DB.PURCHASE, purchase - Number(productPrice));
   }
 }
 
