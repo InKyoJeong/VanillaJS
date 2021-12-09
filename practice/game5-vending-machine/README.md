@@ -39,33 +39,40 @@
 #### try2
 
 ```sh
+├── docs/README.md
 ├── src
 │ ├── classes
-│ │   ├── Product.js
-│ │   └── Random.js
-│ ├── constants/index.js
-│ ├── modules
-│ │   ├── ChargeManager
+│ │   ├── Coin.js
+│ │   └── Product.js
+│ ├── components
+│ │   ├── charge
+│ │   │    └── ChargeContainer.js
 │ │   │    ├── ChargeInput.js
-│ │   │    ├── ChargList.js
-│ │   │    └── index.js
-│ │   ├── ProductManager
-│ │   │    ├── index.js
+│ │   │    └── ChargeTable.js
+│ │   ├── product
+│ │   │    ├── ProductContainer.js
 │ │   │    ├── ProductInput.js
-│ │   │    └── ProductList.js
-│ │   └── PurchaseManager
-│ │        ├── ChargeReturn.js
-│ │        ├── index.js
+│ │   │    └── ProductTable.js
+│ │   └── purchase
+│ │        ├── PurchaseContainer.js
 │ │        ├── PurchaseInput.js
-│ │        └── PurchaseList.js
+│ │        ├── PurchaseTable.js
+│ │        └── ReturnCoinTable.js
+│ ├── constants/index.js
 │ ├── observer
-│ │   ├── index.js
+│ │   ├── Event.js
 │ │   └── State.js
 │ ├── utils
+│ │   ├── template
+│ │   │    ├── chargeTemplate.js
+│ │   │    ├── mainTemplate.js
+│ │   │    ├── productTemplate.js
+│ │   │    └── purchaseTemplate.js
 │ │   ├── clearInput.js
-│ │   ├── displayAlert.js
 │ │   ├── localStorage.js
-│ │   └── template.js
+│ │   ├── makeCoinArray.js
+│ │   └── selector.js
+│ │   └── tableStyle.js
 │ │   └── valid.js
 │ ├── App.js
 │ └── index.js

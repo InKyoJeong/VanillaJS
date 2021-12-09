@@ -37,9 +37,16 @@ class PurchaseTable {
     if (!isPurchaseAvailable(productPrice)) {
       return;
     }
-    // this.updateStorage, this.updateView로 나눠도 괜찮을듯
+    this.updateLocalStorage(productName, productPrice);
+    this.updateView();
+  }
+
+  updateLocalStorage(productName, productPrice) {
     this.updateProductStorage(productName);
     this.updatePurchaseStorage(productPrice);
+  }
+
+  updateView() {
     this.state.updateState();
     this.addTemplate();
   }

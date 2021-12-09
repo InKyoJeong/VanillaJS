@@ -1,3 +1,48 @@
+## 폴더 구조
+
+```sh
+├── docs/README.md
+├── src
+│ ├── classes
+│ │   ├── Coin.js
+│ │   └── Product.js
+│ ├── components
+│ │   ├── charge
+│ │   │    └── ChargeContainer.js
+│ │   │    ├── ChargeInput.js
+│ │   │    └── ChargeTable.js
+│ │   ├── product
+│ │   │    ├── ProductContainer.js
+│ │   │    ├── ProductInput.js
+│ │   │    └── ProductTable.js
+│ │   └── purchase
+│ │        ├── PurchaseContainer.js
+│ │        ├── PurchaseInput.js
+│ │        ├── PurchaseTable.js
+│ │        └── ReturnCoinTable.js
+│ ├── constants/index.js
+│ ├── observer
+│ │   ├── Event.js
+│ │   └── State.js
+│ ├── utils
+│ │   ├── template
+│ │   │    ├── chargeTemplate.js
+│ │   │    ├── mainTemplate.js
+│ │   │    ├── productTemplate.js
+│ │   │    └── purchaseTemplate.js
+│ │   ├── clearInput.js
+│ │   ├── localStorage.js
+│ │   ├── makeCoinArray.js
+│ │   └── selector.js
+│ │   └── tableStyle.js
+│ │   └── valid.js
+│ ├── App.js
+│ └── index.js
+└── index.html
+```
+
+<br>
+
 ## 구현할 기능 목록
 
 #### 초기 설정
