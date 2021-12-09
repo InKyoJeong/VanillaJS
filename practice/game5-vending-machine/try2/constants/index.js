@@ -21,6 +21,7 @@ export const ID = {
   VENDING_MACHINE_CHARGE_AMOUNT: "vending-machine-charge-amount",
   // purchase
   PURCHASE_INPUT_CONTAINER: "purchase-input-container",
+  PURCHASE_TOTAL_CONTAINER: "purchase-total-container",
   PURCHASE_TABLE_CONTAINER: "purchase-table-container",
   RETURN_COIN_TABLE_CONTAINER: "return-coin-table-container",
   CHARGE_INPUT: "charge-input",

@@ -2,26 +2,32 @@ import { ID, LOCAL_DB } from "../../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { $ } from "../../utils/selector.js";
 import { isValidChargeInput } from "../../utils/valid.js";
+import {
+  purchaseInputTemplate,
+  totalPurchaseTemplate,
+} from "../../utils/template/purchaseTemplate.js";
 
 class PurchaseInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor($inputContainer, $totalContainer) {
+    this.$inputContainer = $inputContainer;
+    this.$totalContainer = $totalContainer;
 
     this.render();
   }
 
   render() {
-    this.addContainer();
+    this.addTemplate();
+    this.showTotalCharge();
     this.selectDom();
     this.addEvent();
   }
 
-  addContainer() {
-    this.$target.innerHTML = `
-      <h3>금액 투입</h3>
-      <input id=${ID.CHARGE_INPUT} type="number" placeholder="투입할 금액" />
-      <button id=${ID.CHARGE_BUTTON}>투입하기</button>
-    `;
+  addTemplate() {
+    this.$inputContainer.innerHTML = purchaseInputTemplate();
+  }
+
+  showTotalCharge() {
+    this.$totalContainer.innerHTML = totalPurchaseTemplate();
   }
 
   selectDom() {
@@ -40,6 +46,7 @@ class PurchaseInput {
     }
 
     this.updateLocalStorage(amount);
+    this.showTotalCharge();
   }
 
   updateLocalStorage(amount) {
