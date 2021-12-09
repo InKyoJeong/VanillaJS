@@ -5,8 +5,9 @@ import { isPurchaseAvailable } from "../../utils/valid.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 
 class PurchaseTable {
-  constructor($target) {
+  constructor($target, state) {
     this.$target = $target;
+    this.state = state;
 
     this.render();
   }
@@ -42,6 +43,8 @@ class PurchaseTable {
 
     this.updateProductStorage(productName);
     this.updatePurchaseStorage(productPrice);
+    this.state.updateState();
+    this.render();
   }
 
   updateProductStorage(productName) {
