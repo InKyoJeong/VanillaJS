@@ -1,4 +1,4 @@
-import { ID, LOCAL_DB } from "../../../constants/index.js";
+import { ID, LOCAL_DB } from "../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { $ } from "../../utils/selector.js";
 import { isValidChargeInput } from "../../utils/valid.js";

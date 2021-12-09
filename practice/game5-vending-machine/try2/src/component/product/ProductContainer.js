@@ -1,4 +1,4 @@
-import { ID } from "../../../constants/index.js";
+import { ID } from "../../constants/index.js";
 import { $ } from "../../utils/selector.js";
 import ProductInput from "./ProductInput.js";
 import ProductTable from "./ProductTable.js";

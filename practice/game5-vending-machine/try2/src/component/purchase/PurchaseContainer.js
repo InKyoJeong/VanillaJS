@@ -1,5 +1,5 @@
 import { $ } from "../../utils/selector.js";
-import { ID } from "../../../constants/index.js";
+import { ID } from "../../constants/index.js";
 import PurchaseInput from "./PurchaseInput.js";
 import PurchaseTable from "./PurchaseTable.js";
 import State from "../../observer/State.js";

@@ -4,7 +4,7 @@ import {
   CLASS,
   COIN_LIST,
   RETURN_COIN_QUANTITY_ID,
-} from "../../../constants/index.js";
+} from "../../constants/index.js";
 import { getLocalStorage } from "../localStorage.js";
 
 const totalCharge = () => {

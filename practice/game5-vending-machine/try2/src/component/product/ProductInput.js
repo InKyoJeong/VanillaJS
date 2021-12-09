@@ -1,6 +1,6 @@
 import Product from "../../classes/Product.js";
 import { $ } from "../../utils/selector.js";
-import { ID, LOCAL_DB } from "../../../constants/index.js";
+import { ID, LOCAL_DB } from "../../constants/index.js";
 import { clearInput } from "../../utils/clearInput.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { isValidProductInput } from "../../utils/valid.js";

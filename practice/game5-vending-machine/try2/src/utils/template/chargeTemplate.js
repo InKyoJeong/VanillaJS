@@ -1,4 +1,4 @@
-import { COIN_QUANTITY_ID, ID, LOCAL_DB } from "../../../constants/index.js";
+import { COIN_QUANTITY_ID, ID, LOCAL_DB } from "../../constants/index.js";
 import { getLocalStorage } from "../localStorage.js";
 
 const totalCharge = (list) => {

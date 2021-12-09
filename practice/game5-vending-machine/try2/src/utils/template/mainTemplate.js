@@ -1,4 +1,4 @@
-import { ID } from "../../../constants/index.js";
+import { ID } from "../../constants/index.js";
 
 export const mainTemplate = () => {
   return `

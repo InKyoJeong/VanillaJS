@@ -1,6 +1,6 @@
 import Coin from "../../classes/Coin.js";
 import { $ } from "../../utils/selector.js";
-import { COIN_LIST, ID, LOCAL_DB } from "../../../constants/index.js";
+import { COIN_LIST, ID, LOCAL_DB } from "../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { getRandomCoinArray } from "../../utils/makeCoinArray.js";
 import { isValidChargeInput } from "../../utils/valid.js";

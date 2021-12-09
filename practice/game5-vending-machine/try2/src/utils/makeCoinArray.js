@@ -1,4 +1,4 @@
-import { COIN_LIST } from "../../constants/index.js";
+import { COIN_LIST } from "../constants/index.js";
 
 export const getRandomCoinArray = (amount) => {
   const coinObj = {

@@ -1,7 +1,7 @@
 import { returnCoinTableTemplate } from "../../utils/template/purchaseTemplate.js";
 import { addTableStyle } from "../../utils/tableStyle.js";
 import { $ } from "../../utils/selector.js";
-import { COIN_LIST, ID, LOCAL_DB } from "../../../constants/index.js";
+import { COIN_LIST, ID, LOCAL_DB } from "../../constants/index.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 
 class ReturnCoinTable {

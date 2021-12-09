@@ -1,5 +1,5 @@
 import { $ } from "../../utils/selector.js";
-import { ID } from "../../../constants/index.js";
+import { ID } from "../../constants/index.js";
 import State from "../../observer/State.js";
 import ChargeInput from "./ChargeInput.js";
 import ChargeTable from "./ChargeTable.js";

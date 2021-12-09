@@ -1,4 +1,4 @@
-import { ERROR, LOCAL_DB, NUM } from "../../constants/index.js";
+import { ERROR, LOCAL_DB, NUM } from "../constants/index.js";
 import { getLocalStorage } from "./localStorage.js";
 
 const isProductDuplicate = (name) => {
