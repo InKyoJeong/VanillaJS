@@ -51,7 +51,7 @@ class ReturnCoinTable {
     });
 
     this.returnCoin = usedCoinArray;
-    // this.addTemplate();
+    this.addTemplate();
     // saveLocalStorage(LOCAL_DB.COIN, machineCoins)
   }
 }

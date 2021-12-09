@@ -1,4 +1,10 @@
-import { LOCAL_DB, ID, CLASS, COIN_LIST } from "../../../constants/index.js";
+import {
+  LOCAL_DB,
+  ID,
+  CLASS,
+  COIN_LIST,
+  RETURN_COIN_QUANTITY_ID,
+} from "../../../constants/index.js";
 import { getLocalStorage } from "../localStorage.js";
 
 const totalCharge = () => {
@@ -83,11 +89,11 @@ const returnCoinTableRows = (list) => {
     return html;
   }
 
-  list.forEach((coin) => {
+  list.forEach((coin, i) => {
     html += `
       <tr>
         <td>${coin[0]}원</td>
-        <td>${coin[1]}개</td> 
+        <td id=${RETURN_COIN_QUANTITY_ID[i]}>${coin[1]}개</td> 
       </tr>
     `;
   });

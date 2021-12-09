@@ -37,6 +37,13 @@ export const COIN_QUANTITY_ID = [
   "vending-machine-coin-10-quantity",
 ];
 
+export const RETURN_COIN_QUANTITY_ID = [
+  "coin-500-quantity",
+  "coin-100-quantity",
+  "coin-50-quantity",
+  "coin-10-quantity",
+];
+
 export const CLASS = {
   // product
   PRODUCT_MANAGE_ITEM: "product-manage-item",
