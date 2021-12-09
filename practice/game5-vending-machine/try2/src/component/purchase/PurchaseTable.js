@@ -15,11 +15,11 @@ class PurchaseTable {
   render() {
     this.addTemplate();
     this.addEvent();
-    addTableStyle();
   }
 
   addTemplate() {
     this.$target.innerHTML = purchaseTableTemplate();
+    addTableStyle();
   }
 
   addEvent() {
@@ -30,21 +30,17 @@ class PurchaseTable {
     if (!e.target.classList.contains(CLASS.PURCHASE_BUTTON)) {
       return;
     }
-
     const tr = e.target.closest("tr");
     const { productName } = tr.children[0].dataset;
     const { productPrice } = tr.children[1].dataset;
-    const { productQuantity } = tr.children[2].dataset;
-    console.log(tr, productName, productPrice, productQuantity);
 
     if (!isPurchaseAvailable(productPrice)) {
       return;
     }
-
     this.updateProductStorage(productName);
     this.updatePurchaseStorage(productPrice);
     this.state.updateState();
-    this.render();
+    this.addTemplate();
   }
 
   updateProductStorage(productName) {
