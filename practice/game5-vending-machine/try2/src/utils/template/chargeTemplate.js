@@ -23,9 +23,11 @@ export const chargeInputTemplate = () => {
 
 export const totalChargeTemplate = () => {
   return `
-    <p id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}>보유 금액: ${totalCharge(
+    <p>
+      보유 금액: <span id=${ID.VENDING_MACHINE_CHARGE_AMOUNT}>${totalCharge(
     getLocalStorage(LOCAL_DB.COIN)
-  )}</p>
+  )}</span>
+    </p>
   `;
 };
 

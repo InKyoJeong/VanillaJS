@@ -26,7 +26,9 @@ export const purchaseInputTemplate = () => {
 
 export const totalPurchaseTemplate = () => {
   return `
-    <p id=${ID.CHARGE_AMOUNT}>투입한 금액: ${totalCharge()}</p>
+    <p> 
+      투입한 금액: <span id=${ID.CHARGE_AMOUNT}>${totalCharge()}</span>
+    </p>
   `;
 };
 
