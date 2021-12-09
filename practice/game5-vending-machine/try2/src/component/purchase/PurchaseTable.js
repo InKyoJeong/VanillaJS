@@ -1,7 +1,8 @@
 import { purchaseTableTemplate } from "../../utils/template/purchaseTemplate.js";
 import { addTableStyle } from "../../utils/tableStyle.js";
-import { CLASS } from "../../../constants/index.js";
+import { CLASS, LOCAL_DB } from "../../../constants/index.js";
 import { isPurchaseAvailable } from "../../utils/valid.js";
+import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 
 class PurchaseTable {
   constructor($target) {
@@ -38,6 +39,15 @@ class PurchaseTable {
     if (!isPurchaseAvailable(productPrice)) {
       return;
     }
+
+    this.updateProductStorage(productName);
+  }
+
+  updateProductStorage(productName) {
+    const products = getLocalStorage(LOCAL_DB.PRODUCT);
+    const index = products.findIndex(({ name }) => name === productName);
+    products[index].quantity--;
+    saveLocalStorage(LOCAL_DB.PRODUCT, products);
   }
 }
 
