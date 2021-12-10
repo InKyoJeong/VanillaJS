@@ -200,7 +200,6 @@ Object.values(numberKeyObj).reverse(); // [11, 22]
 - 따라서 이를 해결하는 과정에서 옵저버 패턴에 대해 알게 되었고, 이것을 사용해 보았습니다.
   - Event클래스를 만들어서 Map에 핸들러를 등록하는 이벤트를 추가하고, 이벤트를 구독하는 기능과 실행하는 기능을 추가
   - State클래스를 이용하여 상태가 업데이트되면 `fire()` 를 실행하여 등록된 핸들러가 동작하도록 추가
-- 이 방법을 이용해서 투입 금액에 따라 테이블을 다시 그리거나, 구매 또는 반환으로 인한 보유 금액을 업데이트 할 수 있었습니다.
 
 ```js
 class Event {
@@ -238,6 +237,43 @@ class State {
 export default State;
 ```
 
+<br>
+
+- 이 방법을 이용해서 투입 금액에 따라 테이블을 다시 그리거나, 구매 또는 반환으로 인한 보유 금액을 업데이트 할 수 있었습니다.
+
+```js
+// 이벤트를 등록한 곳
+class Table {
+  constructor($target, state) {
+    this.$target;
+    this.state = state;
+    this.state.event.subscribe(this.render.bind(this));
+
+    this.render(); // 테이블을 그리기
+  }
+
+  // ...생략
+}
+```
+
+```js
+// 상태 변경을 알리는 곳
+class Input {
+  constructor($target, state) {
+    this.$target = $target;
+    this.state = state;
+  }
+
+  // ...생략
+
+  change() {
+    this.state.updateState(); // 테이블 데이터를 변경할 경우 등록한 이벤트 실행
+  }
+}
+```
+
 <br >
 
 ## <a name="review"></a>과제 진행 소감
+
+- pr
