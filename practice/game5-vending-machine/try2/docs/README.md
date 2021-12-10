@@ -132,7 +132,7 @@
 
 #### HTML table
 
-- 아래와 같이 `border='1'`을 지정하면, 테두리가 생기긴 하지만 간격이 생기는데 이를 없애기 위한 css 속성을 알게 되었습니다.
+- 아래와 같이 `border='1'`을 지정하면 테두리가 생기긴 하지만 간격이 생기는데, 이를 없애기 위한 css 속성을 알게 되었습니다.
   - `border-collapse` : 표(table)의 테두리와 셀(td)의 테두리
     사이의 간격을 어떻게 처리할지 정함
   - `collapse` 옵션은 테두리 사이 간격을
@@ -163,7 +163,7 @@
 
 #### 로컬스토리지와 세션스토리지
 
-- 웹 스토리지에 대해 좀더 자세히 알게 되었는데 잘 정리되어있는 글이 있어서 공유합니다!
+- 웹 스토리지에 대해 좀더 자세히 알게 되었는데 잘 정리되어있는 글이 있어서 공유합니다.
   - [https://ko.javascript.info/localstorage](https://ko.javascript.info/localstorage)
 
 <br>
@@ -239,10 +239,23 @@ export default State;
 
 <br>
 
-- 이 방법을 이용해서 투입 금액에 따라 테이블을 다시 그리거나, 구매 또는 반환으로 인한 보유 금액을 업데이트 할 수 있었습니다.
+- 이 방법을 이용해서 투입 금액에 따라 테이블을 다시 그리거나, 구매 또는 반환으로 인한 보유 금액을 업데이트할 수 있었습니다.
 
 ```js
-// 이벤트를 등록한 곳
+// 이벤트 옵저버를 생성하는 예시
+class Container {
+  constructor($target) {
+    this.$target = $target;
+    this.state = new State();
+
+    new Input(this.state);
+    new Table(this.state);
+  }
+}
+```
+
+```js
+// 이벤트를 등록하는 예시
 class Table {
   constructor($target, state) {
     this.$target;
@@ -257,7 +270,7 @@ class Table {
 ```
 
 ```js
-// 상태 변경을 알리는 곳
+// 상태 변경을 알리는 예시
 class Input {
   constructor($target, state) {
     this.$target = $target;
@@ -272,7 +285,7 @@ class Input {
 }
 ```
 
-<br >
+<br>
 
 ## <a name="review"></a>과제 진행 소감
 
