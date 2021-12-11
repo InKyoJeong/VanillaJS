@@ -4,6 +4,7 @@ import { returnCoinTableTemplate } from "../../utils/template/purchaseTemplate.j
 import { addTableStyle } from "../../utils/tableStyle.js";
 import { getLocalStorage, saveLocalStorage } from "../../utils/localStorage.js";
 import { getReturnCoinArray } from "../../utils/makeCoinArray.js";
+import { isReturnPossible } from "../../utils/valid.js";
 
 class ReturnCoinTable {
   constructor($target, state) {
