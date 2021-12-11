@@ -9,7 +9,7 @@ class ReturnCoinTable {
   constructor($target, state) {
     this.$target = $target;
     this.state = state;
-    this.returnCoin = [];
+    this.returnCoinArray = [];
 
     this.render();
   }
@@ -21,7 +21,7 @@ class ReturnCoinTable {
   }
 
   addTemplate() {
-    this.$target.innerHTML = returnCoinTableTemplate(this.returnCoin);
+    this.$target.innerHTML = returnCoinTableTemplate(this.returnCoinArray);
     addTableStyle();
   }
 
@@ -35,9 +35,13 @@ class ReturnCoinTable {
 
   clickButton() {
     let amount = getLocalStorage(LOCAL_DB.PURCHASE);
-    this.returnCoin = getReturnCoinArray(amount);
+    this.returnCoinArray = getReturnCoinArray(amount);
 
-    this.updateLocalStorage(this.returnCoin);
+    if (!isReturnPossible(this.returnCoinArray)) {
+      return;
+    }
+
+    this.updateLocalStorage(this.returnCoinArray);
     this.updateView();
   }
 
