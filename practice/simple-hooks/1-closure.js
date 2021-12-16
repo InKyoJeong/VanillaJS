@@ -7,8 +7,8 @@ function getAdd() {
 }
 const add = getAdd();
 
-console.log(add()); //2
-console.log(add()); //3
+console.log(add());
+console.log(add());
 
 // 모듈 패턴
 const add = (function getAdd() {
@@ -21,5 +21,3 @@ const add = (function getAdd() {
 
 console.log(add());
 console.log(add());
-//2
-//3

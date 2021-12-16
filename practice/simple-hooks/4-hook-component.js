@@ -27,6 +27,6 @@ function Component() {
   };
 }
 
-var App = React.render(Component); // 1
+var App = React.render(Component);
 App.click();
-var App = React.render(Component); // 2
+var App = React.render(Component);

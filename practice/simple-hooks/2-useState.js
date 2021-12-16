@@ -10,6 +10,6 @@ function useState(initialVal) {
 
 const [count, setCount] = useState(1);
 
-console.log(count()); //1
+console.log(count());
 setCount(2);
-console.log(count()); //2
+console.log(count());
