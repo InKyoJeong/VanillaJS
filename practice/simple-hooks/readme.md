@@ -5,3 +5,4 @@
 - 3.  React.useState
 - 4.  컴포넌트에서 사용
 - 5.  컴포넌트에서 여러개 사용
+- 6.  useEffect
