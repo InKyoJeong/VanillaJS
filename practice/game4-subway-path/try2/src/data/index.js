@@ -30,8 +30,8 @@ export const sections = [
   },
   {
     name: ["강남", "역삼"],
-    distance: 3,
-    time: 2,
+    distance: 2,
+    time: 3,
   },
   {
     name: ["교대", "남부터미널"],

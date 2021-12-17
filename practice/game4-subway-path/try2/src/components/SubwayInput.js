@@ -1,6 +1,8 @@
 import { ID, NAME } from "../constants/index.js";
+import { sections } from "../data/index.js";
 import { dijkstraDistance, dijkstraTime } from "../utils/findShort.js";
 import { $ } from "../utils/selector.js";
+import { inputTemplate } from "../utils/template.js";
 
 class SubwayInput {
   constructor($target) {
@@ -12,26 +14,7 @@ class SubwayInput {
   }
 
   addTemplate() {
-    this.$target.innerHTML = `
-      <div>
-        <label>출발역</label>
-        <input id=${ID.DEPARTURE_STATION_NAME_INPUT} type="text" />
-      </div>
-      <br>
-      <div>
-        <label>도착역</label>
-        <input id=${ID.ARRIVAL_STATION_NAME_INPUT} type="text" />
-      </div>
-      <br>
-      <div id=${ID.SEARCH_OPTION_CONTAINER}>
-        <input type="radio" name=${NAME.SEARCH_TYPE} value="최단거리" checked />
-        <span>최단거리</span>
-        <input type="radio" name=${NAME.SEARCH_TYPE} value="최소시간" />
-        <span>최소시간</span>
-      </div>
-      <br>
-      <button id=${ID.SEARCH_BUTTON}>길찾기</button>
-    `;
+    this.$target.innerHTML = inputTemplate();
   }
 
   selectDom() {
@@ -52,17 +35,47 @@ class SubwayInput {
       `input[name=${NAME.SEARCH_TYPE}]:checked`
     ).value;
 
-    // 출발/도착 역 검증 (생략)
+    // ---출발/도착 역 검증---
 
-    // 최소시간
-    const shortTime = dijkstraTime.findShortestPath(departValue, arriveValue);
+    // ---경로, 총거리, 총시간 구하기---
+    // 1)경로
+    const path = this.getPath(departValue, arriveValue, searchType);
+    const shortDistancePath = path.map((v, i) => v + path[i + 1]).slice(0, -1);
+    console.log(shortDistancePath);
 
-    // 최소거리
-    const shortDistance = dijkstraDistance.findShortestPath(
-      departValue,
-      arriveValue
-    );
-    console.log(shortTime, shortDistance);
+    // 2)총거리
+    const totalDistance = sections.reduce((acc, { name, distance }) => {
+      if (shortDistancePath.includes(name.join(""))) {
+        return acc + distance;
+      }
+
+      return acc;
+    }, 0);
+
+    console.log(totalDistance);
+
+    const totalTime = sections.reduce((acc, { name, time }) => {
+      if (shortDistancePath.includes(name.join(""))) {
+        return acc + time;
+      }
+
+      return acc;
+    }, 0);
+
+    console.log(totalTime);
+
+    // ---테이블에 값 넘겨서 표시하기---
+    // new Result()
+  }
+
+  getPath(departValue, arriveValue, searchType) {
+    if (searchType === "최소시간") {
+      return dijkstraTime.findShortestPath(departValue, arriveValue);
+    }
+
+    if (searchType === "최단거리") {
+      return dijkstraDistance.findShortestPath(departValue, arriveValue);
+    }
   }
 }
 
