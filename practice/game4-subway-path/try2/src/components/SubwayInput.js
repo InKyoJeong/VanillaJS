@@ -1,3 +1,4 @@
+import Path from "../classes/Path.js";
 import { ID, NAME } from "../constants/index.js";
 import { sections } from "../data/index.js";
 import { dijkstraDistance, dijkstraTime } from "../utils/findShort.js";
@@ -41,39 +42,14 @@ class SubwayInput {
       `input[name=${NAME.SEARCH_TYPE}]:checked`
     ).value;
 
-    // -- 검증 생략 --
+    const path = new Path(departValue, arriveValue, searchType);
 
-    const path = this.getPath(departValue, arriveValue, searchType);
-    const shortDistancePath = path.map((v, i) => v + path[i + 1]).slice(0, -1);
-
-    const totalDistance = sections.reduce((acc, { name, distance }) => {
-      if (shortDistancePath.includes(name.join(""))) {
-        return acc + distance;
-      }
-
-      return acc;
-    }, 0);
-
-    const totalTime = sections.reduce((acc, { name, time }) => {
-      if (shortDistancePath.includes(name.join(""))) {
-        return acc + time;
-      }
-
-      return acc;
-    }, 0);
-
-    this.setState({ path, distance: totalDistance, time: totalTime });
+    this.setState({
+      path: path.getPath(),
+      distance: path.getTotalDistance(),
+      time: path.getTotalTime(),
+    });
     this.showResult();
-  }
-
-  getPath(departValue, arriveValue, searchType) {
-    if (searchType === "최소시간") {
-      return dijkstraTime.findShortestPath(departValue, arriveValue);
-    }
-
-    if (searchType === "최단거리") {
-      return dijkstraDistance.findShortestPath(departValue, arriveValue);
-    }
   }
 }
 
