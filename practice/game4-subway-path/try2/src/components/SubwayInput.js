@@ -1,4 +1,5 @@
 import { ID, NAME } from "../constants/index.js";
+import { dijkstraDistance, dijkstraTime } from "../utils/findShort.js";
 import { $ } from "../utils/selector.js";
 
 class SubwayInput {
@@ -22,7 +23,7 @@ class SubwayInput {
         <input id=${ID.ARRIVAL_STATION_NAME_INPUT} type="text" />
       </div>
       <br>
-      <div>
+      <div id=${ID.SEARCH_OPTION_CONTAINER}>
         <input type="radio" name=${NAME.SEARCH_TYPE} value="최단거리" checked />
         <span>최단거리</span>
         <input type="radio" name=${NAME.SEARCH_TYPE} value="최소시간" />
@@ -36,6 +37,7 @@ class SubwayInput {
   selectDom() {
     this.$departInput = $(`#${ID.DEPARTURE_STATION_NAME_INPUT}`);
     this.$arrivalInput = $(`#${ID.ARRIVAL_STATION_NAME_INPUT}`);
+    this.$searchContainer = $(`#${ID.SEARCH_OPTION_CONTAINER}`);
     this.$searchButton = $(`#${ID.SEARCH_BUTTON}`);
   }
 
@@ -44,7 +46,23 @@ class SubwayInput {
   }
 
   clickButton() {
-    console.log(this.$departInput.value);
+    const departValue = this.$departInput.value;
+    const arriveValue = this.$arrivalInput.value;
+    const searchType = this.$searchContainer.querySelector(
+      `input[name=${NAME.SEARCH_TYPE}]:checked`
+    ).value;
+
+    // 출발/도착 역 검증 (생략)
+
+    // 최소시간
+    const shortTime = dijkstraTime.findShortestPath(departValue, arriveValue);
+
+    // 최소거리
+    const shortDistance = dijkstraDistance.findShortestPath(
+      departValue,
+      arriveValue
+    );
+    console.log(shortTime, shortDistance);
   }
 }
 
