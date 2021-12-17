@@ -6,7 +6,7 @@ export const ID = {
   SEARCH_BUTTON: "search-button",
   SEARCH_OPTION_CONTAINER: "search-option-container",
   // table
-  SUBWAY_TABLE_CONTAINER: "subway-table-container",
+  SUBWAY_RESULT_CONTAINER: "subway-result-container",
 };
 
 export const NAME = {

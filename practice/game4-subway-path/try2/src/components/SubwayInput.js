@@ -5,16 +5,22 @@ import { $ } from "../utils/selector.js";
 import { inputTemplate } from "../utils/template.js";
 
 class SubwayInput {
-  constructor($target) {
-    this.$target = $target;
+  constructor({ $inputContainer, setState, showResult }) {
+    this.$inputContainer = $inputContainer;
+    this.setState = setState;
+    this.showResult = showResult;
 
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
     this.selectDom();
     this.addEvent();
   }
 
   addTemplate() {
-    this.$target.innerHTML = inputTemplate();
+    this.$inputContainer.innerHTML = inputTemplate();
   }
 
   selectDom() {
@@ -35,15 +41,11 @@ class SubwayInput {
       `input[name=${NAME.SEARCH_TYPE}]:checked`
     ).value;
 
-    // ---출발/도착 역 검증---
+    // -- 검증 생략 --
 
-    // ---경로, 총거리, 총시간 구하기---
-    // 1)경로
     const path = this.getPath(departValue, arriveValue, searchType);
     const shortDistancePath = path.map((v, i) => v + path[i + 1]).slice(0, -1);
-    console.log(shortDistancePath);
 
-    // 2)총거리
     const totalDistance = sections.reduce((acc, { name, distance }) => {
       if (shortDistancePath.includes(name.join(""))) {
         return acc + distance;
@@ -51,8 +53,6 @@ class SubwayInput {
 
       return acc;
     }, 0);
-
-    console.log(totalDistance);
 
     const totalTime = sections.reduce((acc, { name, time }) => {
       if (shortDistancePath.includes(name.join(""))) {
@@ -62,10 +62,8 @@ class SubwayInput {
       return acc;
     }, 0);
 
-    console.log(totalTime);
-
-    // ---테이블에 값 넘겨서 표시하기---
-    // new Result()
+    this.setState({ path, distance: totalDistance, time: totalTime });
+    this.showResult();
   }
 
   getPath(departValue, arriveValue, searchType) {
