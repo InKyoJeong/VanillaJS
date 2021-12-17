@@ -22,3 +22,20 @@ export const inputTemplate = () => {
     <button id=${ID.SEARCH_BUTTON}>길찾기</button>
   `;
 };
+
+export const tableTemplate = (state) => {
+  return `
+    <h1>결과</h1>
+    <table border="1">
+        <th>총거리</th>
+        <th>총시간</th>
+        <tr align="center">
+          <td>${state.distance}km</td>
+          <td>${state.time}분</td>
+        <tr>
+        <tr align="center">
+          <td colspan="2">${state.path.join("▶︎")}</td>
+        </tr>
+    </table>
+`;
+};

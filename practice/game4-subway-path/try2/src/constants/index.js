@@ -1,11 +1,9 @@
 export const ID = {
-  // input
   SUBWAY_INPUT_CONTAINER: "subway-input-container",
   DEPARTURE_STATION_NAME_INPUT: "departure-station-name-input",
   ARRIVAL_STATION_NAME_INPUT: "arrival-station-name-input",
   SEARCH_BUTTON: "search-button",
   SEARCH_OPTION_CONTAINER: "search-option-container",
-  // table
   SUBWAY_RESULT_CONTAINER: "subway-result-container",
 };
 

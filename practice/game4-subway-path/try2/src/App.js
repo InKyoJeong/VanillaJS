@@ -12,6 +12,10 @@ class App {
       time: 0,
     };
 
+    this.render();
+  }
+
+  render() {
     this.addTemplate();
     this.selectDom();
     this.mounted();
