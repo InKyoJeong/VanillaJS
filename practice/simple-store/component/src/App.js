@@ -1,20 +1,12 @@
 import Component from "./core/Component.js";
+import { store } from "./store.js";
 
 class App extends Component {
-  initState() {
-    return {
-      a: 1,
-      b: 2,
-    };
-  }
-
   template() {
-    const { a, b } = this.state;
-
     return `
-        <input id="stateA" value="${a}" />  
-        <input id="stateB" value="${b}" />  
-        <p>a+b = ${a + b}</p>
+        <input id="stateA" value="${store.state.a}" />  
+        <input id="stateB" value="${store.state.b}" />  
+        <p>a+b = ${store.state.a + store.state.b}</p>
     `;
   }
 
@@ -22,13 +14,13 @@ class App extends Component {
     this.$target
       .querySelector("#stateA")
       .addEventListener("change", ({ target }) => {
-        this.state.a = Number(target.value);
+        store.setState({ a: Number(target.value) });
       });
 
     this.$target
       .querySelector("#stateB")
       .addEventListener("change", ({ target }) => {
-        this.state.b = Number(target.value);
+        store.setState({ b: Number(target.value) });
       });
   }
 }

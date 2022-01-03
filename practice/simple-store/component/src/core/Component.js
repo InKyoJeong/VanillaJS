@@ -8,7 +8,7 @@ class Component {
   }
 
   setUp() {
-    this.state = observable(this.initState());
+    // this.state = observable(this.initState());
     observe(() => {
       this.render();
       this.setEvent();
@@ -16,9 +16,9 @@ class Component {
     });
   }
 
-  initState() {
-    return {};
-  }
+  //   initState() {
+  //     return {};
+  //   }
 
   template() {
     return "";
