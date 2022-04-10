@@ -1,8 +1,7 @@
 import View from "./View.js";
+import "./ProductManage.js";
 
 export default class App extends View {
-  //
-
   render() {
     return `
       <h1>VendingStore</h1>
