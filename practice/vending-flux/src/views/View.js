@@ -12,6 +12,19 @@ export default class View extends HTMLElement {
     return this;
   }
 
+  on(event, handler) {
+    this.addEventListener(event, handler);
+    return this;
+  }
+
+  emit(event, data) {
+    const newCustomEvent = new CustomEvent(event, {
+      detail: data,
+    });
+    this.dispatchEvent(newCustomEvent);
+    return this;
+  }
+
   render() {
     return ``;
   }
